@@ -1,5 +1,5 @@
 #!/bin/bash 
-# Create home directory for user. 
+# Create home directory for user in /Users. 
 
 username="sjobs"
 
