@@ -1,6 +1,10 @@
 #!/bin/bash 
 # mjk235 [at] nyu [dot] edu --2019.06.03
-# Create local user account in GNU/Linux 
+# Create local user account in GNU/Linux or macOS 
+
+# /etc/xdg/user-dirs.defaults (info on default dirs for useradd) 
+# (Requires GUI login?) 
+
 
 # Array for user prompts. 
 
