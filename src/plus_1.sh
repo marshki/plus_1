@@ -2,17 +2,13 @@
 # mjk235 [at] nyu [dot] edu --2019.06.03
 # Create local user account in GNU/Linux or macOS 
 
-# /etc/xdg/user-dirs.defaults (info on default dirs for useradd) 
-# (Requires GUI login?) 
-
-
 # Array for user prompts. 
 
-PROMPT=("user name" "'real' name" "password" "Re-enter password")
+PROMPT=("user name" "'real' name" "password" "Re-enter password" "primary group ID" "password hint")
 
 # Array for variable assignments. 
 
-ASSIGN=(username realname pass1 pass2) 
+ASSIGN=(username realname pass1 pass2 primarygroup passhint) 
 
 # Is current UID 0? If not, exit. (Not needed for non-admin account creation).
 
