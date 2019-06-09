@@ -73,19 +73,40 @@ user_info() {
   check_password
 } 
 
-# Create account via useradd using input from user_info 
+# Create account in GNU/Linux via useradd using input from user_info 
 
-create_user() { 
+create_user_linux() { 
   printf "%s\\n" "Adding user..." 
 
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username" 
 } 
 
-set_password() { 
+set_password_linux() { 
   printf "%s\\n" "Setting password..." 
 
   printf "%s" "$username:$pass2" | chpasswd 
 }
+
+# Create account in macOS via dscl using input from user_info 
+
+create_user_macOS() { 
+  printf "%s\\n" "Adding user..." 
+
+  dscl . -create /Users/"$username"
+  dscl . -create /Users/"$username" UniqueID "$increment_uid" 
+  dscl . -create /Users/"$username" UserShell /bin/bash
+  dscl . -create /Users/"$username" RealName "$realname"
+  dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
+  dscl . -create /Users/"$username" NFSHomeDirectory /Users/$username
+  dscl . -create /Users/"$username" hint "$passhint"
+  dscl . -passwd /Users/"$username" "$pass2"
+} 
+
+# Create home directory macOS 
+
+create_homedir(){ 
+  createhomedir -u $username -c 
+} 
 
 main () { 
   root_check
