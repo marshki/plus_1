@@ -1,14 +1,23 @@
 #!/bin/bash 
 # mjk235 [at] nyu [dot] edu --2019.06.03
-# Create local user account in GNU/Linux or macOS 
 
-# Array for user prompts. 
+#===================================
+# Create local user account in 
+# GNU/Linux or macOS 
+#===================================
+
+#===================================
+# Arrays for: 
+# user prompt, variable assignment
+#===================================
 
 PROMPT=("user name" "'real' name" "password" "Re-enter password" "primary group ID" "password hint")
 
-# Array for variable assignments. 
-
 ASSIGN=(username realname pass1 pass2 primarygroup passhint) 
+
+#===================================
+# Functions in common 
+#===================================
 
 # Is current UID 0? If not, exit. (Not needed for non-admin account creation).
 
@@ -72,6 +81,10 @@ user_info() {
   confirm_password
   check_password
 } 
+
+#===================================
+# Functions in common 
+#===================================
 
 # Create account in GNU/Linux via useradd using input from user_info 
 
