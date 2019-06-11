@@ -72,7 +72,7 @@ check_password() {
   fi 
 } 
 
-# Wrapper 
+# In common wrapper 
 
 user_info() { 
   get_username
@@ -83,7 +83,7 @@ user_info() {
 } 
 
 #===================================
-# Functions in common 
+# GNU/Linux Functions 
 #===================================
 
 # Create account in GNU/Linux via useradd using input from user_info 
@@ -98,6 +98,30 @@ set_password_linux() {
   printf "%s\\n" "Setting password..." 
 
   printf "%s" "$username:$pass2" | chpasswd 
+}
+
+#===================================
+# macOS Functions 
+#===================================
+
+# Get highest current UID and increment +1 
+
+get_uid () { 
+  uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
+  increment_uid=$((uid +1))
+} 
+
+# Primary group ID prompt. 
+
+get_primarygroup() { 
+  printf "%s\n" "Primary Group ID: 80=admin, 20=standard" 
+  read -rp "Enter ${PROMPT[2]} to add and press [Enter]: " ${ASSIGN[2]}
+} 
+
+# Password hint prompt. 
+
+get_hint() { 
+  read -rp "Enter ${PROMPT[3]} to add and press [Enter]: " ${ASSIGN[3]}
 }
 
 # Create account in macOS via dscl using input from user_info 
