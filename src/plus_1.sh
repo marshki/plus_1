@@ -100,7 +100,7 @@ set_password_linux() {
   printf "%s" "$username:$pass2" | chpasswd 
 }
 
-add_linux()
+add_linux() {
   create_user_linux
   set_password_linux
 } 
