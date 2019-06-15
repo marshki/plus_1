@@ -71,6 +71,17 @@ check_password() {
   fi 
 } 
 
+# Wrapper function 
+
+user_info() { 
+  get_username 
+  username_check 
+  get_realname 
+  get_password
+  confirm_password 
+  check_password
+} 
+
 #=======================================
 # GNU/Linux Functions 
 #=======================================
@@ -88,6 +99,11 @@ set_password_linux() {
 
   printf "%s" "$username:$pass2" | chpasswd 
 }
+
+add_linux()
+  create_user_linux
+  set_password_linux
+} 
 
 #=======================================
 # macOS Functions 
@@ -121,14 +137,22 @@ create_user_macOS() {
   dscl . -passwd /Users/"$username" "$pass2"
 } 
 
+
 # Create home directory macOS 
 
 create_homedir(){ 
   createhomedir -u $username -c 
 } 
 
+add_macOS(){ 
+  get_uid
+  get_primarygroup
+  create_user_macOS
+  create_homedir
+} 
+
 #=======================================
-# Wrapper Functions 
+#  
 #=======================================
 
 main () { 
