@@ -172,9 +172,6 @@ os_check () {
     esac 
 } 
 
-os_check
-
-
 main () { 
   root_check
   user_info
