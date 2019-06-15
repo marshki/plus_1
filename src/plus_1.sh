@@ -10,9 +10,9 @@
 # Arrays for: user prompt, variables
 #=======================================
 
-PROMPT=("user name" "'real' name" "password" "Re-enter password" "primary group ID" "password hint")
+PROMPT=("user name" "'real' name" "password" "Re-enter password" "primary group ID")
 
-ASSIGN=(username realname pass1 pass2 primarygroup passhint) 
+ASSIGN=(username realname pass1 pass2 primarygroup) 
 
 #=======================================
 # Functions in common 
@@ -107,12 +107,6 @@ get_primarygroup() {
   read -rp "Enter ${PROMPT[2]} to add and press [Enter]: " ${ASSIGN[2]}
 } 
 
-# Password hint prompt. 
-
-get_hint() { 
-  read -rp "Enter ${PROMPT[3]} to add and press [Enter]: " ${ASSIGN[3]}
-}
-
 # Create account in macOS via dscl using input from user_info 
 
 create_user_macOS() { 
@@ -124,7 +118,6 @@ create_user_macOS() {
   dscl . -create /Users/"$username" RealName "$realname"
   dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
   dscl . -create /Users/"$username" NFSHomeDirectory /Users/$username
-  dscl . -create /Users/"$username" hint "$passhint"
   dscl . -passwd /Users/"$username" "$pass2"
 } 
 
