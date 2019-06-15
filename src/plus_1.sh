@@ -155,11 +155,30 @@ add_macOS(){
 #  
 #=======================================
 
+# detect system architecture, then act
+  
+os_check () { 
+
+    case $(uname -s) in
+    Darwin)
+      add_macOS 
+      ;;
+    Linux)
+      add_linux  
+      ;;
+    *)
+      printf "%s\\n" "He can't handle your speed, $(uname -s)"
+      ;;
+    esac 
+} 
+
+os_check
+
+
 main () { 
   root_check
   user_info
-  create_user
-  set_password
+  os_check
 }
 
 main "$@" 
