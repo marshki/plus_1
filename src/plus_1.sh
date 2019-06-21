@@ -151,7 +151,7 @@ add_macOS(){
 } 
 
 #=======================================
-#  
+# Main 
 #=======================================
 
 # detect system architecture, then act
@@ -166,7 +166,7 @@ os_check () {
       add_linux  
       ;;
     *)
-      printf "%s\\n" "He can't handle your speed, $(uname -s)"
+      printf "%s\\n" "You got the wrong one, $(uname -s)"
       ;;
     esac 
 } 
