@@ -37,7 +37,7 @@ get_username() {
 
 username_check() {
   if id "$username" >/dev/null 2>&1; then
-    printf "%s\\n" "ERROR: $username Already exists. Exiting." >&2 
+    printf "%s\\n" "ERROR: $username already exists. Exiting." >&2 
     exit 1 
   fi 
 }
@@ -120,7 +120,7 @@ get_uid () {
 
 get_primarygroup() { 
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard" 
-  read -rp "Enter ${PROMPT[2]} to add and press [Enter]: " ${ASSIGN[2]}
+  read -rp "Enter ${PROMPT[4]} to add and press [Enter]: " ${ASSIGN[4]}
 } 
 
 # Create account in macOS via dscl using input from user_info 
@@ -136,7 +136,6 @@ create_user_macOS() {
   dscl . -create /Users/"$username" NFSHomeDirectory /Users/$username
   dscl . -passwd /Users/"$username" "$pass2"
 } 
-
 
 # Create home directory macOS 
 
