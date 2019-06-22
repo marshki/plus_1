@@ -34,8 +34,6 @@ then call it:
 ## History
 v.0.1 2019.06.22
 
-## License
-
 ## License 
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
  
