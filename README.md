@@ -10,13 +10,12 @@ Bash script to create local user account(s) in GNU Linux and macOS.
 ## Getting Started 
 
 Liftoff:
---------
 
-__For everyone:__
+For everyone:
 
 You can run this script with: `bash plus_1.sh`
 
-__For sysadmins:__
+For sysadmins:
 
 Make this script accessible to all users by placing it in: `/` 
 
