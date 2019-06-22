@@ -31,6 +31,10 @@ then call it:
 
 `plus1` 
 
+## TODO
+
+--[ ] Add user delete option. 
+
 ## History
 v.0.1 2019.06.22
 
