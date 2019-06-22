@@ -7,6 +7,27 @@
 
 Bash script to create local user account(s) in GNU Linux and macOS. 
 
-## Getting Started
+## Getting Started 
 
-*Liftoff:*
+__Liftoff:__
+
+**For everyone:**
+
+You can run this script with: `bash plus_1.sh`
+
+**For sysadmins:**
+
+Make this script accessible to all users by placing it in: `/`; 
+
+create a symbolic link for it: 
+
+`ln -s /plus_1.sh /usr/bin/plus1`; 
+
+set the executable bit on the file:
+
+`chmod +x /plus_1.sh`;   
+
+then call it:
+
+`plus1`.  
+
