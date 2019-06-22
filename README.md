@@ -9,7 +9,8 @@ Bash script to create local user account(s) in GNU Linux and macOS.
 
 ## Getting Started 
 
-__Liftoff:__
+Liftoff:
+--------
 
 __For everyone:__
 
