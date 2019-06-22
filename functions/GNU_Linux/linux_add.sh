@@ -1,5 +1,6 @@
 #!/bin/bash 
-# mjk235 [at] nyu [dot] edu --2019.02.26 
+# Create local user account in GNU/Linux 
+# via `user add` utility
 
 # Array for user prompts. 
 
