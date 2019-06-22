@@ -29,7 +29,7 @@ get_username() {
 
 username_check() {
   if id "$username" >/dev/null 2>&1; then
-    printf "%s\\n" "ERROR: "$username" Already exists. Exiting." >&2 
+    printf "%s\\n" "ERROR: $username Already exists. Exiting." >&2 
     exit 1 
   fi 
 }
