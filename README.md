@@ -11,11 +11,11 @@ Bash script to create local user account(s) in GNU Linux and macOS.
 
 __Liftoff:__
 
-**For everyone:**
+__For everyone:__
 
 You can run this script with: `bash plus_1.sh`
 
-**For sysadmins:**
+__For sysadmins:__
 
 Make this script accessible to all users by placing it in: `/` 
 
@@ -29,5 +29,5 @@ set the executable bit on the file:
 
 then call it:
 
-`plus1`.  
+`plus1`  
 
