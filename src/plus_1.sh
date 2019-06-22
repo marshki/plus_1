@@ -154,9 +154,9 @@ add_macOS(){
 # Main 
 #=======================================
 
-# detect system architecture, then act
+# Detect system architecture, then act
   
-os_check () { 
+plus_1 () { 
 
     case $(uname -s) in
     Darwin)
@@ -174,7 +174,7 @@ os_check () {
 main () { 
   root_check
   user_info
-  os_check
+  plus_1
 }
 
 main "$@" 
