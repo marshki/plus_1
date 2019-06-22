@@ -94,11 +94,15 @@ create_user_linux() {
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username" 
 } 
 
+# Set password 
+
 set_password_linux() { 
   printf "%s\\n" "Setting password..." 
 
   printf "%s" "$username:$pass2" | chpasswd 
 }
+
+# GNU/Linux wrapper
 
 add_linux() {
   create_user_linux
@@ -142,6 +146,8 @@ create_user_macOS() {
 create_homedir(){ 
   createhomedir -u $username -c 
 } 
+
+# macOS wrapper
 
 add_macOS(){ 
   get_uid
