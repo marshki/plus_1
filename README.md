@@ -13,15 +13,7 @@ Bash script to create local user account(s) in GNU Linux and macOS.
 
 #### For everyone
 
-You can run this script with: `bash plus_1.sh`
-
-#### For sysadmins
-
-Make this script accessible to all users by placing it in: `/` 
-
-create a symbolic link for it: 
-
-`ln -s /plus_1.sh /usr/bin/plus1` 
+Make this script accessible to all users by placing it in: `/usr/local/bin` 
 
 set the executable bit on the file:
 
@@ -29,7 +21,7 @@ set the executable bit on the file:
 
 then call it:
 
-`plus1` 
+`bash plus1.sh` 
 
 ## TODO
 
