@@ -33,7 +33,7 @@ then call it:
 
 ## TODO
 
---[ ] Add user delete option. 
+- [ ] Add user delete option. 
 
 ## History
 v.0.1 2019.06.22
