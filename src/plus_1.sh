@@ -171,7 +171,7 @@ plus_1 () {
       add_linux  
       ;;
     *)
-      printf "%s\\n" "You got the wrong one, $(uname -s)"
+      printf "%s\\n" "You got the wrong one, homie"
       ;;
     esac 
 } 
