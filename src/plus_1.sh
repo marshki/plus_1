@@ -163,7 +163,6 @@ add_macOS(){
 # Detect system architecture, then act
   
 plus_1 () { 
-
     case $(uname -s) in
     Darwin)
       add_macOS 
