@@ -24,7 +24,7 @@ then call it:
 `bash plus1.sh` 
 
 ## TODO
-  - [ ] Add user delete option. 
+- [ ] Add user delete option. 
 
 ## History
 v.0.1 2019.06.22
