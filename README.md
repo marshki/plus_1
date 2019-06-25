@@ -24,6 +24,7 @@ then call it:
 `bash plus1.sh` 
 
 ## TODO
+- [ ] Investigate `useradd` so that it creates dafault `/home/username` directory structure
 - [ ] Add user delete option. 
 
 ## History
