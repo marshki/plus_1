@@ -25,7 +25,6 @@ then call it:
 
 ## TODO
 - [ ] Investigate `useradd` so that it creates dafault `/home/username` directory structure
-- [ ] Add user delete option. 
 
 ## History
 v.0.1 2019.06.22
