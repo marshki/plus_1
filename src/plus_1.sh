@@ -51,13 +51,13 @@ get_realname() {
 # Password prompt. 
 
 get_password() { 
-  read -rp "Enter ${PROMPT[2]} to add and press [Enter]: " "${ASSIGN[2]}" 
+  read -r -s -p "Enter ${PROMPT[2]} to add and press [Enter]: " "${ASSIGN[2]}" 
 } 
 
 # Confirm password prompt. 
 
 confirm_password() { 
-  read -rp "${PROMPT[3]} password to add and press [Enter]: " "${ASSIGN[3]}" 
+  read -r -s -p "${PROMPT[3]} password to add and press [Enter]: " "${ASSIGN[3]}" 
 } 
 
 # Check if passwords match. Exit if not. 
