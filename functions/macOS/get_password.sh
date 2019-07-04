@@ -1,16 +1,18 @@
 #!/bin/bash 
 # Password prompt (twice). 
 # Exit if passwords do not match.
+# Print: "get_password" and "confirm_password" for illustrative purposes, 
+# you almost certainly don't want this
 
-# read -r (esc. key binding) & present prompt  
+# read -r (esc. key binding), silently, & present prompt  
 
 get_password() { 
-  read -rp "Enter password to add and press [Enter]: " pass1 
+  read -r -s -p "Enter password to add and press [Enter]: " pass1 
   printf "%s\n" "$pass1" 
 } 
 
 confirm_password() { 
-  read -rp "Re-enter password to add and press [Enter]: " pass2 
+  read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
   printf "%s\n" "$pass2" 
 } 
 
