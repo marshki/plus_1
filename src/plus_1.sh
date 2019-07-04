@@ -52,12 +52,14 @@ get_realname() {
 
 get_password() { 
   read -r -s -p "Enter ${PROMPT[2]} to add and press [Enter]: " "${ASSIGN[2]}" 
+  printf "%s\\n"
 } 
 
 # Confirm password prompt. 
 
 confirm_password() { 
   read -r -s -p "${PROMPT[3]} password to add and press [Enter]: " "${ASSIGN[3]}" 
+  printf "%s\\n"
 } 
 
 # Check if passwords match. Exit if not. 
