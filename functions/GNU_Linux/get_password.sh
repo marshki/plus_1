@@ -3,6 +3,9 @@
 # Exit if passwords do not match.
 
 # read -r (esc. key binding) & present prompt  
+### --> read -s -p so that password isn't presented in clear text <-- ### 
+
+
 
 get_password() { 
   read -rp "Enter password to add and press [Enter]: " pass1 
