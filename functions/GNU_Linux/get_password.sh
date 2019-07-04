@@ -4,7 +4,7 @@
 # Print: "get_password" and "confirm_password" for illustrative purposes, 
 # you almost certainly don't want this
 
-# read -r (esc. key binding), silently, & present prompt  
+# read -r (esc. key binding), -s silently, & -p present prompt  
 
 get_password() { 
   read -r -s -p "Enter password to add and press [Enter]: " pass1 
