@@ -104,6 +104,16 @@ set_password_linux() {
   printf "%s" "$username:$pass2" | chpasswd 
 }
 
+### create desktop directory sturcture (option) ###
+
+create_default_dirs () {
+
+  if [[ -n $(command -v xdg-user-dirs-update) ]]
+  then
+  su ${username} -c xdg-user-dirs-update  
+  fi
+} 
+
 # GNU/Linux wrapper
 
 add_linux() {
