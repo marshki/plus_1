@@ -110,7 +110,7 @@ create_default_dirs () {
 
   if [[ -n $(command -v xdg-user-dirs-update) ]]
   then
-  su ${username} -c xdg-user-dirs-update  
+  su "$username" -c xdg-user-dirs-update  
   fi
 } 
 
@@ -119,6 +119,7 @@ create_default_dirs () {
 add_linux() {
   create_user_linux
   set_password_linux
+  create_default_dirs
 } 
 
 #=======================================
