@@ -17,18 +17,17 @@
 #  fi
 #} 
 
-username='moish'
+username='estyron'
 
 create_default_dirs () { 
  
   if [[ -n $(command -v xdg-user-dirs-update) ]]
   then
-  #su - ${username} -c "xdg-user-dirs-update"
-  su -c ${username} -c xdg-user-dirs-update  
+  su ${username} -c xdg-user-dirs-update  
   ### if you want to use sudo instead of su:
-  ###read -s -p "Enter sudo password: " passy
-  ###printf "%s" "$passy" |sudo -u $username -i xdg-user-dirs-update
-  ###sudo -u ${username} -i xdg-user-dirs-update
+  ### read -s -p "Enter sudo password: " passy
+  ### printf "%s" "$passy" |sudo -u $username -i xdg-user-dirs-update
+  ### sudo -u ${username} -i xdg-user-dirs-update
   fi
 } 
 
