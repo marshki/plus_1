@@ -107,7 +107,8 @@ set_password_linux() {
 ### create desktop directory sturcture (option) ###
 
 create_default_dirs () {
-
+  printf "%s\\n" "Creating deafult directories..."  
+  
   if [[ -n $(command -v xdg-user-dirs-update) ]]
   then
   su "$username" -c xdg-user-dirs-update  
