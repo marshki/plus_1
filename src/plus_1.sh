@@ -66,7 +66,7 @@ confirm_password() {
 
 check_password() { 
   if [[ "$pass1" == "$pass2" ]]; then 
-    printf "%s\\n" "Passwords match."
+    printf "%s\\n" "Passwords match. Continuing..."
   else 
     printf "%s\\n" "ERROR: Passwords do not match. Exiting."
     exit 1
@@ -146,6 +146,7 @@ create_user_macOS() {
 # Create home directory macOS 
 
 create_homedir(){ 
+  printf "%s\\n" "Creating home directory..."
   createhomedir -u $username -c 
 } 
 
@@ -182,6 +183,7 @@ main () {
   root_check
   user_info
   plus_1
+  printf "%s\\n" "Done." 
 }
 
 main "$@" 
