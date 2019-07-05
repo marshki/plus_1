@@ -24,7 +24,7 @@ then call it:
 `bash plus1.sh` 
 
 ## TODO
-- [ ] Investigate `useradd` so that it creates dafault `/home/username` directory structure
+- Fix shell check errors - 
 
 ## History
 v.0.1 2019.06.22
