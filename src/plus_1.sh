@@ -138,7 +138,7 @@ get_uid () {
 
 get_primarygroup() { 
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard" 
-  read -rp "Enter ${PROMPT[4]} to add and press [Enter]: " ${ASSIGN[4]}
+  read -rp "Enter ${PROMPT[4]} to add and press [Enter]: " "${ASSIGN[4]}"
 } 
 
 # Create account in macOS via dscl using input from user_info 
@@ -151,7 +151,7 @@ create_user_macOS() {
   dscl . -create /Users/"$username" UserShell /bin/bash
   dscl . -create /Users/"$username" RealName "$realname"
   dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
-  dscl . -create /Users/"$username" NFSHomeDirectory /Users/$username
+  dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
   dscl . -passwd /Users/"$username" "$pass2"
 } 
 
@@ -159,7 +159,7 @@ create_user_macOS() {
 
 create_homedir(){ 
   printf "%s\\n" "Creating home directory..."
-  createhomedir -u $username -c 
+  createhomedir -u "$username" -c 
 } 
 
 # macOS wrapper
