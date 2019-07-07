@@ -25,6 +25,8 @@ then call it:
 
 ## TODO
 - Fix shell check errors - 
+- Default directory structure for GNU/Linux should be on an opt-in basis. - 
+- Consider refactor to reduce code complexity. - 
 
 ## History
 v.0.1 2019.06.22
