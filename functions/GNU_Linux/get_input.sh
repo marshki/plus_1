@@ -2,6 +2,9 @@
 # Get user input   
 
 # Associative array for user prompts.  
+# Strictly speaking, the array is not needed.
+# It's here as a test for the larger program.
+
 
 PROMPT=(
 "user name"
