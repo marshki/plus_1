@@ -8,7 +8,7 @@ PROMPT=("user name" "'real' name" "password" "Re-enter password")
 
 # Array for variable assignments. 
 
-ASSIGN=(username realname pass1 pass2) 
+VARIABLE_NAME=(username realname pass1 pass2) 
 
 # Is current UID 0? If not, exit. (Not needed for non-admin account creation).
 
@@ -22,7 +22,7 @@ fi
 # Username prompt. 
 
 get_username() { 
-  read -rp "Enter ${PROMPT[0]} to add and press [Enter]: " "${ASSIGN[0]}" 
+  read -rp "Enter ${PROMPT[0]} to add and press [Enter]: " "${VARIABLE_NAME[0]}" 
 } 
 
 # Exit if username exists. 
@@ -37,19 +37,19 @@ username_check() {
 # Real name prompt. 
 
 get_realname() { 
-  read -rp "Enter ${PROMPT[1]} to add and press [Enter]: " "${ASSIGN[1]}"
+  read -rp "Enter ${PROMPT[1]} to add and press [Enter]: " "${VARIABLE_NAME[1]}"
 }
 
 # Password prompt. 
 
 get_password() { 
-  read -rp "Enter ${PROMPT[2]} to add and press [Enter]: " "${ASSIGN[2]}" 
+  read -rp "Enter ${PROMPT[2]} to add and press [Enter]: " "${VARIABLE_NAME[2]}" 
 } 
 
 # Confirm password prompt. 
 
 confirm_password() { 
-  read -rp "${PROMPT[3]} password to add and press [Enter]: " "${ASSIGN[3]}" 
+  read -rp "${PROMPT[3]} password to add and press [Enter]: " "${VARIABLE_NAME[3]}" 
 } 
 
 # Check if passwords match. Exit if not. 
