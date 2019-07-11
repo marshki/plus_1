@@ -22,7 +22,7 @@ fi
 # Username prompt. 
 
 get_username() { 
-  read -rp "Enter ${PROMPT[0]} to add and press [Enter]: " "${VARIABLE_NAME[0]}" 
+  read -rp "Enter username to add and press [Enter]: " "$username" 
 } 
 
 # Exit if username exists. 
@@ -37,19 +37,19 @@ username_check() {
 # Real name prompt. 
 
 get_realname() { 
-  read -rp "Enter ${PROMPT[1]} to add and press [Enter]: " "${VARIABLE_NAME[1]}"
+  read -rp "Enter 'real name' to add and press [Enter]: " "realname"
 }
 
 # Password prompt. 
 
 get_password() { 
-  read -rp "Enter ${PROMPT[2]} to add and press [Enter]: " "${VARIABLE_NAME[2]}" 
+  read -rp "Enter password to add and press [Enter]: " "pass1" 
 } 
 
 # Confirm password prompt. 
 
 confirm_password() { 
-  read -rp "${PROMPT[3]} password to add and press [Enter]: " "${VARIABLE_NAME[3]}" 
+  read -rp "Re-enter password to add and press [Enter]: " "pass2" 
 } 
 
 # Check if passwords match. Exit if not. 
