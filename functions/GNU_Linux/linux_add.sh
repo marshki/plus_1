@@ -2,14 +2,6 @@
 # Create local user account in GNU/Linux 
 # via `user add` utility
 
-# Array for user prompts. 
-
-PROMPT=("user name" "'real' name" "password" "Re-enter password")
-
-# Array for variable assignments. 
-
-VARIABLE_NAME=(username realname pass1 pass2) 
-
 # Is current UID 0? If not, exit. (Not needed for non-admin account creation).
 
 root_check () {
