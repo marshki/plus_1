@@ -1,8 +1,14 @@
 #!/bin/bash
 # Check exit status of program. 
 
-if [[ $? -gt 0 ]] ; then
+print_me () { 
+  printf "%s\\n" "Print me." 
+} 
+
+retVal=$? 
+
+if [[ $retVal -ne 0 ]]; then
   printf "%s\\n" "Something went wrong, homie..."
 fi
 
-exit 0
+printf "%s\\n" "exit $retVal"
