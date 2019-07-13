@@ -55,8 +55,6 @@ check_password() {
   fi 
 } 
 
-
-
 # Wrapper 
 
 user_info() { 
@@ -75,13 +73,18 @@ create_user() {
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username" 
 } 
 
+# Set password. 
+
 set_password() { 
   printf "%s\\n" "Setting password..." 
 
   printf "%s" "$username:$pass2" | chpasswd 
 }
 
+# Create default directories. 
+
 create_default_dirs () { 
+  printf "%s\\n" "Creating default directories..." 
  
   if [[ -n $(command -v xdg-user-dirs-update) ]]
   then
