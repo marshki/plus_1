@@ -55,6 +55,8 @@ check_password() {
   fi 
 } 
 
+
+
 # Wrapper 
 
 user_info() { 
@@ -79,11 +81,20 @@ set_password() {
   printf "%s" "$username:$pass2" | chpasswd 
 }
 
+create_default_dirs () { 
+ 
+  if [[ -n $(command -v xdg-user-dirs-update) ]]
+  then
+  su ${username} -c xdg-user-dirs-update  
+  fi
+}  
+
 main () { 
   root_check
   user_info
   create_user
   set_password
+  create_default_dirs
 }
 
 main "$@" 
