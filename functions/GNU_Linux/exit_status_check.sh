@@ -9,6 +9,8 @@ retVal=$?
 
 if [[ $retVal -ne 0 ]]; then
   printf "%s\\n" "Something went wrong, homie..."
+else
+  printf "%s\\n" "Done."
 fi
 
 printf "%s\\n" "exit $retVal"
