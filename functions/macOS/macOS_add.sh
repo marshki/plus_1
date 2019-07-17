@@ -22,7 +22,7 @@ fi
 # Username prompt.  
 
 get_username() { 
-  read -rp "Enter ${PROMPT[0]} to add and press [Enter]: " ${ASSIGN[0]} 
+  read -rp "Enter user name to add and press [Enter]: " username
 } 
 
 # Exit if username exists. 
@@ -44,32 +44,32 @@ get_uid () {
 # Real name prompt. 
 
 get_realname() { 
-  read -rp "Enter ${PROMPT[1]} to add and press [Enter]: " ${ASSIGN[1]}
+  read -rp "Enter 'real name' to add and press [Enter]: " realname 
 } 
 
 # Primary group ID prompt. 
 
 get_primarygroup() { 
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard" 
-  read -rp "Enter ${PROMPT[2]} to add and press [Enter]: " ${ASSIGN[2]}
+  read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 } 
 
 # Password hint prompt. 
 
 get_hint() { 
-  read -rp "Enter ${PROMPT[3]} to add and press [Enter]: " ${ASSIGN[3]}
+  read -rp "Enter password hint to add and press [Enter]: " passhint
 }
 
 # Password prompt. 
 
 get_password() { 
-  read -rp "Enter ${PROMPT[4]} to add and press [Enter]: " "${ASSIGN[4]}" 
+  read -rp "Enter password to add and press [Enter]: " pass1
 } 
 
 # Confirm password prompt. 
 
 confirm_password() { 
-  read -rp "${PROMPT[5]} password to add and press [Enter]: " "${ASSIGN[5]}" 
+  read -rp "Re-enter password to add and press [Enter]: " pass2 
 } 
 
 # Check if passwords match. Exit if not. 
