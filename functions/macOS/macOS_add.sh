@@ -2,14 +2,6 @@
 # Create local user account in macOS w/directory in /Users
 # via dscl utility 
 
-# Array for user prompts.  
-
-PROMPT=("user name" "'real' name" "primary group ID" "password hint" "password" "Re-enter password")
-
-# Array for variable assignments. 
-
-ASSIGN=(username realname primarygroup passhint pass1 pass2)
-
 # Is current UID 0? If not, exit. (Not needed for non-admin account creation).
 
 root_check () {
