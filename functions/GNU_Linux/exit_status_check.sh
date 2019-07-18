@@ -9,10 +9,14 @@ print_me
 
 retVal=$? 
 
-if [[ $retVal -ne 0 ]]; then
-  printf "%s\\n" "Something went wrong, homie..."
-else
-  printf "%s\\n" "Done."
-fi
+exit_status () { 
+  if [[ $retVal -ne 0 ]]; then
+    printf "%s\\n" "Something went wrong, homie..."
+  else
+    printf "%s\\n" "Done."
+  fi
+} 
+
+exit_status
 
 printf "%s\\n" "exit $retVal"
