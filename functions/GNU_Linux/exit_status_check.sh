@@ -2,8 +2,10 @@
 # Check exit status of program. 
 
 print_me () { 
-  printf "%s\\n" "Print me." 
+  printf "%s\\n" "Print me."  
 } 
+
+print_me
 
 retVal=$? 
 
