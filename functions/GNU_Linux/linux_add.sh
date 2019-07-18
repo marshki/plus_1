@@ -94,6 +94,14 @@ create_default_dirs () {
   fi
 }  
 
+exit_status () { 
+  if [[ $retVal -ne 0 ]]; then
+    printf "%s\\n" "Something went wrong, homie..."
+  else
+    printf "%s\\n" "Done."
+  fi
+} 
+
 main () { 
   root_check
   user_info
@@ -104,8 +112,5 @@ main () {
 
 main "$@" 
 
-if [[ $? -gt 0 ]] ; then
-  printf "%s\\n" "Something went wrong, homie..."
-fi
-
-exit 0
+retVal=$?
+exit_status
