@@ -110,7 +110,17 @@ create_homedir(){
   createhomedir -u $username -c 
 } 
 
-# Wrapper. 
+# Exit status check.
+
+exit_status () { 
+  if [[ $retVal -ne 0 ]]; then
+    printf "%s\\n" "Something went wrong, homie."
+  else
+    printf "%s\\n" "Done."
+  fi
+}  
+
+# Wrapper function. 
 
 create_account(){ 
   create_user 
@@ -124,3 +134,6 @@ main () {
 }
 
 main "$@"
+
+retVal=$?
+exit_status
