@@ -94,6 +94,8 @@ create_default_dirs () {
   fi
 }  
 
+# Exit status check. 
+
 exit_status () { 
   if [[ $retVal -ne 0 ]]; then
     printf "%s\\n" "Something went wrong, homie..."
