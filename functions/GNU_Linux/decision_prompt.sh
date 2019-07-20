@@ -1,7 +1,7 @@
 #!/bin/bash 
 # Should script add default directory structure? Yes/No? 
 
-read -p "Add default directory structure (y/n)? " PROMPT
+read -r -p "Add default directory structure (y/n)? " PROMPT
 
 if [ "$PROMPT" = "y" ]; then 
   printf "%s\\n" "Add 'em."; 
