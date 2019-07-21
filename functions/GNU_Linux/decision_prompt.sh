@@ -1,6 +1,8 @@
 #!/bin/bash 
 # Should script add default directory structure? Yes/No? 
 
+# This is a test prompt. 
+
 decision_prompt () { 
   read -r -p "Add default directory structure (y/n)? " PROMPT
 
@@ -10,6 +12,8 @@ decision_prompt () {
     printf "%s\\n" "Do not add 'em."; 
   fi
 } 
+
+# This is the actual prompt. 
 
 create_default_dirs () { 
   read -r -p "Add default directory structure (y/n)? " PROMPT
