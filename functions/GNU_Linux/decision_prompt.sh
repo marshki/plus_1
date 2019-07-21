@@ -27,7 +27,5 @@ create_default_dirs () {
     printf "%s\\n" "Creating default directories..." 
 
     su "${username}" -c xdg-user-dirs-update 
-  else
-    continue
   fi
 }   
