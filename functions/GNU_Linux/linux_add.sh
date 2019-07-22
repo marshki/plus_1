@@ -86,14 +86,16 @@ set_password() {
 # Create default directories. 
 
 create_default_dirs () { 
-  printf "%s\\n" "Creating default directories..." 
- 
-  if [[ -n $(command -v xdg-user-dirs-update) ]]
-  then
-  su "${username}" -c xdg-user-dirs-update  
+  read -r -p "Add default directory structure (desktop users generally want this) [y/n]? " PROMPT
+
+  if [[ "$PROMPT" = "y" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
+  then 
+    printf "%s\\n" "Creating default directories..." 
+
+    su "${username}" -c xdg-user-dirs-update 
   fi
 }  
-
+ 
 # Exit status check. 
 
 exit_status () { 
