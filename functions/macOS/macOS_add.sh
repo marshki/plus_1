@@ -1,6 +1,6 @@
 #!/bin/bash 
 # Create local user account in macOS w/directory in /Users
-# via dscl utility 
+# via dscl utility.
 
 # Is current UID 0? If not, exit. (Not needed for non-admin account creation).
 
