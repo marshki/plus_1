@@ -73,6 +73,16 @@ check_password() {
   fi 
 } 
 
+# Exit status check. 
+
+exit_status () { 
+  if [[ $retVal -ne 0 ]]; then
+    printf "%s\\n" "Something went wrong, homie..."
+  else
+    printf "%s\\n" "Done."
+  fi
+} 
+
 # Wrapper function 
 
 user_info() { 
@@ -199,3 +209,6 @@ main () {
 }
 
 main "$@" 
+
+retVal=$?
+exit_status
