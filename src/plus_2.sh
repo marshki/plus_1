@@ -6,10 +6,6 @@
 # GNU/Linux or macOS 
 #=======================================
 
-PROMPT=("user name" "'real' name" "password" "Re-enter password" "primary group ID")
-
-ASSIGN=(username realname pass1 pass2 primarygroup) 
-
 #=======================================
 # Functions in common 
 #=======================================
