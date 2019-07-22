@@ -19,7 +19,7 @@ fi
 # Username prompt. 
 
 get_username() { 
-  read -rp "Enter username to add and press [Enter]: " username
+  read -r -p "Enter username to add and press [Enter]: " username
 } 
 
 # Exit if username exists. 
@@ -34,7 +34,7 @@ username_check() {
 # Real name prompt. 
 
 get_realname() { 
-  read -rp "Enter 'real' name to add and press [Enter]: " realname
+  read -r -p "Enter 'real' name to add and press [Enter]: " realname
 }
 
 # Password prompt. 
@@ -55,9 +55,9 @@ confirm_password() {
 
 check_password() { 
   if [[ "$pass1" == "$pass2" ]]; then 
-    printf "%s\\n" "Passwords match. Continuing..."
+    printf "\\n" "Passwords match. Continuing..."
   else 
-    printf "%s\\n" "ERROR: Passwords do not match. Exiting."
+    printf "\\n" "ERROR: Passwords do not match. Exiting."
     exit 1
   fi 
 } 
@@ -160,6 +160,7 @@ create_user_macOS() {
 
 create_homedir(){ 
   printf "%s\\n" "Creating home directory..."
+
   createhomedir -u "$username" -c 
 } 
 
