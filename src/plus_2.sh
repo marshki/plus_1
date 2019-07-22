@@ -1,10 +1,7 @@
 #!/bin/bash 
 # mjk235 [at] nyu [dot] edu --2019.06.03
-
-#=======================================
 # Create local user account in 
 # GNU/Linux or macOS 
-#=======================================
 
 #=======================================
 # Functions in common 
@@ -37,7 +34,7 @@ username_check() {
 # Real name prompt. 
 
 get_realname() { 
-  read -rp "Enter realname to add and press [Enter]: " realname
+  read -rp "Enter 'real' name to add and press [Enter]: " realname
 }
 
 # Password prompt. 
