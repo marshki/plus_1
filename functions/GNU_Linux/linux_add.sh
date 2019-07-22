@@ -1,6 +1,6 @@
 #!/bin/bash 
 # Create local user account in GNU/Linux 
-# via `user add` utility
+# via `user add` utility. 
 
 # Is current UID 0? If not, exit. (Not needed for non-admin account creation).
 
