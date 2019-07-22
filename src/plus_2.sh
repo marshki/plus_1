@@ -199,7 +199,6 @@ main () {
   root_check
   user_info
   plus_1
-  printf "%s\\n" "Done." 
 }
 
 main "$@" 
