@@ -24,4 +24,6 @@ create_default_dirs () {
 
     su "${username}" -c xdg-user-dirs-update 
   fi
-}   
+} 
+
+create_default_dirs  
