@@ -146,7 +146,7 @@ get_uid () {
 
 get_primarygroup() { 
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard" 
-  read -rp "Enter ${PROMPT[4]} to add and press [Enter]: " "${ASSIGN[4]}"
+  read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 } 
 
 # Create account in macOS via dscl using input from user_info 
