@@ -62,16 +62,6 @@ check_password() {
   fi 
 } 
 
-# Exit status check. 
-
-exit_status () { 
-  if [[ $retVal -ne 0 ]]; then
-    printf "%s\\n" "Something went wrong, homie..."
-  else
-    printf "%s\\n" "Done."
-  fi
-} 
-
 # Wrapper function 
 
 user_info() { 
@@ -176,6 +166,16 @@ add_macOS(){
 #=======================================
 # Main 
 #=======================================
+
+# Exit status check. 
+
+exit_status () { 
+  if [[ $retVal -ne 0 ]]; then
+    printf "%s\\n" "Something went wrong, homie..."
+  else
+    printf "%s\\n" "Done."
+  fi
+} 
 
 # Detect system architecture, then act
   
