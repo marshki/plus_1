@@ -23,10 +23,6 @@ then call it:
 
 `bash plus1.sh` 
 
-## TODO
-  - Fix shell check errors 
-  - Consider refactor to reduce code complexity.  
-
 ## History
 v.0.1 2019.06.22
 
