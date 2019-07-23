@@ -109,7 +109,7 @@ create_user() {
 # Create home directory  
 
 create_homedir(){ 
-  createhomedir -u $username -c 
+  createhomedir -u "$username" -c 
 } 
 
 # Exit status check.
