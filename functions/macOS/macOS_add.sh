@@ -101,7 +101,7 @@ create_user() {
   dscl . -create /Users/"$username" UserShell /bin/bash
   dscl . -create /Users/"$username" RealName "$realname"
   dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
-  dscl . -create /Users/"$username" NFSHomeDirectory /Users/$username
+  dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
   dscl . -create /Users/"$username" hint "$passhint"
   dscl . -passwd /Users/"$username" "$pass2"
 } 
