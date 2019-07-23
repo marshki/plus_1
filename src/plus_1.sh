@@ -1,25 +1,14 @@
 #!/bin/bash 
 # mjk235 [at] nyu [dot] edu --2019.06.03
-
-#=======================================
-# Create local user account in 
-# GNU/Linux or macOS 
-#=======================================
-
-#=======================================
-# Arrays for: user prompt, variables
-#=======================================
-
-PROMPT=("user name" "'real' name" "password" "Re-enter password" "primary group ID")
-
-ASSIGN=(username realname pass1 pass2 primarygroup) 
+# Create local user account in: 
+# GNU/Linux (via useradd) or macOS (via dscl).  
 
 #=======================================
 # Functions in common 
 #=======================================
 
-# Is current UID 0? If not, exit. (Not needed for non-admin account creation).
-
+# Is current UID 0? If not, exit.
+ 
 root_check () {
   if [ "$EUID" -ne "0" ] ; then
     printf "%s\\n" "ERROR: Root privileges required to continue. Exiting." >&2
@@ -30,7 +19,7 @@ fi
 # Username prompt. 
 
 get_username() { 
-  read -rp "Enter ${PROMPT[0]} to add and press [Enter]: " "${ASSIGN[0]}" 
+  read -r -p "Enter username to add and press [Enter]: " username
 } 
 
 # Exit if username exists. 
@@ -45,20 +34,20 @@ username_check() {
 # Real name prompt. 
 
 get_realname() { 
-  read -rp "Enter ${PROMPT[1]} to add and press [Enter]: " "${ASSIGN[1]}"
+  read -r -p "Enter 'real' name to add and press [Enter]: " realname
 }
 
 # Password prompt. 
 
 get_password() { 
-  read -r -s -p "Enter ${PROMPT[2]} to add and press [Enter]: " "${ASSIGN[2]}" 
+  read -r -s -p "Enter password to add and press [Enter]: " pass1
   printf "%s\\n"
 } 
 
 # Confirm password prompt. 
 
 confirm_password() { 
-  read -r -s -p "${PROMPT[3]} password to add and press [Enter]: " "${ASSIGN[3]}" 
+  read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
   printf "%s\\n"
 } 
 
@@ -66,21 +55,11 @@ confirm_password() {
 
 check_password() { 
   if [[ "$pass1" == "$pass2" ]]; then 
-    printf "%s\\n" "Passwords match. Continuing..."
+    printf "\\n" "Passwords match. Continuing..."
   else 
-    printf "%s\\n" "ERROR: Passwords do not match. Exiting."
+    printf "\\n" "ERROR: Passwords do not match. Exiting."
     exit 1
   fi 
-} 
-
-# Exit status check. 
-
-exit_status () { 
-  if [[ $retVal -ne 0 ]]; then
-    printf "%s\\n" "Something went wrong, homie..."
-  else
-    printf "%s\\n" "Done."
-  fi
 } 
 
 # Wrapper function 
@@ -114,16 +93,18 @@ set_password_linux() {
   printf "%s" "$username:$pass2" | chpasswd 
 }
 
-### create desktop directory sturcture (option) ###
+# Create desktop directory structure (option)
 
-create_default_dirs () {
-  printf "%s\\n" "Creating deafult directories..."  
-  
-  if [[ -n $(command -v xdg-user-dirs-update) ]]
-  then
-  su "$username" -c xdg-user-dirs-update  
+create_default_dirs () { 
+  read -r -p "Add default directory structure (desktop users generally want this) [y/n]? " PROMPT
+
+  if [[ "$PROMPT" = "y" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
+  then 
+    printf "%s\\n" "Creating default directories..." 
+
+    su "${username}" -c xdg-user-dirs-update 
   fi
-} 
+}
 
 # GNU/Linux wrapper
 
@@ -148,7 +129,7 @@ get_uid () {
 
 get_primarygroup() { 
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard" 
-  read -rp "Enter ${PROMPT[4]} to add and press [Enter]: " "${ASSIGN[4]}"
+  read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 } 
 
 # Create account in macOS via dscl using input from user_info 
@@ -169,6 +150,7 @@ create_user_macOS() {
 
 create_homedir(){ 
   printf "%s\\n" "Creating home directory..."
+
   createhomedir -u "$username" -c 
 } 
 
@@ -184,6 +166,16 @@ add_macOS(){
 #=======================================
 # Main 
 #=======================================
+
+# Exit status check. 
+
+exit_status () { 
+  if [[ $retVal -ne 0 ]]; then
+    printf "%s\\n" "Something went wrong, homie..."
+  else
+    printf "%s\\n" "Done."
+  fi
+} 
 
 # Detect system architecture, then act
   
@@ -205,7 +197,6 @@ main () {
   root_check
   user_info
   plus_1
-  printf "%s\\n" "Done." 
 }
 
 main "$@" 
