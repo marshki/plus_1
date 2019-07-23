@@ -15,6 +15,8 @@ decision_prompt () {
 
 # This is the actual prompt. 
 
+username='sjobs'
+
 create_default_dirs () { 
   read -r -p "Add default directory structure (y/n)? " PROMPT
 
