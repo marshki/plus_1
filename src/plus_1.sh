@@ -62,7 +62,7 @@ check_password() {
   fi 
 } 
 
-# Wrapper function 
+# Wrapper function. 
 
 user_info() { 
   get_username 
@@ -77,7 +77,7 @@ user_info() {
 # GNU/Linux Functions 
 #=======================================
 
-# Create account in GNU/Linux via useradd using input from user_info 
+# Create account in GNU/Linux via useradd using input from user_info. 
 
 create_user_linux() { 
   printf "%s\\n" "Adding user..." 
@@ -85,7 +85,7 @@ create_user_linux() {
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username" 
 } 
 
-# Set password 
+# Set password. 
 
 set_password_linux() { 
   printf "%s\\n" "Setting password..." 
@@ -93,7 +93,7 @@ set_password_linux() {
   printf "%s" "$username:$pass2" | chpasswd 
 }
 
-# Create desktop directory structure (option)
+# Create desktop directory structure (option).
 
 create_default_dirs () { 
   read -r -p "Add default directory structure (desktop users generally want this) [y/n]? " PROMPT
@@ -106,7 +106,7 @@ create_default_dirs () {
   fi
 }
 
-# GNU/Linux wrapper
+# GNU/Linux wrapper.
 
 add_linux() {
   create_user_linux
@@ -118,7 +118,7 @@ add_linux() {
 # macOS Functions 
 #=======================================
 
-# Get highest current UID and increment +1 
+# Get highest current UID and increment +1.
 
 get_uid () { 
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
@@ -132,7 +132,7 @@ get_primarygroup() {
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 } 
 
-# Create account in macOS via dscl using input from user_info 
+# Create account in macOS via dscl using input from user_info. 
 
 create_user_macOS() { 
   printf "%s\\n" "Adding user..." 
@@ -146,7 +146,7 @@ create_user_macOS() {
   dscl . -passwd /Users/"$username" "$pass2"
 } 
 
-# Create home directory macOS 
+# Create home directory macOS. 
 
 create_homedir(){ 
   printf "%s\\n" "Creating home directory..."
@@ -154,7 +154,7 @@ create_homedir(){
   createhomedir -u "$username" -c 
 } 
 
-# macOS wrapper
+# macOS wrapper.
 
 add_macOS(){ 
   get_uid
@@ -177,7 +177,7 @@ exit_status () {
   fi
 } 
 
-# Detect system architecture, then act
+# Detect system architecture, then act.
   
 plus_1 () { 
     case $(uname -s) in
