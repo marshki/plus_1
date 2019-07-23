@@ -56,14 +56,14 @@ get_hint() {
 
 get_password() { 
   read -r -s -p "Enter password to add and press [Enter]: " pass1
-  printf "%s\\n"   
+  printf "\\n"   
 } 
 
 # Confirm password prompt. 
 
 confirm_password() { 
   read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
-  printf "%s\\n"
+  printf "\\n"
 } 
 
 # Check if passwords match. Exit if not. 
