@@ -5,15 +5,16 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Bash script to create local user account(s) in GNU Linux and macOS. 
+Bash script to create local user account in: 
+GNU Linux (via *useradd*), and macOS (via *dscl*). 
 
 ## Getting Started 
 
-### Liftoff
+This tool was developed for sysadmins managing user acounts on servers 
+**not** tied to a network identity manager,
+but will work just as well in desktop environments.
 
-#### For everyone
-
-Make this script accessible to all users by placing it in: `/usr/local/bin` 
+Place the script in: `/usr/local/bin` 
 
 set the executable bit on the file:
 
@@ -21,10 +22,10 @@ set the executable bit on the file:
 
 then call it:
 
-`bash plus1.sh` 
-
+`sudo bash plus1.sh`. 
+ 
 ## History
-v.0.1 2019.06.22
+v.0.2 2019.07.24
 
 ## License 
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
