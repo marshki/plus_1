@@ -25,6 +25,10 @@ then call it:
 `sudo bash plus1.sh` 
 
 and follow the on-screen prompts. 
+
+## TODO: 
+
+-- Password hint prompt for macOS. 
  
 ## History
 v.0.2 2019.07.24
