@@ -25,11 +25,11 @@ then call it:
 `sudo bash plus1.sh` 
 
 and follow the on-screen prompts. 
-
-## TODO: 
-
--- Password hint prompt for macOS. 
  
+There are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/master/functions/GNU_Linux/linux_add.sh) 
+and [macOS](https://github.com/marshki/plus_1/blob/master/functions/macOS/macOS_add.sh) add user scripts in this repo, 
+should that strike your fancy. 
+
 ## History
 v.0.2 2019.07.24
 
