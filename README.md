@@ -8,11 +8,16 @@
 Bash script to create local user account in: 
 GNU Linux (via *useradd*), and macOS (via *dscl*). 
 
-## Getting Started 
+## Notes 
 
 This tool was developed for sysadmins managing user acounts on servers 
 **not** tied to a network identity manager,
 but will work just as well in desktop environments.
+Also, there are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/master/functions/GNU_Linux/linux_add.sh) 
+and [macOS](https://github.com/marshki/plus_1/blob/master/functions/macOS/macOS_add.sh) add user scripts in this repo, 
+should that strike your fancy. 
+
+## Getting Started
 
 Place the script in: `/usr/local/bin` 
 
@@ -26,9 +31,6 @@ then call it:
 
 and follow the on-screen prompts. 
  
-There are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/master/functions/GNU_Linux/linux_add.sh) 
-and [macOS](https://github.com/marshki/plus_1/blob/master/functions/macOS/macOS_add.sh) add user scripts in this repo, 
-should that strike your fancy. 
 
 ## History
 v.0.2 2019.07.24
