@@ -2,6 +2,14 @@
 # Create local user account in GNU/Linux 
 # via `user add` utility. 
 
+LOG_FILE="plus_1.sh.log"
+
+# Log function. 
+
+log () {
+  printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
+}
+
 # Is current UID 0? If not, exit. (Not needed for non-admin account creation).
 
 root_check () {
