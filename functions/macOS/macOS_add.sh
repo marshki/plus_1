@@ -57,39 +57,32 @@ get_hint() {
 
 # Password prompt. 
 
-get_password() { 
-  read -r -s -p "Enter password to add and press [Enter]: " pass1
-  printf "\\n"   
-} 
+get_password () { 
 
-# Confirm password prompt. 
+  while true 
+  do
+    read -r -s -p "Enter password to add and press [Enter]: " pass1 
+    printf "\\n" 
+    read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
+    printf "\\n" 
 
-confirm_password() { 
-  read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
-  printf "\\n"
-} 
-
-# Check if passwords match. Exit if not. 
-
-check_password() { 
-  if [[ "$pass1" == "$pass2" ]]; then 
-    printf "%s\\n" "Passwords match."
-  else 
-    printf "%s\\n" "ERROR: Passwords do not match. Exiting."
-    exit 1
-  fi 
+    if [[ "$pass1" != "$pass2" ]]; then 
+      printf "%s\n" "ERROR: Passwords do no match."
+    else 
+      printf "%s\n" "Passwords match. Continuing..."
+      break
+    fi 
+  done
 } 
 
 # Wrapper. 
 
-user_info(){ 
+user_info() { 
   get_username 
   get_realname
   get_primarygroup
   get_hint
   get_password
-  confirm_password
-  check_password
 } 
 
 # Create account via dscl using input from user_info 
@@ -125,7 +118,7 @@ exit_status () {
 
 # Wrapper function. 
 
-create_account(){ 
+create_account() { 
   create_user 
   create_homedir
 } 
