@@ -11,19 +11,22 @@ root_check () {
 fi
 }
 
-# Username prompt.  
+# Username prompt. 
 
-get_username() { 
-  read -rp "Enter user name to add and press [Enter]: " username
-} 
+get_username () { 
+  while true
 
-# Exit if username exists. 
+  read -r -p "Enter username to add and press [Enter]: " username 
 
-username_check() {
-  if id "$username" >/dev/null 2>&1; then
-    printf "%s\\n" "ERROR: $username Already exists. Exiting." >&2 
-    exit 1 
-  fi 
+  do 
+    if id "$username" >/dev/null 2>&1;then
+      printf "%s\\n" "ERROR: $username already exists. Try again."
+    else 
+      printf "%s\\n" "$username does not exist. Continuing..."   
+      break
+    fi
+  
+  done
 }
 
 # Get highest current UID and increment +1 
@@ -81,8 +84,6 @@ check_password() {
 
 user_info(){ 
   get_username 
-  get_uid
-  username_check
   get_realname
   get_primarygroup
   get_hint
