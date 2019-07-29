@@ -18,18 +18,21 @@ fi
 
 # Username prompt. 
 
-get_username() { 
-  read -r -p "Enter username to add and press [Enter]: " username
+get_username () { 
+  while true
+
+  read -r -p "Enter username to add and press [Enter]: " username 
+
+  do 
+    if id "$username" >/dev/null 2>&1;then
+      printf "%s\\n" "ERROR: $username already exists. Try again."
+    else 
+      printf "%s\\n" "$username does not exist. Continuing..."   
+      break
+    fi
+  
+  done
 } 
-
-# Exit if username exists. 
-
-username_check() {
-  if id "$username" >/dev/null 2>&1; then
-    printf "%s\\n" "ERROR: $username already exists. Exiting." >&2 
-    exit 1 
-  fi 
-}
 
 # Real name prompt. 
 
@@ -39,38 +42,29 @@ get_realname() {
 
 # Password prompt. 
 
-get_password() { 
-  read -r -s -p "Enter password to add and press [Enter]: " pass1
-  printf "%s\\n"
-} 
+get_password () { 
+  while true 
+  do
+    read -r -s -p "Enter password to add and press [Enter]: " pass1 
+    printf "\\n" 
+    read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
+    printf "\\n" 
 
-# Confirm password prompt. 
-
-confirm_password() { 
-  read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
-  printf "%s\\n"
-} 
-
-# Check if passwords match. Exit if not. 
-
-check_password() { 
-  if [[ "$pass1" == "$pass2" ]]; then 
-    printf "\\n" "Passwords match. Continuing..."
-  else 
-    printf "\\n" "ERROR: Passwords do not match. Exiting."
-    exit 1
-  fi 
+    if [[ "$pass1" != "$pass2" ]]; then 
+      printf "%s\n" "ERROR: Passwords do no match."
+    else 
+      printf "%s\n" "Passwords match. Continuing..."
+      break
+    fi 
+  done
 } 
 
 # Wrapper function. 
 
 user_info() { 
   get_username 
-  username_check 
   get_realname 
   get_password
-  confirm_password 
-  check_password
 } 
 
 #=======================================
