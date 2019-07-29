@@ -11,20 +11,24 @@ root_check () {
 fi
 }
 
-# Username prompt. 
+# Username prompt w/check.
 
-get_username() { 
-  read -rp "Enter username to add and press [Enter]: " username 
+username_check () { 
+
+  while true
+
+  read -r -p "Enter username to add and press [Enter]: " username 
+
+  do 
+    if id "$username" >/dev/null 2>&1;then
+      printf "%s\\n" "ERROR: $username already exists. Try again."
+    else 
+      printf "%s\\n" "$username does not exist. Continuing..."   
+      break
+    fi
+  
+  done
 } 
-
-# Exit if username exists. 
-
-username_check() {
-  if id "$username" >/dev/null 2>&1; then
-    printf "%s\\n" "ERROR: $username Already exists. Exiting." >&2 
-    exit 1 
-  fi 
-}
 
 # Real name prompt. 
 
@@ -60,7 +64,7 @@ check_password() {
 # Wrapper 
 
 user_info() { 
-  get_username
+  username_check
   get_realname
   get_password
   confirm_password
