@@ -10,7 +10,7 @@ do
     printf "%s\\n" "Adding another user..."
 
   else 
-    printf "%s\\n" "Exiting program ..."
+    printf "%s\\n" "Exiting program..."
     exit 0 
   fi 
 
