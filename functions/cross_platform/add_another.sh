@@ -1,14 +1,18 @@
 #!/bin/bash
 
-read -r -p "Add another user? (yes/no): " answer 
+while true 
 
-while [ "$answer" = yes ]
-do
+do 
 
-if [ "$answer" = yes ]; then 
-  printf "%s\\n" "Adding another user..."
-fi
+  read -r -p "Add another user? (yes/no): " answer 
+
+  if [ "$answer" = yes ]; then 
+    printf "%s\\n" "Adding another user..."
+
+  else 
+    printf "%s\\n" "Exiting program ..."
+    exit 0 
+  fi 
+
 done
 
-printf "%s\\n" "Exiting Program"
-exit 0
