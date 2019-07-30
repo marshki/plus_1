@@ -7,9 +7,9 @@ username_check () {
 
   while true
 
-  read -r -p "Enter username to add and press [Enter]: " username 
+  do
+    read -r -p "Enter username to add and press [Enter]: " username  
 
-  do 
     if id "$username" >/dev/null 2>&1;then
       printf "%s\\n" "ERROR: $username already exists. Try again."
     else 
