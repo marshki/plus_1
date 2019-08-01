@@ -188,7 +188,6 @@ plus_1 () {
 } 
 
 main () { 
-  #root_check
   user_info
   plus_1
 }
@@ -196,16 +195,17 @@ main () {
 while true 
 
 root_check
+printf "%s\\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
 
 do 
-
-  read -r -p "Add a user account? (yes/no): " answer
+  
+  read -r -p "Create user account? (yes/no): " answer
 
   if [ "$answer" = yes ]; then 
     printf "%s\\n" "Let's add a user..."
     main "$@" 
   else 
-    printf "%s\\n" "Exiting program..."
+    printf "%s\\n" "Exiting."
     exit 0 
   fi 
 done 
