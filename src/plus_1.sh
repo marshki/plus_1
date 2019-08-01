@@ -192,10 +192,10 @@ main () {
   plus_1
 }
 
-while true 
-
 root_check
 printf "%s\\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
+
+while true 
 
 do 
   
