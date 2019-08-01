@@ -193,7 +193,20 @@ main () {
   plus_1
 }
 
-main "$@" 
+while true 
+
+do 
+
+  read -r -p "Add a user account? (yes/no): " answer
+
+  if [ "$answer" = yes ]; then 
+    printf "%s\\n" "Let's add a user..."
+    main "$@" 
+  else 
+    printf "%s\\n" "Exiting program..."
+    exit 0 
+  fi 
+done 
 
 retVal=$?
 exit_status
