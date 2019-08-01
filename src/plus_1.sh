@@ -188,12 +188,14 @@ plus_1 () {
 } 
 
 main () { 
-  root_check
+  #root_check
   user_info
   plus_1
 }
 
 while true 
+
+root_check
 
 do 
 
