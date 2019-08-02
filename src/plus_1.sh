@@ -59,7 +59,7 @@ get_password () {
   done
 } 
 
-# Wrapper function. 
+# User info wrapper. 
 
 user_info() { 
   get_username 
@@ -186,11 +186,6 @@ plus_1 () {
       ;;
     esac 
 } 
-
-#main () { 
-#  user_info
-#  plus_1
-#}
 
 main () { 
   root_check 
