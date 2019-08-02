@@ -187,28 +187,33 @@ plus_1 () {
     esac 
 } 
 
+#main () { 
+#  user_info
+#  plus_1
+#}
+
 main () { 
-  user_info
-  plus_1
+  root_check 
+  printf "%s\\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
+
+  while true 
+
+  do 
+  
+    read -r -p "Create user account? (yes/no): " answer
+
+    if [ "$answer" = yes ]; then 
+      printf "%s\\n" "Let's add a user..."
+      user_info
+      plus_1
+    else 
+      printf "%s\\n" "Exiting."
+      exit 0 
+    fi 
+  done 
 }
 
-root_check
-printf "%s\\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
-
-while true 
-
-do 
-  
-  read -r -p "Create user account? (yes/no): " answer
-
-  if [ "$answer" = yes ]; then 
-    printf "%s\\n" "Let's add a user..."
-    main "$@" 
-  else 
-    printf "%s\\n" "Exiting."
-    exit 0 
-  fi 
-done 
+main "$@" 
 
 retVal=$?
 exit_status
