@@ -92,7 +92,7 @@ create_default_dirs () {
 
 # plus_1/account creation wrapper
 
-plus_1 () { 
+create_account () { 
   user_info
   create_user
   set_password
@@ -120,7 +120,7 @@ main () {
 
     if [ "$answer" = yes ]; then 
       printf "%s\\n" "Let's add a user..."
-      plus_1
+      create_account 
     else 
       printf "%s\\n" "Exiting." 
       exit 0 
