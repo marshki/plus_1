@@ -58,9 +58,9 @@ get_hint() {
 # Password prompt. 
 
 get_password () { 
-
   while true 
   do
+
     read -r -s -p "Enter password to add and press [Enter]: " pass1 
     printf "\\n" 
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
@@ -116,7 +116,7 @@ exit_status () {
   fi
 }  
 
-# Wrapper function. 
+# Create account function. 
 
 create_account() { 
   create_user 
@@ -125,8 +125,22 @@ create_account() {
 
 main () {
   root_check 
-  user_info
-  create_account  
+
+  printf "%s\\n" "plus_1: A Bash script to create local user accounts in macOS." 
+
+  while true
+  do 
+    read -r -p "Create user account? (yes/no): " answer 
+
+    if [ "$answer" = yes ]; then 
+      printf "%s\\n" "Let's add a user..."
+      user_info 
+      create_account
+    else 
+      printf "%s\\n" "Exiting." 
+      exit 0 
+    fi 
+  done
 }
 
 main "$@"
