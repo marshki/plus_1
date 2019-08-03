@@ -90,9 +90,9 @@ set_password_linux() {
 # Create desktop directory structure (option).
 
 create_default_dirs () { 
-  read -r -p "Add default directory structure (desktop users generally want this) [y/n]? " PROMPT
+  read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
 
-  if [[ "$PROMPT" = "y" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
+  if [[ "$prompt" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
   then 
     printf "%s\\n" "Creating default directories..." 
 
@@ -123,6 +123,7 @@ get_uid () {
 
 get_primarygroup() { 
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard" 
+
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 } 
 
@@ -193,7 +194,6 @@ main () {
   printf "%s\\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
 
   while true 
-
   do 
   
     read -r -p "Create user account? (yes/no): " answer
