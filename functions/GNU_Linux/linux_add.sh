@@ -37,8 +37,8 @@ get_realname() {
 
 get_password () { 
   while true 
-
   do
+
     read -r -s -p "Enter password to add and press [Enter]: " pass1 
     printf "\\n" 
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
@@ -80,15 +80,24 @@ set_password() {
 # Create default directories. 
 
 create_default_dirs () { 
-  read -r -p "Add default directory structure (desktop users generally want this) [y/n]? " PROMPT
+  read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " PROMPT
 
-  if [[ "$PROMPT" = "y" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
+  if [[ "$PROMPT" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
   then 
     printf "%s\\n" "Creating default directories..." 
 
     su "${username}" -c xdg-user-dirs-update 
   fi
 }  
+
+# plus_1/account creation wrapper
+
+plus_1 () { 
+  user_info
+  create_user
+  set_password
+  create_default_dirs
+} 
  
 # Exit status check. 
 
@@ -102,10 +111,21 @@ exit_status () {
 
 main () { 
   root_check
-  user_info
-  create_user
-  set_password
-  create_default_dirs
+
+  printf "%s\\n" "plus_1: A Bash script to create local user accounts in GNU/Linux." 
+
+  while true
+  do 
+    read -r -p "Create user account? (yes/no): " answer 
+
+    if [ "$answer" = yes ]; then 
+      printf "%s\\n" "Let's add a user..."
+      plus_1
+    else 
+      printf "%s\\n" "Exiting." 
+      exit 0 
+    fi 
+  done
 }
 
 main "$@" 
