@@ -79,6 +79,7 @@ get_password () {
 # User info wrapper. 
 
 user_info() { 
+  get_uid
   get_username 
   get_realname
   get_primarygroup
@@ -107,6 +108,14 @@ create_homedir(){
   createhomedir -u "$username" -c 
 } 
 
+# Create account function. 
+
+create_account() {
+  user_info
+  create_user 
+  create_homedir
+} 
+
 # Exit status check.
 
 exit_status () { 
@@ -116,13 +125,6 @@ exit_status () {
     printf "%s\\n" "Done."
   fi
 }  
-
-# Create account function. 
-
-create_account() { 
-  create_user 
-  create_homedir
-} 
 
 main () {
   root_check 
@@ -135,7 +137,6 @@ main () {
 
     if [ "$answer" = yes ]; then 
       printf "%s\\n" "Let's add a user..."
-      user_info 
       create_account
     else 
       printf "%s\\n" "Exiting." 
