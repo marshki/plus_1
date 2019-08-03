@@ -27,7 +27,7 @@ set the executable bit on the file:
 
 then call it:
 
-`sudo bash plus1.sh` 
+`sudo bash plus_1.sh` 
 
 and follow the on-screen prompts. 
 
