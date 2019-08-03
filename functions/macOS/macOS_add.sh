@@ -46,6 +46,7 @@ get_realname() {
 
 get_primarygroup() { 
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard" 
+
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 } 
 
@@ -75,7 +76,7 @@ get_password () {
   done
 } 
 
-# Wrapper. 
+# User info wrapper. 
 
 user_info() { 
   get_username 
