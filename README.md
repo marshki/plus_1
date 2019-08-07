@@ -17,6 +17,8 @@ Also, there are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/ma
 and [macOS](https://github.com/marshki/plus_1/blob/master/functions/macOS/macOS_add.sh) add user scripts in this repo, 
 should that strike your fancy. 
 
+![Animated SVG](https://rawcdn.githack.com/marshki/plus_1/82c4815ee2f23978dd493df8cf0b2674c31cbd36/docs/termtosvg_iicyaexq.svg)
+
 ## Getting Started
 
 Place the script in: `/usr/local/bin` 
