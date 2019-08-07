@@ -2,8 +2,8 @@
 # Create local user account(s) in GNU/Linux 
 # via `user add` utility. 
 
-# Is current UID 0? If not, exit. (Not needed for non-admin account creation).
-
+# Is current UID 0? If not, exit.
+ 
 root_check () {
   if [ "$EUID" -ne "0" ] ; then
     printf "%s\\n" "ERROR: Root privileges required to continue. Exiting." >&2
