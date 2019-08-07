@@ -1,6 +1,6 @@
 #!/bin/bash 
 # mjk235 [at] nyu [dot] edu --2019.06.03
-# Create local user account in: 
+# Create local user account(s) in: 
 # GNU/Linux (via useradd) or macOS (via dscl).  
 
 #=======================================
