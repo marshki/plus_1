@@ -4,19 +4,19 @@
 # sudo = Debian-based
 # wheel = RHEL-based
 
-username = sjobs
+username='sjobs'
 
 admin_group_check () {
 
     if [ "$(getent group sudo)" ]
     then
         printf "%s\\n" "sudo group exists..."
-        usermod --append --groups sudo $username
+        usermod --append --groups sudo "$username"
 
     elif [ "$(getent group wheel)" ]
     then
         printf "%s\\n" "wheel group exists..."
-        usermod --append --groups wheel $username
+        usermod --append --groups wheel "$username"
 
     else
         if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
