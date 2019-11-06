@@ -8,23 +8,23 @@ username='sjobs'
 
 add_admin_user () {
 
-    if [ "$(getent group sudo)" ]
-    then
-        printf "%s\\n" "Adding user to sudo group..."
-        usermod --append --groups sudo "$username"
+  if [ "$(getent group sudo)" ]
+  then
+      printf "%s\\n" "Adding user to sudo group..."
+      usermod --append --groups sudo "$username"
 
-    elif [ "$(getent group wheel)" ]
-    then
-        printf "%s\\n" "Adding user to wheel group..."
-        usermod --append --groups wheel "$username"
+  elif [ "$(getent group wheel)" ]
+  then
+      printf "%s\\n" "Adding user to wheel group..."
+      usermod --append --groups wheel "$username"
 
-    else
-        if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
-        then
-            printf "%s\\n" "ERROR: No admin group found. Exiting." >&2
-            exit 1
-        fi
-    fi
+  else
+      if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
+      then
+          printf "%s\\n" "ERROR: No admin group found. Exiting." >&2
+          exit 1
+      fi
+  fi
 }
 
 add_admin_user
