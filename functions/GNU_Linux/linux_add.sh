@@ -32,7 +32,7 @@ get_username () {
 # Real name prompt. 
 
 get_realname() { 
-  read -rp "Enter 'real name' to add and press [Enter]: " realname
+  read -r -p "Enter 'real name' to add and press [Enter]: " realname
 }
 
 get_password () { 
