@@ -90,6 +90,30 @@ create_default_dirs () {
   fi
 }  
 
+# Add user to admin group. 
+
+add_admin_user () {
+
+  if [ "$(getent group sudo)" ]
+  then
+      printf "%s\\n" "Adding user to sudo group..."
+      usermod --append --groups sudo "$username"
+
+  elif [ "$(getent group wheel)" ]
+  then
+      printf "%s\\n" "Adding user to wheel group..."
+      usermod --append --groups wheel "$username"
+
+  else
+      if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
+      then
+          printf "%s\\n" "ERROR: No admin group found. Exiting." >&2
+          exit 1
+      fi
+  fi
+}
+
+
 # plus_1/account creation wrapper
 
 create_account () { 
@@ -97,6 +121,7 @@ create_account () {
   create_user
   set_password
   create_default_dirs
+  #add_admin_user
 } 
  
 # Exit status check. 
