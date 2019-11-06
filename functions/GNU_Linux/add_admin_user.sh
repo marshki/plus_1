@@ -6,16 +6,16 @@
 
 username='sjobs'
 
-admin_group_check () {
+add_admin_user () {
 
     if [ "$(getent group sudo)" ]
     then
-        printf "%s\\n" "sudo group exists..."
+        printf "%s\\n" "Adding user to sudo group..."
         usermod --append --groups sudo "$username"
 
     elif [ "$(getent group wheel)" ]
     then
-        printf "%s\\n" "wheel group exists..."
+        printf "%s\\n" "Adding user to wheel group..."
         usermod --append --groups wheel "$username"
 
     else
@@ -27,4 +27,4 @@ admin_group_check () {
     fi
 }
 
-admin_group_check
+add_admin_user
