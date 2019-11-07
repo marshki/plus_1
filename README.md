@@ -35,12 +35,13 @@ and follow the on-screen prompts.
 
 ## TODO: 
 
-- [ ] GNU/Linux: Option to add user to wheel group
-
+- [ ]
+- [ ] 
+ 
 ## History
 v.0.2 2019.07.24
 First commit: 06.01.2019
-Last commit: 08.07.2019
+Last commit: 11.07.2019
 
 ## License 
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
