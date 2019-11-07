@@ -98,7 +98,7 @@ add_admin_user () {
 
   if [[ "$PROMPT" = "yes" ]]
   then 
-    printf "%s\\n" "Checking for administrator group."
+    printf "%s\\n" "Checking for administrator group..."
     
     if [ "$(getent group sudo)" ]
     then
