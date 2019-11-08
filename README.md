@@ -34,9 +34,6 @@ then call it:
 and follow the on-screen prompts. 
 
 ## TODO: 
-
-- [ ]
-- [ ] 
  
 ## History
 v.0.2 2019.07.24
