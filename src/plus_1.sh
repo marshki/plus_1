@@ -1,11 +1,17 @@
-#!/bin/bash 
-# mjk235 [at] nyu [dot] edu --2019.06.03
+#!/usr/bin/env bash
+#
+# plus_1
+#
 # Create local user account(s) in: 
 # GNU/Linux (via useradd) or macOS (via dscl).  
+# 
+# Author: M. Krinitz <mjk235 [at] nyu [dot] edu> 
+# Date: 2019.06.03
+# License: MIT
 
-#=======================================
+#####################
 # Functions in common 
-#=======================================
+#####################
 
 # Is current UID 0? If not, exit.
  
@@ -67,9 +73,9 @@ user_info() {
   get_password
 } 
 
-#=======================================
+#####################
 # GNU/Linux Functions 
-#=======================================
+#####################
 
 # Create account in GNU/Linux via useradd using input from user_info. 
 
@@ -137,9 +143,9 @@ add_linux() {
   add_admin_user
 } 
 
-#=======================================
+#################
 # macOS Functions 
-#=======================================
+#################
 
 # Get highest current UID and increment +1.
 
@@ -187,9 +193,9 @@ add_macOS(){
   create_homedir
 } 
 
-#=======================================
+######
 # Main 
-#=======================================
+######
 
 # Exit status check. 
 
