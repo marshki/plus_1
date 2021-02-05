@@ -33,12 +33,12 @@ then call it:
 `sudo bash plus_1.sh` 
 
 and follow the on-screen prompts. 
-
-## TODO: 
  
 ## History
 v.0.2 2019.07.24
+
 First commit: 06.01.2019
+
 Last commit: 11.07.2019
 
 ## License 
