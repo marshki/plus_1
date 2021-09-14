@@ -17,7 +17,7 @@
  
 root_check () {
   if [ "$EUID" -ne "0" ] ; then
-    printf "%s\\n" "ERROR: Root privileges required to continue. Exiting." >&2
+    printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
 fi
 }
@@ -31,9 +31,9 @@ get_username () {
 
   do 
     if id "$username" >/dev/null 2>&1;then
-      printf "%s\\n" "ERROR: $username already exists. Try again."
+      printf "%s\n" "ERROR: $username already exists. Try again."
     else 
-      printf "%s\\n" "$username does not exist. Continuing..."   
+      printf "%s\n" "$username does not exist. Continuing..."   
       break
     fi
   
@@ -52,9 +52,9 @@ get_password () {
   while true 
   do
     read -r -s -p "Enter password to add and press [Enter]: " pass1 
-    printf "\\n" 
+    printf "\n" 
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
-    printf "\\n" 
+    printf "\n" 
 
     if [[ "$pass1" != "$pass2" ]]; then 
       printf "%s\n" "ERROR: Passwords do no match."
@@ -80,7 +80,7 @@ user_info() {
 # Create account in GNU/Linux via useradd using input from user_info. 
 
 create_user_linux() { 
-  printf "%s\\n" "Adding user..." 
+  printf "%s\n" "Adding user..." 
 
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username" 
 } 
@@ -88,7 +88,7 @@ create_user_linux() {
 # Set password. 
 
 set_password_linux() { 
-  printf "%s\\n" "Setting password..." 
+  printf "%s\n" "Setting password..." 
 
   printf "%s" "$username:$pass2" | chpasswd 
 }
@@ -100,7 +100,7 @@ create_default_dirs () {
 
   if [[ "$prompt" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
   then 
-    printf "%s\\n" "Creating default directories..." 
+    printf "%s\n" "Creating default directories..." 
 
     su "${username}" -c xdg-user-dirs-update 
   fi
@@ -112,22 +112,22 @@ add_admin_user () {
 
   if [[ "$PROMPT" = "yes" ]]
   then 
-    printf "%s\\n" "Checking for administrator group..."
+    printf "%s\n" "Checking for administrator group..."
     
     if [ "$(getent group sudo)" ]
     then
-        printf "%s\\n" "Adding user to sudo group..."
+        printf "%s\n" "Adding user to sudo group..."
         usermod --append --groups sudo "$username"
 
     elif [ "$(getent group wheel)" ]
     then 
-        printf "%s\\n" "Adding user to wheel group..."
+        printf "%s\n" "Adding user to wheel group..."
         usermod --append --groups wheel "$username"
 
     else 
         if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
         then
-            printf "%s\\n" "ERROR: No admin group found. Exiting." >&2
+            printf "%s\n" "ERROR: No admin group found. Exiting." >&2
             exit 1
         fi
     fi
@@ -165,7 +165,7 @@ get_primarygroup() {
 # Create account in macOS via dscl using input from user_info. 
 
 create_user_macOS() { 
-  printf "%s\\n" "Adding user..." 
+  printf "%s\n" "Adding user..." 
 
   dscl . -create /Users/"$username"
   dscl . -create /Users/"$username" UniqueID "$increment_uid" 
@@ -179,7 +179,7 @@ create_user_macOS() {
 # Create home directory macOS. 
 
 create_homedir(){ 
-  printf "%s\\n" "Creating home directory..."
+  printf "%s\n" "Creating home directory..."
 
   createhomedir -u "$username" -c 
 } 
@@ -201,9 +201,9 @@ add_macOS(){
 
 exit_status () { 
   if [[ $retVal -ne 0 ]]; then
-    printf "%s\\n" "Something went wrong, homie..."
+    printf "%s\n" "Something went wrong, homie..."
   else
-    printf "%s\\n" "Done."
+    printf "%s\n" "Done."
   fi
 } 
 
@@ -218,7 +218,7 @@ plus_1 () {
       add_linux  
       ;;
     *)
-      printf "%s\\n" "You got the wrong one, homie"
+      printf "%s\n" "You got the wrong one, homie"
       ;;
     esac 
 } 
@@ -226,7 +226,7 @@ plus_1 () {
 main () { 
   root_check 
 
-  printf "%s\\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
+  printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
 
   while true 
   do 
@@ -234,11 +234,11 @@ main () {
     read -r -p "Create user account? (yes/no): " answer
 
     if [ "$answer" = yes ]; then 
-      printf "%s\\n" "Let's add a user..."
+      printf "%s\n" "Let's add a user..."
       user_info
       plus_1
     else 
-      printf "%s\\n" "Exiting."
+      printf "%s\n" "Exiting."
       exit 0 
     fi 
   done 
