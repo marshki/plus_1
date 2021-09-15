@@ -1,10 +1,10 @@
-#!/bin/bash 
-# Create home directory for user in /Users. 
+#!/usr/bin/env bash
+# Create home directory for user in /Users.
 
 username="sjobs"
 
-create_homedir(){ 
-  createhomedir -u $username -c 
-} 
+create_homedir(){
+  createhomedir -u $username -c
+}
 
 create_homedir
