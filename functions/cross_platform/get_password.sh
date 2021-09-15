@@ -1,8 +1,8 @@
-#!/bin/bash 
-# Password prompt (twice). 
+#!/usr/bin/env bash
+# Password prompt (twice).
 # Exit if passwords do not match.
 
-# printf "%s\n" "$pass1" and "$pass2" for illustrative purposes, 
+# printf "%s\n" "$pass1" and "$pass2" for illustrative purposes,
 # you almost certainly don't want this
 
 # read -r (esc. key binding), -s silently, & -p present prompt  
