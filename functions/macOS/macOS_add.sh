@@ -6,7 +6,7 @@
  
 root_check () {
   if [ "$EUID" -ne "0" ] ; then
-    printf "%s\\n" "ERROR: Root privileges required to continue. Exiting." >&2
+    printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
 fi
 }
@@ -20,9 +20,9 @@ get_username () {
 
   do 
     if id "$username" >/dev/null 2>&1;then
-      printf "%s\\n" "ERROR: $username already exists. Try again."
+      printf "%s\n" "ERROR: $username already exists. Try again."
     else 
-      printf "%s\\n" "$username does not exist. Continuing..."   
+      printf "%s\n" "$username does not exist. Continuing..."   
       break
     fi
   
@@ -63,9 +63,9 @@ get_password () {
   do
 
     read -r -s -p "Enter password to add and press [Enter]: " pass1 
-    printf "\\n" 
+    printf "\n" 
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2 
-    printf "\\n" 
+    printf "\n" 
 
     if [[ "$pass1" != "$pass2" ]]; then 
       printf "%s\n" "ERROR: Passwords do no match."
@@ -90,7 +90,7 @@ user_info() {
 # Create account via dscl using input from user_info 
 
 create_user() { 
-  printf "%s\\n" "Adding user..." 
+  printf "%s\n" "Adding user..." 
 
   dscl . -create /Users/"$username"
   dscl . -create /Users/"$username" UniqueID "$increment_uid" 
@@ -120,26 +120,26 @@ create_account() {
 
 exit_status () { 
   if [[ $retVal -ne 0 ]]; then
-    printf "%s\\n" "Something went wrong, homie."
+    printf "%s\n" "Something went wrong, homie."
   else
-    printf "%s\\n" "Done."
+    printf "%s\n" "Done."
   fi
 }  
 
 main () {
   root_check 
 
-  printf "%s\\n" "plus_1: A Bash script to create local user accounts in macOS." 
+  printf "%s\n" "plus_1: A Bash script to create local user accounts in macOS." 
 
   while true
   do 
     read -r -p "Create user account? (yes/no): " answer 
 
     if [ "$answer" = yes ]; then 
-      printf "%s\\n" "Let's add a user..."
+      printf "%s\n" "Let's add a user..."
       create_account
     else 
-      printf "%s\\n" "Exiting." 
+      printf "%s\n" "Exiting." 
       exit 0 
     fi 
   done
