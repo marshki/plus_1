@@ -11,7 +11,7 @@ print_me
 retVal=$? 
 
 exit_status () { 
-  if [[ $retVal -ne 0 ]]; then
+  if [[ $retVal != 0 ]]; then
     printf "%s\n" "Something went wrong, homie."
   else
     printf "%s\n" "Done."
