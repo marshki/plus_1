@@ -35,11 +35,9 @@ then call it:
 and follow the on-screen prompts. 
  
 ## History
-v.0.2 2019.07.24
-
-First commit: 06.01.2019
-
-Last commit: 11.07.2019
+v.0.2 24-JUL-2019
+v.0.1 07-NOV-2019
+v.0.0 01-JUN-2019
 
 ## License 
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
