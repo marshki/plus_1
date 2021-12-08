@@ -35,8 +35,11 @@ then call it:
 and follow the on-screen prompts. 
  
 ## History
+
 v.0.2 24-JUL-2019
+
 v.0.1 07-NOV-2019
+
 v.0.0 01-JUN-2019
 
 ## License 
