@@ -1,4 +1,8 @@
 #!/use/bin/env bash
+
+# Placeholder to add admin and/or wheel access to user upon account creation.
+
+
 # Check OS for administrative group via `getent`,
 # then, using `usermod`, add user to group.
 # sudo = Debian-based
