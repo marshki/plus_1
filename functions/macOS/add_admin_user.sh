@@ -1,9 +1,11 @@
 #!/use/bin/env bash
 
-# Check OS for administrative group via `dsedit`:
+# Check OS for administrative group via `dseditgroup`:
 # dseditgroup -o read admin
 # then, using `dseditgroup `, add user to group:
 # dseditgroup -o edit -a username -t user admin
+
+# 
 
 username='sjobs'
 
