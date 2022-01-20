@@ -1,8 +1,12 @@
 #!/use/bin/env bash
 
+# Option 1: 
 # Check OS for administrative group via `dscl`: 
 # dscl . read /Groups/admin
-# need to silence the output, and be more verbose, but it's a start.
+
+# Option 2 (probably preferable, but need to test): 
+# Check OS for administrative group via `dsedit`:
+# dseditgroup -o read admin
 
 # then, using `dseditgroup `, add user to group:
 # dseditgroup -o edit -a username -t user admin
