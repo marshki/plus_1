@@ -1,35 +1,29 @@
 #!/use/bin/env bash
 
-# Placeholder to add admin and/or wheel access to user upon account creation.
+# Check OS for administrative group via `dscl`: 
+# dscl . read /Groups/admin
+# need to silence the output, and be more verbose, but it's a start.
 
-
-# Check OS for administrative group via `getent`,
-# then, using `usermod`, add user to group.
-# sudo = Debian-based
-# wheel = RHEL-based
+# then, using `dseditgroup `, add user to group:
+# dseditgroup -o edit -a username -t user admin
 
 username='sjobs'
 
 add_admin_user () {
 
-  read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
+  read -r -p "Add user to admin group [yes/no]? " PROMPT
 
   if [[ "$PROMPT" = "yes" ]]
   then 
-    printf "%s\n" "Checking for administrator group."
+    printf "%s\n" "Checking for admin group."
     
-    if [ "$(getent group sudo)" ]
+    if [ "$(dscl . read /Groups/poop)" ]
     then
-        printf "%s\n" "Adding user to sudo group..."
-        usermod --append --groups sudo "$username"
-
-    elif [ "$(getent group wheel)" ]
-    then 
-        printf "%s\n" "Adding user to wheel group..."
-        usermod --append --groups wheel "$username"
+        printf "%s\n" "Adding user to admin group..."
+        #dseditgroup -o edit -a username -t "$username" admin
 
     else
-        if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
+        if ! [ "$(dscl . read /Groups/poop)" ]
         then
             printf "%s\n" "ERROR: No admin group found. Exiting." >&2
             exit 1
