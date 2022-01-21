@@ -1,11 +1,8 @@
 #!/use/bin/env bash
 
-# Check OS for administrative group via `dseditgroup`:
-# dseditgroup -o read admin
-# then, using `dseditgroup `, add user to group:
-# dseditgroup -o edit -a username -t user admin
-
-# 
+# Check OS for administrative group via `dseditgroup`,
+# then, using `dseditgroup `, add user to group.
+# admin = macOS
 
 username='sjobs'
 
@@ -17,13 +14,13 @@ add_admin_user () {
   then 
     printf "%s\n" "Checking for admin group."
 
-    if [ "$(dseditgroup -o read poop)" ]
+    if [ "$(dseditgroup -o read admin)" ]
     then
         printf "%s\n" "Adding user to admin group..."
-        #dseditgroup -o edit -a username -t "$username" admin
+        dseditgroup -o edit -a username -t "$username" admin
 
     else
-        if ! [ "$(dseditgroup -o read poop)" ]        
+        if ! [ "$(dseditgroup -o read admin)" ]
         then
             printf "%s\n" "ERROR: No admin group found. Exiting." >&2
             exit 1
