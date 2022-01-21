@@ -1,30 +1,28 @@
 #!/use/bin/env bash
-# This is works, but is here for reference, 
-# and not included in the larger script.
 
-# Check OS for administrative group via `dseditgroup`,
+# Check OS for wheel group via `dseditgroup`,
 # then, using `dseditgroup `, add user to group.
-# admin = macOS
+# wheel = root
 
 username='sjobs'
 
 add_admin_user () {
 
-  read -r -p "Add user to admin group [yes/no]? " PROMPT
+  read -r -p "Add user to wheel group [yes/no]? " PROMPT
 
   if [[ "$PROMPT" = "yes" ]]
   then 
-    printf "%s\n" "Checking for admin group."
+    printf "%s\n" "Checking for wheel group."
 
-    if [ "$(dseditgroup -o read admin 2>/dev/null)" ]
+    if [ "$(dseditgroup -o read wheel 2>/dev/null)" ]
     then
-        printf "%s\n" "Adding user to admin group..."
-        #dseditgroup -o edit -a username -t "$username" admin
+        printf "%s\n" "Adding user to wheel group..."
+        #dseditgroup -o edit -a username -t "$username" wheel
 
     else
-        if ! [ "$(dseditgroup -o read admin 2>/dev/null)" ]
+        if ! [ "$(dseditgroup -o read wheel 2>/dev/null)" ]
         then
-            printf "%s\n" "ERROR: No admin group found. Exiting." >&2
+            printf "%s\n" "ERROR: No wheel group found. Exiting." >&2
             exit 1
         fi
     fi
