@@ -14,13 +14,13 @@ add_admin_user () {
   then 
     printf "%s\n" "Checking for admin group."
 
-    if [ "$(dseditgroup -o read admin)" ]
+    if [ "$(dseditgroup -o read admin 2>/dev/null)" ]
     then
         printf "%s\n" "Adding user to admin group..."
-        dseditgroup -o edit -a username -t "$username" admin
+        #dseditgroup -o edit -a username -t "$username" admin
 
     else
-        if ! [ "$(dseditgroup -o read admin)" ]
+        if ! [ "$(dseditgroup -o read admin 2>/dev/null)" ]
         then
             printf "%s\n" "ERROR: No admin group found. Exiting." >&2
             exit 1
