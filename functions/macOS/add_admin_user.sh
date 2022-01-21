@@ -1,4 +1,6 @@
 #!/use/bin/env bash
+# This is works, but is here for reference, 
+# and not included in the larger script.
 
 # Check OS for administrative group via `dseditgroup`,
 # then, using `dseditgroup `, add user to group.
