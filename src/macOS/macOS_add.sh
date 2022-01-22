@@ -2,6 +2,18 @@
 # Create local user account(s) in macOS w/directory in /Users
 # via dscl utility.
 
+LOG_FILE="macOS_add.sh.log"
+
+#####
+# LOG
+#####
+
+# Write changes w/ timestamp to LOG_FILE for tracking. 
+
+log () {
+  printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
+}
+
 # Is current UID 0? If not, exit.
  
 root_check () {
