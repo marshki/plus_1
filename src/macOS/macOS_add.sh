@@ -108,12 +108,12 @@ user_info() {
 create_user() {
   printf "%s\n" "Adding user..."
 
-  log "$(dscl . -create /Users/"$username")"
-  log "$(dscl . -create /Users/"$username" UniqueID "$increment_uid")"
-  log "$(dscl . -create /Users/"$username" UserShell /bin/bash)"
-  log "$(dscl . -create /Users/"$username" RealName "$realname")"
-  log "$(dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup")"
-  log "$(dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username")"
+  log (dscl . -create /Users/"$username")"
+  log (dscl . -create /Users/"$username" UniqueID "$increment_uid")
+  log (dscl . -create /Users/"$username" UserShell /bin/bash)
+  log (dscl . -create /Users/"$username" RealName "$realname")
+  log (dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup")
+  log (dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username")
   dscl . -create /Users/"$username" hint "$passhint"
   dscl . -passwd /Users/"$username" "$pass2"
 }
