@@ -1,22 +1,24 @@
 #!/usr/bin/env bash 
 # Create log file and write to it when called. 
 
-LOG_FILE="logfile.sh.log"
+# You can set a path to, e.g. /var/log,
+# provided you have permission to do so
+LOG_FILE="logfile"
 
 log () {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
-log "Now hear dis!"
+# Use the `log` functon like  this: 
 
-# Use like this, e.g.: 
+print_me() {
+  log "Lettuce log the following:"
 
-#string_rename() {
-#  printf "%s\n\n" "Renaming files..."
+  for file in *; do
+    log "$(ls -laH "$file")"
+  done
 
-#  for file in *; do
-#    log "$(mv -v "$file" "${file/$find_string/$replace_string}")"
-#  done
+  log "Now, lettuce stop!"
+}
 
-#  printf "\n%s\n\n" "Done."
-#}
+print_me
