@@ -14,8 +14,12 @@ log () {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
+###########
+# macOS_add
+###########
+
 # Is current UID 0? If not, exit.
- 
+
 root_check () {
   if [ "$EUID" != "0" ] ; then
     printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
@@ -30,10 +34,10 @@ get_username () {
 
   read -r -p "Enter username to add and press [Enter]: " username
 
-  do 
+  do
     if id "$username" >/dev/null 2>&1;then
       printf "%s\n" "ERROR: $username already exists. Try again."
-    else 
+    else
       printf "%s\n" "$username does not exist. Continuing..."
       break
     fi
@@ -43,10 +47,10 @@ get_username () {
 
 # Get highest current UID and increment +1 
 
-get_uid () { 
+get_uid () {
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
   increment_uid=$((uid +1))
-} 
+}
 
 # Real name prompt.
 
@@ -104,12 +108,12 @@ user_info() {
 create_user() {
   printf "%s\n" "Adding user..."
 
-  dscl . -create /Users/"$username"
-  dscl . -create /Users/"$username" UniqueID "$increment_uid"
-  dscl . -create /Users/"$username" UserShell /bin/bash
-  dscl . -create /Users/"$username" RealName "$realname"
-  dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
-  dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
+  log "$(dscl . -create /Users/"$username")"
+  log "$(dscl . -create /Users/"$username" UniqueID "$increment_uid")"
+  log "$(dscl . -create /Users/"$username" UserShell /bin/bash)"
+  log "$(dscl . -create /Users/"$username" RealName "$realname")"
+  log "$(dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup")"
+  log "$(dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username")"
   dscl . -create /Users/"$username" hint "$passhint"
   dscl . -passwd /Users/"$username" "$pass2"
 }
