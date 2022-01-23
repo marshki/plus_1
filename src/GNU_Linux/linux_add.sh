@@ -22,7 +22,7 @@ log () {
  
 root_check () {
   if [ "$EUID" != "0" ] ; then
-    printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
+    log printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
 fi
 }
@@ -36,7 +36,7 @@ get_username () {
 
   do
     if id "$username" >/dev/null 2>&1;then
-      printf "%s\n" "ERROR: $username already exists. Try again."
+      log printf "%s\n" "ERROR: $username already exists. Try again."
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
@@ -82,7 +82,7 @@ user_info() {
 create_user() {
   printf "%s\n" "Adding user..."
 
-  useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
+  log useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
 }
 
 # Set password.
@@ -102,7 +102,7 @@ create_default_dirs () {
   then
     printf "%s\n" "Creating default directories..."
 
-    su "${username}" -c xdg-user-dirs-update
+    log su "${username}" -c xdg-user-dirs-update
   fi
 }
 
@@ -119,12 +119,12 @@ add_admin_user () {
     if [ "$(getent group sudo)" ]
     then
         printf "%s\n" "Adding user to sudo group..."
-        usermod --append --groups sudo "$username"
+        log usermod --append --groups sudo "$username"
 
     elif [ "$(getent group wheel)" ]
     then
         printf "%s\n" "Adding user to wheel group..."
-        usermod --append --groups wheel "$username"
+        log usermod --append --groups wheel "$username"
 
     else
         if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
@@ -178,4 +178,4 @@ main () {
 main "$@"
 
 retVal=$?
-exit_status
+log exit_status
