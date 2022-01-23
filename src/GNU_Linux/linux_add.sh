@@ -129,7 +129,7 @@ add_admin_user () {
     else
         if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
         then
-            printf "%s\n" "ERROR: No admin group found. Exiting." >&2
+            log printf "%s\n" "ERROR: No admin group found. Exiting." >&2
             exit 1
         fi
     fi
