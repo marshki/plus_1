@@ -82,7 +82,7 @@ user_info() {
 create_user() {
   printf "%s\n" "Adding user..."
 
-  log useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
+  useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
 }
 
 # Set password.
