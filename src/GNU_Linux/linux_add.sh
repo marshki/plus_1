@@ -2,6 +2,22 @@
 # Create local user account(s) in GNU/Linux
 # via `user add` utility. 
 
+LOG_FILE="linux_add.log"
+
+#####
+# LOG
+#####
+
+# Write changes/errors w/timestamp to LOG_FILE for tracking
+
+log () {
+  printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
+}
+
+##############
+# linux_add.sh
+##############
+
 # Is current UID 0? If not, exit.
  
 root_check () {
