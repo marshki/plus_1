@@ -22,7 +22,7 @@ log () {
 
 root_check () {
   if [ "$EUID" != "0" ] ; then
-    printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
+    log printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
 fi
 }
@@ -36,7 +36,7 @@ get_username () {
 
   do
     if id "$username" >/dev/null 2>&1;then
-      printf "%s\n" "ERROR: $username already exists. Try again."
+      log printf "%s\n" "ERROR: $username already exists. Try again."
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
@@ -164,4 +164,4 @@ main () {
 main "$@"
 
 retVal=$?
-exit_status
+log exit_status
