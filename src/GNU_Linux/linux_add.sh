@@ -22,8 +22,9 @@ log () {
  
 root_check () {
   if [ "$EUID" != "0" ] ; then
-    log printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
-    exit 1
+    printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >> "$LOG_FILE" #>&2 
+
+    exit 1 
 fi
 }
 
