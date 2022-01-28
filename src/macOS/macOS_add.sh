@@ -2,7 +2,7 @@
 # Create local user account(s) in macOS w/directory in /Users
 # via dscl utility.
 
-LOG_FILE="macOS_add.sh.log"
+LOG_FILE="macOS_add.log"
 
 #####
 # LOG
