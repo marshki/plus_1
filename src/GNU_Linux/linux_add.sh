@@ -22,7 +22,7 @@ log () {
  
 root_check () {
   if [ "$EUID" != "0" ] ; then
-    printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >> "$LOG_FILE" #>&2 
+    log "ERROR: Root privileges required to continue. Exiting." >&2 
 
     exit 1 
 fi
@@ -37,7 +37,7 @@ get_username () {
 
   do
     if id "$username" >/dev/null 2>&1;then
-      log printf "%s\n" "ERROR: $username already exists. Try again."
+      log "ERROR: $username already exists. Try again."
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
@@ -62,7 +62,7 @@ get_password () {
     printf "\\n"
 
     if [[ "$pass1" != "$pass2" ]]; then
-      printf "%s\n" "ERROR: Passwords do no match."
+      log "ERROR: Passwords do no match."
     else
       printf "%s\n" "Passwords match. Continuing..."
       break
@@ -130,7 +130,7 @@ add_admin_user () {
     else
         if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
         then
-            log printf "%s\n" "ERROR: No admin group found. Exiting." >&2
+            log "ERROR: No admin group found. Exiting." >&2
             exit 1
         fi
     fi
@@ -151,7 +151,7 @@ create_account () {
 
 exit_status () {
   if [[ $retVal -ne 0 ]]; then
-    printf "%s\n" "Something went wrong, homie..."
+    log "Something went wrong, homie..."
   else
     printf "%s\n" "Done."
   fi
