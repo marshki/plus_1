@@ -83,8 +83,13 @@ user_info() {
 create_user() {
   printf "%s\n" "Adding user..."
 
+  #log useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
   log "$(useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username")"
 }
+
+# OK, here's the deal: the command itself is not verbose,
+# and I don't see a way to up the volume. 
+# printf with some version of the same should be enough
 
 #linux_add.log 
 #Jan 30 17:10:28 : ERROR: Root privileges required to continue. Exiting.
