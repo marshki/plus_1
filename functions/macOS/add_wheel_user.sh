@@ -17,7 +17,7 @@ add_admin_user () {
     if [ "$(dseditgroup -o read wheel 2>/dev/null)" ]
     then
         printf "%s\n" "Adding user to wheel group..."
-        #dseditgroup -o edit -a username -t "$username" wheel
+        dseditgroup -o edit -a username -t "$username" wheel
 
     else
         if ! [ "$(dseditgroup -o read wheel 2>/dev/null)" ]
