@@ -84,7 +84,7 @@ create_user() {
   printf "%s\n" "Adding user..."
 
   $(useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username")
-  log "new user: name="$username", home=/home/"$username", shell=/bin/bash"
+  log "new user: name='$username', home=/home/'$username', shell=/bin/bash"
 
 }
 
