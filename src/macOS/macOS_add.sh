@@ -22,7 +22,7 @@ log () {
 
 root_check () {
   if [ "$EUID" != "0" ] ; then
-    log printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
+    log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
 fi
 }
@@ -36,7 +36,7 @@ get_username () {
 
   do
     if id "$username" >/dev/null 2>&1;then
-      log printf "%s\n" "ERROR: $username already exists. Try again."
+      log "ERROR: $username already exists. Try again."
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
@@ -108,12 +108,12 @@ user_info() {
 create_user() {
   printf "%s\n" "Adding user..."
 
-  log dscl . -create /Users/"$username"
-  log dscl . -create /Users/"$username" UniqueID "$increment_uid"
-  log dscl . -create /Users/"$username" UserShell /bin/bash
-  log dscl . -create /Users/"$username" RealName "$realname"
-  log dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
-  log dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
+  dscl . -create /Users/"$username"
+  dscl . -create /Users/"$username" UniqueID "$increment_uid"
+  dscl . -create /Users/"$username" UserShell /bin/bash
+  dscl . -create /Users/"$username" RealName "$realname"
+  dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
+  dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
   dscl . -create /Users/"$username" hint "$passhint"
   dscl . -passwd /Users/"$username" "$pass2"
 }
