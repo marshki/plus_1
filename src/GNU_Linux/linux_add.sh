@@ -83,7 +83,7 @@ user_info() {
 create_user() {
   printf "%s\n" "Adding user..."
 
-  $(useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username")
+  useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
   log "new user: name='$username', home=/home/'$username', shell=/bin/bash"
 
 }
