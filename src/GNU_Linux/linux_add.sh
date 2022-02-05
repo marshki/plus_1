@@ -88,11 +88,6 @@ create_user() {
 
 }
 
-# /var/log/authlog
-#Jan 30 17:17:37 pywype useradd[1120]: new group: name=sjobs, GID=1003
-#Jan 30 17:17:37 pywype useradd[1120]: new user: name=sjobs, UID=1003, GID=1003, home=/home/sjobs, shell=/bin/bash
-#Jan 30 17:17:38 pywype chpasswd[1130]: pam_unix(chpasswd:chauthtok): password changed for sjobs
-
 # Set password.
 
 set_password() {
