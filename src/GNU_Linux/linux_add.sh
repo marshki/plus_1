@@ -83,18 +83,8 @@ user_info() {
 create_user() {
   printf "%s\n" "Adding user..."
 
-  #log useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
-  log "$(useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username")"
+  $(useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username")
 }
-
-# OK, here's the deal: the command itself is not verbose,
-# and I don't see a way to up the volume. 
-# printf with some version of the same should be enough
-
-#linux_add.log 
-#Jan 30 17:10:28 : ERROR: Root privileges required to continue. Exiting.
-#Jan 30 17:17:38 : 
-#Jan 30 17:17:41 : su sjobs -c xdg-user-dirs-update
 
 # /var/log/authlog
 #Jan 30 17:17:37 pywype useradd[1120]: new group: name=sjobs, GID=1003
