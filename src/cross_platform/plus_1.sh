@@ -183,6 +183,9 @@ create_user_macOS() {
   dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
   dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
   dscl . -passwd /Users/"$username" "$pass2"
+
+  log "new user: name='$username', home=/Users/'$username', shell=/bin/bash"
+
 }
 
 # Create home directory macOS.
