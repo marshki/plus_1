@@ -9,15 +9,23 @@
 # Date: 2019.06.03
 # License: MIT
 
+LOG_FILE="plus_1.log"
+
 #####################
 # Functions in common 
 #####################
+
+# Write changes/errors w/timestamp to LOG_FILE for tracking
+
+log () {
+  printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
+}
 
 # Is current UID 0? If not, exit.
  
 root_check () {
   if [ "$EUID" != "0" ] ; then
-    printf "%s\n" "ERROR: Root privileges required to continue. Exiting." >&2
+    log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
 fi
 }
@@ -31,7 +39,7 @@ get_username () {
 
   do
     if id "$username" >/dev/null 2>&1;then
-      printf "%s\n" "ERROR: $username already exists. Try again."
+      log "ERROR: $username already exists. Try again."
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
@@ -57,7 +65,7 @@ get_password () {
     printf "\n"
 
     if [[ "$pass1" != "$pass2" ]]; then
-      printf "%s\n" "ERROR: Passwords do no match."
+      log "ERROR: Passwords do no match."
     else
       printf "%s\n" "Passwords match. Continuing..."
       break
@@ -83,6 +91,7 @@ create_user_linux() {
   printf "%s\n" "Adding user..."
 
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
+  log "new user: name='$username', home=/home/'$username', shell=/bin/bash"
 }
 
 # Set password.
@@ -102,7 +111,7 @@ create_default_dirs () {
   then
     printf "%s\n" "Creating default directories..."
 
-    su "${username}" -c xdg-user-dirs-update
+    log su "${username}" -c xdg-user-dirs-update
   fi
 }
 
@@ -117,17 +126,17 @@ add_admin_user () {
     if [ "$(getent group sudo)" ]
     then
         printf "%s\n" "Adding user to sudo group..."
-        usermod --append --groups sudo "$username"
+        log usermod --append --groups sudo "$username"
 
     elif [ "$(getent group wheel)" ]
     then
         printf "%s\n" "Adding user to wheel group..."
-        usermod --append --groups wheel "$username"
+        log usermod --append --groups wheel "$username"
 
     else
         if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
         then
-            printf "%s\n" "ERROR: No admin group found. Exiting." >&2
+            log "ERROR: No admin group found. Exiting." >&2
             exit 1
         fi
     fi
