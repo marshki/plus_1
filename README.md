@@ -36,11 +36,12 @@ and follow the on-screen prompts.
  
 ## History
 
-v.0.2 24-JUL-2019
-
-v.0.1 07-NOV-2019
-
-v.0.0 01-JUN-2019
+|Version  |Release Date  |  
+|---      |---           |
+| 0.3     | 26-FEB-2022  |
+| 0.2     | 24-JUL-2019  |
+| 0.1     | 07-NOV-2019  |
+| 0.0     | 01-JUN-2019  |
 
 ## License 
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
