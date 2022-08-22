@@ -10,7 +10,7 @@ LOG_FILE="macOS_add.log"
 
 # Write changes w/ timestamp to LOG_FILE for tracking. 
 
-log () {
+log() {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
@@ -20,7 +20,7 @@ log () {
 
 # Is current UID 0? If not, exit.
 
-root_check () {
+root_check() {
   if [ "$EUID" != "0" ] ; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
@@ -29,7 +29,7 @@ fi
 
 # Username prompt.
 
-get_username () {
+get_username() {
   while true
 
   read -r -p "Enter username to add and press [Enter]: " username
@@ -47,7 +47,7 @@ get_username () {
 
 # Get highest current UID and increment +1 
 
-get_uid () {
+get_uid() {
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
   increment_uid=$((uid +1))
 }
@@ -74,7 +74,7 @@ get_hint() {
 
 # Password prompt.
 
-get_password () {
+get_password() {
   while true
   do
 
@@ -137,7 +137,7 @@ create_account() {
 
 # Exit status check.
 
-exit_status () {
+exit_status() {
   if [[ $retVal -ne 0 ]]; then
     printf "%s\n" "Something went wrong, homie."
   else
@@ -145,7 +145,7 @@ exit_status () {
   fi
 }
 
-main () {
+main() {
   root_check
 
   printf "%s\n" "plus_1: A Bash script to create local user accounts in macOS."
