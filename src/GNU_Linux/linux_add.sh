@@ -10,7 +10,7 @@ LOG_FILE="linux_add.log"
 
 # Write changes/errors w/timestamp to LOG_FILE for tracking
 
-log () {
+log() {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
@@ -20,7 +20,7 @@ log () {
 
 # Is current UID 0? If not, exit.
  
-root_check () {
+root_check() {
   if [ "$EUID" != "0" ] ; then
     log "ERROR: Root privileges required to continue. Exiting." >&2 
 
@@ -30,7 +30,7 @@ fi
 
 # Username prompt w/check.
 
-get_username () { 
+get_username() { 
   while true
 
   read -r -p "Enter username to add and press [Enter]: " username
@@ -52,7 +52,7 @@ get_realname() {
   read -r -p "Enter 'real name' to add and press [Enter]: " realname
 }
 
-get_password () {
+get_password() {
   while true
   do
 
@@ -98,7 +98,7 @@ set_password() {
 
 # Create default directories.
 
-create_default_dirs () {
+create_default_dirs() {
   read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " PROMPT
 
   if [[ "$PROMPT" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
@@ -111,7 +111,7 @@ create_default_dirs () {
 
 # Add user to admin group. 
 
-add_admin_user () {
+add_admin_user() {
 
   read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
 
@@ -141,7 +141,7 @@ add_admin_user () {
 
 # plus_1/account creation wrapper.
 
-create_account () {
+create_account() {
   user_info
   create_user
   set_password
@@ -151,7 +151,7 @@ create_account () {
  
 # Exit status check.
 
-exit_status () {
+exit_status() {
   if [[ $retVal -ne 0 ]]; then
     log "Something went wrong, homie..."
   else
@@ -159,7 +159,7 @@ exit_status () {
   fi
 }
 
-main () {
+main() {
   root_check
 
   printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux."
