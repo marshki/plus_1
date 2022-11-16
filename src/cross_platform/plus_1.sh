@@ -17,13 +17,13 @@ LOG_FILE="plus_1.log"
 
 # Write changes/errors w/timestamp to LOG_FILE for tracking
 
-log () {
+log() {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
 # Is current UID 0? If not, exit.
  
-root_check () {
+root_check() {
   if [ "$EUID" != "0" ] ; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
@@ -32,7 +32,7 @@ fi
 
 # Username prompt.
 
-get_username () {
+get_username() {
   while true
 
   read -r -p "Enter username to add and press [Enter]: " username
@@ -56,7 +56,7 @@ get_realname() {
 
 # Password prompt.
 
-get_password () {
+get_password() {
   while true
   do
     read -r -s -p "Enter password to add and press [Enter]: " pass1
@@ -104,7 +104,7 @@ set_password_linux() {
 
 # Create desktop directory structure (option).
 
-create_default_dirs () {
+create_default_dirs() {
   read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
 
   if [[ "$prompt" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
@@ -115,7 +115,7 @@ create_default_dirs () {
   fi
 }
 
-add_admin_user () {
+add_admin_user() {
 
   read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
 
@@ -158,7 +158,7 @@ add_linux() {
 
 # Get highest current UID and increment +1.
 
-get_uid () {
+get_uid() {
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
   increment_uid=$((uid +1))
 }
@@ -211,7 +211,7 @@ add_macOS(){
 
 # Exit status check.
 
-exit_status () {
+exit_status() {
   if [[ $retVal != 0 ]]; then
     printf "%s\n" "Something went wrong, homie..."
   else
@@ -221,7 +221,7 @@ exit_status () {
 
 # Detect system architecture, then act.
   
-plus_1 () {
+plus_1() {
     case $(uname -s) in
     Darwin)
       add_macOS
@@ -235,7 +235,7 @@ plus_1 () {
     esac
 }
 
-main () {
+main() {
   root_check
 
   printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
