@@ -22,7 +22,7 @@ should that strike your fancy.
 
 ## Getting Started
 
-Place the script in: `/usr/local/bin` 
+Place the script in: `/usr/local/bin` (or create it, if it does not exist). 
 
 set the executable bit on the file:
 
