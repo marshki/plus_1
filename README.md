@@ -48,4 +48,4 @@ and follow the on-screen prompts.
 
 ## TODOs
 
-[ ] Unit Testing
+- [ ] Unit Testing
