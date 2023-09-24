@@ -1,11 +1,11 @@
 #!/usr/bin/env bash 
 # Create log file and write to it when called. 
 
-# You can set a path to, e.g. /var/log,
-# provided you have permission to do so
+# You can set the log path, e.g. /var/log, provided you have write access.
+
 LOG_FILE="logfile"
 
-log () {
+log() {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
