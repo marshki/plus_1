@@ -6,6 +6,7 @@
 
 root_check() {
   if [ "$EUID" != "0" ] ; then
+
     printf "%s\n" "ERROR: Root privileges are required to continue. Exiting." >&2
     exit 1
 fi
