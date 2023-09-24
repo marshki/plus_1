@@ -21,5 +21,4 @@ print_me() {
 
   log "Now, lettuce stop!"
 
-
 print_me
