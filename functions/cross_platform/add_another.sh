@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
+# while loop prompt to continue/exit
 
-while true 
+while true
 
-do 
+do
 
-  read -r -p "Add another user? (yes/no): " answer 
+  read -r -p "Add another user? (yes/no): " answer
 
-  if [ "$answer" = yes ]; then 
+  if [ "$answer" = yes ]; then
+
     printf "%s\n" "Adding another user..."
 
-  else 
+  else
+
     printf "%s\n" "Exiting program..."
-    exit 0 
-  fi 
+    exit 0
+  fi
 
 done
 
