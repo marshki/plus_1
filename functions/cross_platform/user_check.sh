@@ -6,8 +6,8 @@
 name='someuser'
 
 username_check() {
-
   if id "$name" >/dev/null 2>&1; then
+
     printf "%s\n" "ERROR: $name already exists. Exiting." >&2
     exit 1
   fi
