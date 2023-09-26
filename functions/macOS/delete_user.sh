@@ -3,7 +3,8 @@
 
 username='sjobs'
 
-delete_user () {
+delete_user() {
+	
   printf "%s\n" "Deleting user..."
   
   dscl . delete /Users/"$username"
