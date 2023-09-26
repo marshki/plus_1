@@ -2,11 +2,11 @@
 #
 # plus_1
 #
-# Create local user account(s) in: 
-# GNU/Linux (via useradd) or macOS (via dscl).  
+# Create local user account(s) in:
+# GNU/Linux (via useradd) or macOS (via dscl).
 # 
-# Author: M. Krinitz <mjk235 [at] nyu [dot] edu> 
-# Date: 2019.06.03
+# Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
+# Date: 2023.09.26
 # License: MIT
 
 LOG_FILE="plus_1.log"
