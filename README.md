@@ -38,6 +38,7 @@ and follow the on-screen prompts.
 
 |Version  |Release Date  |  
 |---      |---           |
+| 0.4     | 26-SEP-2023  |
 | 0.3     | 26-FEB-2022  |
 | 0.2     | 24-JUL-2019  |
 | 0.1     | 07-NOV-2019  |
@@ -47,5 +48,3 @@ and follow the on-screen prompts.
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
 
 ## TODOs
-
-- [ ] Unit Testing
