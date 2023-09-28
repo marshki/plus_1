@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Create local user account(s) in GNU/Linux
-# via `user add` utility. 
+#
+# Create local user account(s) in GNU/Linux 
+# via `user add` utility.
+#
+# Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
+# Date: 2023.09.28
+# License: MIT
 
 LOG_FILE="linux_add.log"
 
@@ -32,19 +37,22 @@ fi
 
 # Username prompt w/check.
 
-get_username() { 
+get_username() {
+
   while true
 
   read -r -p "Enter username to add and press [Enter]: " username
 
   do
     if id "$username" >/dev/null 2>&1;then
+
       log "ERROR: $username already exists. Try again."
+
     else
+
       printf "%s\n" "$username does not exist. Continuing..."
       break
     fi
-  
   done
 }
 
