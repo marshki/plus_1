@@ -31,6 +31,7 @@ root_check() {
   if [ "$EUID" != "0" ] ; then
 
     log "ERROR: Root privileges required to continue. Exiting." >&2
+
     exit 1
   fi
 }
@@ -50,6 +51,7 @@ get_username() {
     else
 
       printf "%s\n" "$username does not exist. Continuing..."
+
       break
     fi
   done
@@ -79,6 +81,7 @@ get_password() {
     else
 
       printf "%s\n" "Passwords match. Continuing..."
+
       break
     fi
   done
@@ -134,26 +137,29 @@ add_admin_user() {
 
   read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
 
-  if [[ "$PROMPT" = "yes" ]]
-  then
+  if [[ "$PROMPT" = "yes" ]]; then
+	  
     printf "%s\n" "Checking for administrator group..."
     
-    if [ "$(getent group sudo)" ]
-    then
-        printf "%s\n" "Adding user to sudo group..."
-        log usermod --append --groups sudo "$username"
+    if [ "$(getent group sudo)" ]; then
 
-    elif [ "$(getent group wheel)" ]
-    then
-        printf "%s\n" "Adding user to wheel group..."
-        log usermod --append --groups wheel "$username"
+      printf "%s\n" "Adding user to sudo group..."
+
+      log usermod --append --groups sudo "$username"
+
+    elif [ "$(getent group wheel)" ]; then
+
+      printf "%s\n" "Adding user to wheel group..."
+
+      log usermod --append --groups wheel "$username"
 
     else
-        if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
-        then
-            log "ERROR: No admin group found. Exiting." >&2
-            exit 1
-        fi
+
+      if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]; then
+
+        log "ERROR: No admin group found. Exiting." >&2
+        exit 1
+      fi
     fi
   fi
 }
@@ -161,6 +167,7 @@ add_admin_user() {
 # plus_1/account creation wrapper.
 
 create_account() {
+
   user_info
   create_user
   set_password
@@ -175,6 +182,7 @@ exit_status() {
   if [[ $retVal -ne 0 ]]; then
 
     log "Something went wrong, homie..."
+
   else
 
     printf "%s\n" "Done."
@@ -184,19 +192,25 @@ exit_status() {
 # Main.
 
 main() {
+
   root_check
 
   printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux."
 
-  while true
-  do
+  while true; doa
+
     read -r -p "Create user account? (yes/no): " answer
 
     if [ "$answer" = yes ]; then
+
       printf "%s\n" "Let's add a user..."
+
       create_account
+
     else
+	    
       printf "%s\n" "Exiting."
+
       exit 0
     fi
   done
