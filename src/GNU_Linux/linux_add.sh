@@ -13,7 +13,7 @@ LOG_FILE="linux_add.log"
 # LOG
 #####
 
-# Write changes/errors w/timestamp to LOG_FILE for tracking
+# Write changes/errors w/timestamp to LOG_FILE for tracking.
 
 log() {
 
@@ -168,9 +168,12 @@ create_account() {
 # Exit status check.
 
 exit_status() {
+	
   if [[ $retVal -ne 0 ]]; then
+
     log "Something went wrong, homie..."
   else
+
     printf "%s\n" "Done."
   fi
 }
