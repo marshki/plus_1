@@ -1,6 +1,13 @@
 #!/use/bin/env bash
+#
+# macOS_add
+#
 # Create local user account(s) in macOS w/directory in /Users
 # via dscl utility.
+#
+# Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
+# Date: 2023.08.12
+# License: MIT
 
 LOG_FILE="macOS_add.log"
 
