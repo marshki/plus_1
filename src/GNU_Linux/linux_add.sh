@@ -31,8 +31,8 @@ root_check() {
   if [ "$EUID" != "0" ] ; then
 
     log "ERROR: Root privileges required to continue. Exiting." >&2
-    exit 1 
-fi
+    exit 1
+  fi
 }
 
 # Username prompt w/check.
