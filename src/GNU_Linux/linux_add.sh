@@ -55,7 +55,7 @@ get_username() {
   done
 }
 
-# Real name prompt. 
+# 'Real' name prompt. 
 
 get_realname() {
 
@@ -64,8 +64,7 @@ get_realname() {
 
 get_password() {
 
-  while true
-  do
+  while true; do
 
     read -r -s -p "Enter password to add and press [Enter]: " pass1
     printf "\\n"
