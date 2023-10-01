@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #
+# linux_installer
+#
 # Create local user account(s) in GNU/Linux 
 # via `user add` utility.
 #
