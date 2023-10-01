@@ -197,7 +197,7 @@ main() {
 
   printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux."
 
-  while true; doa
+  while true; do
 
     read -r -p "Create user account? (yes/no): " answer
 
