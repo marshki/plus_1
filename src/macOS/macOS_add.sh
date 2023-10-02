@@ -18,6 +18,7 @@ LOG_FILE="macOS_add.log"
 # Write changes w/ timestamp to LOG_FILE for tracking. 
 
 log() {
+	
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
@@ -28,8 +29,11 @@ log() {
 # Is current UID 0? If not, exit.
 
 root_check() {
+	
   if [ "$EUID" != "0" ] ; then
+
     log "ERROR: Root privileges required to continue. Exiting." >&2
+
     exit 1
 fi
 }
@@ -37,17 +41,20 @@ fi
 # Username prompt.
 
 get_username() {
-  while true
+
+  while true; do
 
   read -r -p "Enter username to add and press [Enter]: " username
 
-  do
-    if id "$username" >/dev/null 2>&1;then
-      log "ERROR: $username already exists. Try again."
-    else
-      printf "%s\n" "$username does not exist. Continuing..."
-      break
-    fi
+  if id "$username" >/dev/null 2>&1;then
+
+    log "ERROR: $username already exists. Try again."
+
+  else
+
+    printf "%s\n" "$username does not exist. Continuing..."
+    break
+  fi
   
   done
 }
