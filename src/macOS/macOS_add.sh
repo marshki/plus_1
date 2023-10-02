@@ -118,6 +118,7 @@ get_password() {
 # User info wrapper.
 
 user_info() {
+
   get_uid
   get_username
   get_realname
