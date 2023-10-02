@@ -59,9 +59,10 @@ get_username() {
   done
 }
 
-# Get highest current UID and increment +1 
+# Get highest current UID and increment +1.
 
 get_uid() {
+
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
   increment_uid=$((uid +1))
 }
@@ -69,12 +70,14 @@ get_uid() {
 # Real name prompt.
 
 get_realname() {
+
   read -rp "Enter 'real name' to add and press [Enter]: " realname
 }
 
 # Primary group ID prompt.
 
 get_primarygroup() {
+
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard"
 
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
@@ -83,6 +86,7 @@ get_primarygroup() {
 # Password hint prompt.
 
 get_hint() {
+
   read -rp "Enter password hint to add and press [Enter]: " passhint
 }
 
