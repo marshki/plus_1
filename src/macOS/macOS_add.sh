@@ -127,9 +127,10 @@ user_info() {
   get_password
 }
 
-# Create account via dscl using input from user_info
+# Create account via dscl using input from user_info.
 
 create_user() {
+
   printf "%s\n" "Adding user..."
 
   dscl . -create /Users/"$username"
@@ -145,15 +146,17 @@ create_user() {
 
 }
 
-# Create home directory
+# Create home directory.
 
-create_homedir(){
+create_homedir() {
+	
   createhomedir -u "$username" -c
 }
 
 # Create account function.
 
 create_account() {
+
   user_info
   create_user
   create_homedir
@@ -162,9 +165,13 @@ create_account() {
 # Exit status check.
 
 exit_status() {
+
   if [[ $retVal -ne 0 ]]; then
+
     printf "%s\n" "Something went wrong, homie."
+
   else
+
     printf "%s\n" "Done."
   fi
 }
