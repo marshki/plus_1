@@ -35,7 +35,7 @@ root_check() {
     log "ERROR: Root privileges required to continue. Exiting." >&2
 
     exit 1
-fi
+  fi
 }
 
 # Username prompt.
