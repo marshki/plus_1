@@ -64,6 +64,7 @@ get_username() {
 get_uid() {
 
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
+
   increment_uid=$((uid +1))
 }
 
@@ -108,7 +109,7 @@ get_password() {
 
     else
 
-      printf "%s\n" "Passwords match. Continuing..."
+      log "Passwords match. Continuing..."
 
       break
     fi
