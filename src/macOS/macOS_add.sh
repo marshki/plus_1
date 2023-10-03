@@ -11,9 +11,7 @@
 
 LOG_FILE="macOS_add.log"
 
-#####
 # LOG
-#####
 
 # Write changes w/ timestamp to LOG_FILE for tracking. 
 
@@ -22,9 +20,7 @@ log() {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
-###########
 # macOS_add
-###########
 
 # Is current UID 0? If not, exit.
 
@@ -178,18 +174,22 @@ exit_status() {
 }
 
 main() {
+
   root_check
 
   printf "%s\n" "plus_1: A Bash script to create local user accounts in macOS."
 
-  while true
-  do
+  while true; do
+
     read -r -p "Create user account? (yes/no): " answer
 
     if [ "$answer" = yes ]; then
+
       printf "%s\n" "Let's add a user..."
       create_account
+
     else
+
       printf "%s\n" "Exiting."
       exit 0
     fi
