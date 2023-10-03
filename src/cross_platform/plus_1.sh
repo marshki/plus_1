@@ -64,16 +64,21 @@ get_realname() {
 # Password prompt.
 
 get_password() {
-  while true
-  do
+
+  while true; do
+
     read -r -s -p "Enter password to add and press [Enter]: " pass1
     printf "\n"
+
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2
     printf "\n"
 
     if [[ "$pass1" != "$pass2" ]]; then
+
       log "ERROR: Passwords do no match."
+
     else
+
       printf "%s\n" "Passwords match. Continuing..."
       break
     fi
@@ -83,6 +88,7 @@ get_password() {
 # User info wrapper.
 
 user_info() {
+
   get_username
   get_realname 
   get_password
@@ -95,15 +101,18 @@ user_info() {
 # Create account in GNU/Linux via useradd using input from user_info.
 
 create_user_linux() {
+
   printf "%s\n" "Adding user..."
 
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
+
   log "new user: name='$username', home=/home/'$username', shell=/bin/bash"
 }
 
 # Set password.
 
 set_password_linux() {
+
   printf "%s\n" "Setting password..."
 
   printf "%s" "$username:$pass2" | chpasswd
@@ -112,10 +121,11 @@ set_password_linux() {
 # Create desktop directory structure (option).
 
 create_default_dirs() {
+
   read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
 
-  if [[ "$prompt" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]
-  then
+  if [[ "$prompt" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
+
     printf "%s\n" "Creating default directories..."
 
     log su "${username}" -c xdg-user-dirs-update
@@ -126,26 +136,29 @@ add_admin_user() {
 
   read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
 
-  if [[ "$PROMPT" = "yes" ]]
-  then
+  if [[ "$PROMPT" = "yes" ]]; then
+
     printf "%s\n" "Checking for administrator group..."
     
-    if [ "$(getent group sudo)" ]
-    then
-        printf "%s\n" "Adding user to sudo group..."
-        log usermod --append --groups sudo "$username"
+    if [ "$(getent group sudo)" ]; then
 
-    elif [ "$(getent group wheel)" ]
-    then
-        printf "%s\n" "Adding user to wheel group..."
-        log usermod --append --groups wheel "$username"
+      printf "%s\n" "Adding user to sudo group..."
+
+      log usermod --append --groups sudo "$username"
+
+    elif [ "$(getent group wheel)" ]; then
+
+      printf "%s\n" "Adding user to wheel group..."
+
+      log usermod --append --groups wheel "$username"
 
     else
-        if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]
-        then
-            log "ERROR: No admin group found. Exiting." >&2
-            exit 1
-        fi
+
+      if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]; then
+
+        log "ERROR: No admin group found. Exiting." >&2
+        exit 1
+      fi
     fi
   fi
 }
@@ -153,6 +166,7 @@ add_admin_user() {
 # GNU/Linux wrapper.
 
 add_linux() {
+
   create_user_linux
   set_password_linux
   create_default_dirs
