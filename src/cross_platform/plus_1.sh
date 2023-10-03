@@ -42,8 +42,11 @@ get_username() {
   read -r -p "Enter username to add and press [Enter]: " username
   
     if id "$username" >/dev/null 2>&1; then
+
       log "ERROR: $username already exists. Try again."
+
     else
+	    
       printf "%s\n" "$username does not exist. Continuing..."
       break
     fi
@@ -54,6 +57,7 @@ get_username() {
 # Real name prompt.
 
 get_realname() {
+
   read -r -p "Enter 'real' name to add and press [Enter]: " realname
 }
 
