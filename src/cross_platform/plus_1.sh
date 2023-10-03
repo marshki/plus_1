@@ -180,13 +180,16 @@ add_linux() {
 # Get highest current UID and increment +1.
 
 get_uid() {
+
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
+
   increment_uid=$((uid +1))
 }
 
 # Primary group ID prompt.
 
 get_primarygroup() {
+
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard"
 
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
@@ -195,6 +198,7 @@ get_primarygroup() {
 # Create account in macOS via dscl using input from user_info.
 
 create_user_macOS() {
+
   printf "%s\n" "Adding user..."
 
   dscl . -create /Users/"$username"
@@ -206,12 +210,12 @@ create_user_macOS() {
   dscl . -passwd /Users/"$username" "$pass2"
 
   log "new user: name='$username', home=/Users/'$username', shell=/bin/bash"
-
 }
 
 # Create home directory macOS.
 
-create_homedir(){
+create_homedir() {
+
   printf "%s\n" "Creating home directory..."
 
   createhomedir -u "$username" -c
@@ -219,7 +223,8 @@ create_homedir(){
 
 # macOS wrapper.
 
-add_macOS(){
+add_macOS() {
+
   get_uid
   get_primarygroup
   create_user_macOS
@@ -233,9 +238,13 @@ add_macOS(){
 # Exit status check.
 
 exit_status() {
+
   if [[ $retVal != 0 ]]; then
+
     printf "%s\n" "Something went wrong, homie..."
+
   else
+
     printf "%s\n" "Done."
   fi
 }
@@ -243,34 +252,43 @@ exit_status() {
 # Detect system architecture, then act.
   
 plus_1() {
+
     case $(uname -s) in
     Darwin)
+
       add_macOS
       ;;
     Linux)
+
       add_linux
       ;;
     *)
+
       printf "%s\n" "You got the wrong one, homie"
+
       ;;
     esac
 }
 
 main() {
+
   root_check
 
   printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
 
-  while true
-  do
+  while true; do
   
     read -r -p "Create user account? (yes/no): " answer
 
     if [ "$answer" = yes ]; then
+
       printf "%s\n" "Let's add a user..."
+
       user_info
       plus_1
+
     else
+
       printf "%s\n" "Exiting."
       exit 0
     fi
