@@ -271,10 +271,6 @@ plus_1() {
     esac
 }
 
-######
-# Main
-######
-
 main() {
 
   root_check
