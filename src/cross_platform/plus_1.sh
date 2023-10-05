@@ -118,7 +118,7 @@ set_password_linux() {
   printf "%s" "$username:$pass2" | chpasswd
 }
 
-# Create desktop directory structure (option).
+# Create desktop directory structure (user option).
 
 create_default_dirs() {
 
@@ -254,14 +254,15 @@ exit_status() {
 plus_1() {
 
     case $(uname -s) in
-    Darwin)
 
+    Darwin)
       add_macOS
       ;;
-    Linux)
 
+    Linux)
       add_linux
       ;;
+
     *)
 
       printf "%s\n" "You got the wrong one, homie"
@@ -269,6 +270,10 @@ plus_1() {
       ;;
     esac
 }
+
+######
+# Main
+######
 
 main() {
 
