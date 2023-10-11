@@ -33,6 +33,8 @@ then call it:
 `sudo bash plus_1.sh` 
 
 and follow the on-screen prompts. 
+
+Log file is writtern to the location the script is called from. This is user modifiable.
  
 ## History
 
