@@ -48,3 +48,5 @@ and follow the on-screen prompts.
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
 
 ## TODOs
+
+- [ ] Add TUI?
