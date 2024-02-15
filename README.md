@@ -52,3 +52,5 @@ Log file is writtern to the location the script is called from. This is user mod
 ## TODOs
 
 - [ ] Add TUI?
+
+- [ ] Unit tests?
