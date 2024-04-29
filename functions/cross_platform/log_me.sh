@@ -1,5 +1,5 @@
-#!/usr/bin/env bash 
-# Create log file and write to it when called. 
+#!/usr/bin/env bash
+# Create log file and write to it when called.
 
 # You can set the log path, e.g. /var/log, provided you have write access.
 
@@ -10,7 +10,7 @@ log() {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
-# Use the `log` functon like  this: 
+# Use the `log` functon like  this:
 
 print_me() {
   log "Lettuce log the following:"
