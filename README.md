@@ -55,4 +55,4 @@ Log file is writtern to the location the script is called from. This is user mod
 
 - [ ] Unit tests?
 
-- [ ] Replace `dscl` with ` `sysadminctl` in macOS?
+- [ ] Replace `dscl` with `sysadminctl` in macOS?
