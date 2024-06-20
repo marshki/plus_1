@@ -6,7 +6,6 @@
 LOG_FILE="logfile"
 
 log() {
-
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
