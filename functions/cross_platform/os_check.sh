@@ -2,7 +2,6 @@
 # Detect system architecture, then act.
   
 os_check() {
-
     case $(uname -s) in
     Darwin)
 
