@@ -5,9 +5,8 @@
 
 get_password() {
 
-  while true
+  while true; do
 
-  do
     read -r -s -p "Enter password to add and press [Enter]: " pass1
 
     printf "\n"
