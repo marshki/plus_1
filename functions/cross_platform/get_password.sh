@@ -20,7 +20,6 @@ confirm_password() {
 }
 
 check_password() { 
-
   if [[ "$pass1" == "$pass2" ]]; then
 
     printf "%s\n" "Passwords match."
