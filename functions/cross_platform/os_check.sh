@@ -10,7 +10,7 @@ os_check() {
       ;;
     Linux)
 
-      printf "%s\n" "Linux"
+      printf "%s\n" "GNU/Linux"
       ;;
     *)
 
