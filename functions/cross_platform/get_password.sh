@@ -9,22 +9,19 @@
 
 get_password() {
   read -r -s -p "Enter password to add and press [Enter]: " pass1
-
   printf "%s\n" "$pass1"
 }
 
 confirm_password() {
   read -r -s -p "Re-enter password to add and press [Enter]: " pass2
-
   printf "%s\n" "$pass2"
 }
 
-check_password() { 
+check_password() {
   if [[ "$pass1" == "$pass2" ]]; then
-
     printf "%s\n" "Passwords match."
-  else
 
+  else
     printf "%s\n" "ERROR: Passwords do not match. Exiting."
     exit 1
   fi
