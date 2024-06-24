@@ -44,6 +44,7 @@ get_username() {
 
     if id "$username" >/dev/null 2>&1; then
       log "ERROR: $username already exists. Try again."
+
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
