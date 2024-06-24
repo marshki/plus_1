@@ -58,15 +58,20 @@ get_realname() {
   read -r -p "Enter 'real name' to add and press [Enter]: " realname
 }
 
-get_password() {
+# Password prompt.
 
+get_password() {
   while true; do
+
     read -r -s -p "Enter password to add and press [Enter]: " pass1
     printf "\\n"
+
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2
     printf "\\n"
+
     if [[ "$pass1" != "$pass2" ]]; then
       log "ERROR: Passwords do no match."
+
     else
       printf "%s\n" "Passwords match. Continuing..."
       break
