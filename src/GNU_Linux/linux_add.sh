@@ -29,7 +29,6 @@ log() {
  
 root_check() {
   if [ "$EUID" != "0" ]; then
-
     log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
   fi
@@ -39,7 +38,6 @@ root_check() {
 
 get_username() {
   while true; do 
-
     read -r -p "Enter username to add and press [Enter]: " username
 
     if id "$username" >/dev/null 2>&1; then
@@ -62,7 +60,6 @@ get_realname() {
 
 get_password() {
   while true; do
-
     read -r -s -p "Enter password to add and press [Enter]: " pass1
     printf "\\n"
 
@@ -90,11 +87,9 @@ user_info() {
 # Create account via useradd using input from user_info.
 
 create_user() {
-
   printf "%s\n" "Adding user..."
 
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
-
   log "new user: name='$username', home=/home/'$username', shell=/bin/bash"
 
 }
@@ -110,6 +105,7 @@ set_password() {
 
 create_default_dirs() {
   read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " PROMPT
+
   if [[ "$PROMPT" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
     printf "%s\n" "Creating default directories..."
     log su "${username}" -c xdg-user-dirs-update
@@ -120,6 +116,7 @@ create_default_dirs() {
 
 add_admin_user() {
   read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
+
   if [[ "$PROMPT" = "yes" ]]; then
     printf "%s\n" "Checking for administrator group..."
     if [ "$(getent group sudo)" ]; then
