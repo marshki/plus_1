@@ -119,12 +119,15 @@ add_admin_user() {
 
   if [[ "$PROMPT" = "yes" ]]; then
     printf "%s\n" "Checking for administrator group..."
+
     if [ "$(getent group sudo)" ]; then
       printf "%s\n" "Adding user to sudo group..."
       log usermod --append --groups sudo "$username"
+
     elif [ "$(getent group wheel)" ]; then
       printf "%s\n" "Adding user to wheel group..."
       log usermod --append --groups wheel "$username"
+
     else
       if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]; then
         log "ERROR: No admin group found. Exiting." >&2
@@ -149,6 +152,7 @@ create_account() {
 exit_status() {
   if [[ $retVal -ne 0 ]]; then
     log "Something went wrong, homie..."
+
   else
     printf "%s\n" "Done."
   fi
@@ -159,11 +163,14 @@ exit_status() {
 main() {
   root_check
   printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux."
+
   while true; do
     read -r -p "Create user account? (yes/no): " answer
+
     if [ "$answer" = yes ]; then
       printf "%s\n" "Let's add a user..."
       create_account
+
     else
       printf "%s\n" "Exiting."
       exit 0
