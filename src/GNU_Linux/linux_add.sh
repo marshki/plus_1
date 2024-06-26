@@ -2,7 +2,7 @@
 #
 # linux_installer
 #
-# Create local user account(s) in GNU/Linux 
+# Create local user account(s) in GNU/Linux
 # via `user add` utility.
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
@@ -37,7 +37,7 @@ root_check() {
 # Username prompt w/check.
 
 get_username() {
-  while true; do 
+  while true; do
     read -r -p "Enter username to add and press [Enter]: " username
 
     if id "$username" >/dev/null 2>&1; then
@@ -50,7 +50,7 @@ get_username() {
   done
 }
 
-# 'Real' name prompt. 
+# 'Real' name prompt.
 
 get_realname() {
   read -r -p "Enter 'real name' to add and press [Enter]: " realname
@@ -90,7 +90,7 @@ create_user() {
   printf "%s\n" "Adding user..."
 
   if useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
-    log "new user: name='$username', home=/home/'$username', shell=/bin/bash"
+    log "New user created: name='$username', home=/home/'$username', shell=/bin/bash"
 
   else
     log "ERROR: Failed to create user $username"
