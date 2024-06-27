@@ -124,7 +124,7 @@ create_default_dirs() {
       log "Default directories created for $username"
 
     else
-      log ""ERROR: Failed to create default directories for $username"
+      log "ERROR: Failed to create default directories for $username"
     fi
   fi 
 }
