@@ -119,8 +119,14 @@ create_default_dirs() {
 
   if [[ "$PROMPT" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
     printf "%s\n" "Creating default directories..."
-    log su "${username}" -c xdg-user-dirs-update
-  fi
+    
+    if su "${username}" -c xdg-user-dirs-update; then
+      log "Default directories created for $username"
+
+    else
+      log ""ERROR: Failed to create default directories for $username"
+    fi
+  fi 
 }
 
 # Add user to admin group.
