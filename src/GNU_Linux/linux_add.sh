@@ -6,14 +6,12 @@
 # via `user add` utility.
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
-# Date: 2023.09.28
+# Date: 2024.06.28
 # License: MIT
 
 LOG_FILE="linux_add.log"
 
-#####
 # LOG
-#####
 
 # Write changes/errors w/timestamp to LOG_FILE for tracking.
 
@@ -21,9 +19,7 @@ log() {
   printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
 }
 
-##############
 # linux_add.sh
-##############
 
 # Is current UID 0? If not, exit.
  
@@ -133,6 +129,7 @@ create_default_dirs() {
 
 add_admin_user() {
   read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
+
     if [[ "$PROMPT" == "yes" ]]; then
         printf "%s\n" "Checking for administrator group..."
 
