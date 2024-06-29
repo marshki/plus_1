@@ -18,11 +18,11 @@ confirm_password() {
 }
 
 check_password() {
-  if [[ "$pass1" == "$pass2" ]]; then
-    printf "%s\n" "Passwords match."
+  if [[ "$pass1" != "$pass2" ]]; then
+    printf "%s\n" "ERROR: Passwords do not match."
 
   else
-    printf "%s\n" "ERROR: Passwords do not match. Exiting."
+    printf "%s\n" "Passwords match. Exiting."
     exit 1
   fi
 }
