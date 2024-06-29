@@ -4,11 +4,10 @@
 os_check() {
     case $(uname -s) in
     Darwin)
-
       printf "%s\n" "Darwin"
       ;;
-    Linux)
 
+    Linux)
       printf "%s\n" "GNU/Linux"
       ;;
     *)
