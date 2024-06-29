@@ -7,27 +7,30 @@
 username='sjobs'
 
 add_admin_user() {
+  read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " prompt
 
-  read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
+    if [[ "$prompt" == "yes" ]]; then
+        printf "%s\n" "Checking for administrator group..."
 
-  if [[ "$PROMPT" = "yes" ]]; then
-    printf "%s\n" "Checking for administrator group."
-    
-    if [ "$(getent group sudo)" ]; then
-      printf "%s\n" "Adding user to sudo group..."
-      usermod --append --groups sudo "$username"
+        if getent group sudo >/dev/null; then
+            if usermod --append --groups sudo "$username"; then
+                printf "%s\n" "User $username added to sudo group"
+            else
+                printf "%s\n" "ERROR: Failed to add user $username to sudo group"
+            fi
 
-    elif [ "$(getent group wheel)" ]; then
-      printf "%s\n" "Adding user to wheel group..."
-      usermod --append --groups wheel "$username"
+        elif getent group wheel >/dev/null; then
+            if usermod --append --groups wheel "$username"; then
+                printf "%s\n" "User $username added to wheel group"
+            else
+                printf "%s\n" "ERROR: Failed to add user $username to wheel group"
+            fi
 
-    else
-      if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]; then
-        printf "%s\n" "ERROR: No admin group found. Exiting." >&2
-        exit 1
-      fi
+        else
+            printf "%s\n" "ERROR: No admin group found. Exiting." >&2
+            exit 1
+        fi
     fi
-  fi
 }
 
 add_admin_user
