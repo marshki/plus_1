@@ -180,7 +180,7 @@ main() {
   printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux."
 
   while true; do
-    read -r -p "Create user account? (yes/no): " answer
+    read -r -p "Create new user account? (yes/no): " answer
 
     if [ "$answer" = yes ]; then
       printf "%s\n" "Let's add a user..."
