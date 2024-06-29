@@ -115,10 +115,10 @@ create_default_dirs() {
     printf "%s\n" "Creating default directories..."
     
     if su "${username}" -c xdg-user-dirs-update; then
-      log "Default directories created for $username"
+      log "Default directory structure created for $username"
 
     else
-      log "ERROR: Failed to create default directories for $username"
+      log "ERROR: Failed to create default directory structure for $username"
     fi
   fi 
 }
