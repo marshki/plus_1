@@ -5,7 +5,6 @@
 
 username_check() {
   while true; do
-
     read -r -p "Enter username to add and press [Enter]: " username
 
     if id "$username" >/dev/null 2>&1; then
@@ -17,6 +16,6 @@ username_check() {
     fi
   
   done
-} 
+}
 
 username_check
