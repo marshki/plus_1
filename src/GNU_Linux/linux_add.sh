@@ -15,7 +15,7 @@ LOG_FILE="linux_add.log"
 # Write changes/errors w/timestamp to LOG_FILE for tracking.
 
 log() {
-  printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
+  printf "%s\n" "$(date +"%b %d %X:") $*" |tee -a "$LOG_FILE"
 }
 
 # linux_add.sh
@@ -110,9 +110,9 @@ set_password() {
 # Create default directories.
 
 create_default_dirs() {
-  read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " PROMPT
+  read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
 
-  if [[ "$PROMPT" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
+  if [[ "$prompt" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
     printf "%s\n" "Creating default directories..."
     
     if su "${username}" -c xdg-user-dirs-update; then
@@ -127,9 +127,9 @@ create_default_dirs() {
 # Add user to admin group.
 
 add_admin_user() {
-  read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
+  read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " prompt
 
-    if [[ "$PROMPT" == "yes" ]]; then
+    if [[ "$prompt" == "yes" ]]; then
         printf "%s\n" "Checking for administrator group..."
 
         if getent group sudo >/dev/null; then
