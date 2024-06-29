@@ -2,8 +2,7 @@
 #
 # linux_installer
 #
-# Create local user account(s) in GNU/Linux
-# via `user add` utility.
+# Create local user account(s) in GNU/Linux via `user add` utility.
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
 # Date: 2024.06.28
