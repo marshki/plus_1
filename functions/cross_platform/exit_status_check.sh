@@ -13,10 +13,11 @@ retVal=$?
 exit_status() { 
   if [[ $retVal != 0 ]]; then
     printf "%s\n" "Something went wrong, homie."
+
   else
     printf "%s\n" "Done."
   fi
-} 
+}
 
 exit_status
 
