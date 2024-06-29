@@ -11,8 +11,7 @@
 
 LOG_FILE="linux_add.log"
 
-# LOG
-
+# Log
 # Write changes/errors w/timestamp to LOG_FILE for tracking.
 
 log() {
