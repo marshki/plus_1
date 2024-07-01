@@ -34,7 +34,6 @@ root_check() {
 # Username prompt.
 
 get_username() {
-
   while true; do
     read -r -p "Enter username to add and press [Enter]: " username
 
