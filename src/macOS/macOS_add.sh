@@ -24,7 +24,6 @@ log() {
 # Is current UID 0? If not, exit.
 
 root_check() {
-	
   if [ "$EUID" -ne "0" ] ; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
@@ -50,7 +49,6 @@ get_username() {
 # Get highest current UID and increment +1.
 
 get_uid() {
-
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
 
   increment_uid=$((uid +1))
@@ -59,14 +57,12 @@ get_uid() {
 # Real name prompt.
 
 get_realname() {
-
   read -rp "Enter 'real name' to add and press [Enter]: " realname
 }
 
 # Primary group ID prompt.
 
 get_primarygroup() {
-
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard"
 
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
