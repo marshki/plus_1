@@ -22,7 +22,7 @@ log() {
 # Is current UID 0? If not, exit.
  
 root_check() {
-  if [ "$EUID" != "0" ]; then
+  if [ "$EUID" -ne "0" ]; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
   fi
