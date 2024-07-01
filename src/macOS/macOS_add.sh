@@ -17,7 +17,7 @@ LOG_FILE="macOS_add.log"
 
 log() {
 	
-  printf "%s\n" "$(date +"%b %d %X :") $*" |tee -a "$LOG_FILE"
+  printf "%s\n" "$(date +"%b %d %X") $*" |tee -a "$LOG_FILE"
 }
 
 # macOS_add
