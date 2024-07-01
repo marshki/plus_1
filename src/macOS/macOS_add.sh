@@ -16,7 +16,6 @@ LOG_FILE="macOS_add.log"
 # Write changes w/ timestamp to LOG_FILE for tracking. 
 
 log() {
-	
   printf "%s\n" "$(date +"%b %d %X") $*" |tee -a "$LOG_FILE"
 }
 
@@ -26,10 +25,8 @@ log() {
 
 root_check() {
 	
-  if [ "$EUID" != "0" ] ; then
-
+  if [ "$EUID" -ne "0" ] ; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
-
     exit 1
   fi
 }
