@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Get the highest UID and increment +1.
-
 # sort numerically by second field
 # pipe to awk to print last record from second field
 # increment +1
