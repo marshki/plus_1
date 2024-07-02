@@ -10,7 +10,6 @@ passhint='1...'
 pass2='1morething'
 
 create_user() {
-	
   printf "%s\\n" "Adding user..."
 
   dscl . -create /Users/"$username"
