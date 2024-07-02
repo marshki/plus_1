@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # sysadminctl implementation of create_user.sh in this directory
 
-# For example (test this!): sysadminctl -addUser username -fullName "User Name" -UID 1001 -shell /bin/bash -password password
+# For example (test this first!): sysadminctl -addUser username -fullName "User Name" -UID 1001 -shell /bin/bash -password password
 
 create_user() {
   printf "%s\n" "Adding user..."
