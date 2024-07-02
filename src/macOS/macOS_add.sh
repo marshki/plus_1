@@ -97,7 +97,6 @@ get_password() {
 # User info wrapper.
 
 user_info() {
-
   get_uid
   get_username
   get_realname
@@ -109,7 +108,6 @@ user_info() {
 # Create account via dscl using input from user_info.
 
 create_user() {
-
   printf "%s\n" "Adding user..."
 
   dscl . -create /Users/"$username"
@@ -122,7 +120,6 @@ create_user() {
   dscl . -passwd /Users/"$username" "$pass2"
 
   log "new user: name='$username', home=/Users/'$username', shell=/bin/bash"
-
 }
 
 # Create home directory.
