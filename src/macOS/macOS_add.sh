@@ -12,8 +12,7 @@
 LOG_FILE="macOS_add.log"
 
 # LOG
-
-# Write changes w/ timestamp to LOG_FILE for tracking. 
+# Write changes w/ timestamp to LOG_FILE for tracking.
 
 log() {
   printf "%s\n" "$(date +"%b %d %X") $*" |tee -a "$LOG_FILE"
@@ -50,7 +49,7 @@ get_username() {
 
 get_uid() {
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
-
+  
   increment_uid=$((uid +1))
 }
 
@@ -71,14 +70,12 @@ get_primarygroup() {
 # Password hint prompt.
 
 get_hint() {
-
   read -rp "Enter password hint to add and press [Enter]: " passhint
 }
 
 # Password prompt.
 
 get_password() {
-
   while true; do
 
     read -r -s -p "Enter password to add and press [Enter]: " pass1
@@ -88,13 +85,10 @@ get_password() {
     printf "\n"
 
     if [[ "$pass1" != "$pass2" ]]; then
-
       printf "%s\n" "ERROR: Passwords do no match."
 
     else
-
       log "Passwords match. Continuing..."
-
       break
     fi
   done
