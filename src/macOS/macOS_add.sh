@@ -85,7 +85,7 @@ get_password() {
     printf "\n"
 
     if [[ "$pass1" != "$pass2" ]]; then
-      printf "%s\n" "ERROR: Passwords do no match."
+      log "%s\n" "ERROR: Passwords do no match."
 
     else
       log "Passwords match. Continuing..."
@@ -125,14 +125,12 @@ create_user() {
 # Create home directory.
 
 create_homedir() {
-	
   createhomedir -u "$username" -c
 }
 
 # Create account function.
 
 create_account() {
-
   user_info
   create_user
   create_homedir
@@ -141,13 +139,10 @@ create_account() {
 # Exit status check.
 
 exit_status() {
-
   if [[ $retVal -ne 0 ]]; then
-
     printf "%s\n" "Something went wrong, homie."
 
   else
-
     printf "%s\n" "Done."
   fi
 }
