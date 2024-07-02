@@ -156,12 +156,10 @@ main() {
     read -r -p "Create user account? (yes/no): " answer
 
     if [ "$answer" = yes ]; then
-
       printf "%s\n" "Let's add a user..."
       create_account
 
     else
-
       printf "%s\n" "Exiting."
       exit 0
     fi
@@ -171,4 +169,4 @@ main() {
 main "$@"
 
 retVal=$?
-log exit_status
+exit_status $retVal
