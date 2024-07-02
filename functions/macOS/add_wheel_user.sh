@@ -1,5 +1,4 @@
 #!/use/bin/env bash
-
 # Check OS for wheel group via `dseditgroup`,
 # then, using `dseditgroup `, add user to group.
 # wheel = root
@@ -7,7 +6,6 @@
 username='sjobs'
 
 add_admin_user() {
-
   read -r -p "Add user to wheel group [yes/no]? " PROMPT
 
   if [[ "$PROMPT" = "yes" ]]; then
