@@ -139,22 +139,20 @@ create_account() {
 # Exit status check.
 
 exit_status() {
-  if [[ $retVal -ne 0 ]]; then
-    printf "%s\n" "Something went wrong, homie."
+  if [[ $1 -ne 0 ]]; then
+    log "%s\n" "Something went wrong, homie."
 
   else
-    printf "%s\n" "Done."
+    log "%s\n" "Done."
   fi
 }
 
 main() {
-
   root_check
 
   printf "%s\n" "plus_1: A Bash script to create local user accounts in macOS."
 
   while true; do
-
     read -r -p "Create user account? (yes/no): " answer
 
     if [ "$answer" = yes ]; then
