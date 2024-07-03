@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 # sysadminctl implementation of create_user.sh located in this directory.
-# WILL create a /Users directory.
+# Add user WITH creating a /Users directory.
 
-# For example (test this first!): sysadminctl -addUser username -fullName "User Name" -UID 1001 -shell /bin/bash -password password
+username='sjobs'
+increment_uid='502'
+realname='Steve Jobs'
+primarygroup='20'
+passhint='1...'
+pass2='1morething'
 
 create_user() {
   printf "%s\n" "Adding user..."
@@ -12,8 +17,11 @@ create_user() {
               -UID "$increment_uid" \
               -shell /bin/bash \
               -password "$pass2" \
-              -home /Users/"$username"
+              -home /Users/"$username" \
+              -passwordHint "$passhint" \
+              -primaryGroupID "$primarygroup"
 
-  log "New user created: name='$username', home=/Users/'$username', shell=/bin/bash"
+  # log "New user created: name='$username', home=/Users/'$username', shell=/bin/bash, primary group ID='$primarygroup'"
 }
 
+create_user
