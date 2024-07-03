@@ -53,6 +53,8 @@ Log file is writtern to the location the script is called from. This is user mod
 
 - [ ] Refactor?
 
+- [ ] Add admin/wheel function to macOS add user script.
+
 - [ ] Add TUI?
 
 - [ ] Unit tests?
