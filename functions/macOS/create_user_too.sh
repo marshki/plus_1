@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# sysadminctl implementation of create_user.sh in this directory
+# sysadminctl implementation of create_user.sh located in this directory.
+# WILL create a /Users directory.
 
 # For example (test this first!): sysadminctl -addUser username -fullName "User Name" -UID 1001 -shell /bin/bash -password password
 
