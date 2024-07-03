@@ -3,11 +3,11 @@
 # Add user WITH creating a /Users directory.
 
 username='sjobs'
-increment_uid='502'
 realname='Steve Jobs'
-primarygroup='20'
-passhint='1...'
+increment_uid='502'
 pass2='1morething'
+passhint='1...'
+primarygroup='20'
 
 create_user() {
   printf "%s\n" "Adding user..."
