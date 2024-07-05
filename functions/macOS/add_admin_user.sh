@@ -6,9 +6,9 @@
 username='sjobs'
 
 add_admin_user() {
-  read -r -p "Add user to admin group [yes/no]? " PROMPT
+  read -r -p "Add user to admin group [yes/no]? " prompt
 
-  if [[ "$PROMPT" = "yes" ]]; then
+  if [[ "$prompt" = "yes" ]]; then
     printf "%s\n" "Checking for admin group."
 
     if [ "$(dseditgroup -o read admin 2>/dev/null)" ]; then
