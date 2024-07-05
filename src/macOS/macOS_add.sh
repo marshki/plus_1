@@ -9,13 +9,24 @@
 # Date: 2023.08.12
 # License: MIT
 
+#!/usr/bin/env bash
+#
+# macOS_add
+#
+# Create local user account(s) in macOS w/directory in /Users
+# via dscl utility.
+#
+# Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
+# Date: 2023.08.12
+# License: MIT
+
 LOG_FILE="macOS_add.log"
 
 # LOG
 # Write changes w/ timestamp to LOG_FILE for tracking.
 
 log() {
-  printf "%s\n" "$(date +"%b %d %X") $*" |tee -a "$LOG_FILE"
+  printf "%s\n" "$(date +"%b %d %X") $*" | tee -a "$LOG_FILE"
 }
 
 # macOS_add
@@ -23,7 +34,7 @@ log() {
 # Is current UID 0? If not, exit.
 
 root_check() {
-  if [ "$EUID" -ne "0" ] ; then
+  if [ "$EUID" -ne 0 ]; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
   fi
@@ -35,9 +46,8 @@ get_username() {
   while true; do
     read -r -p "Enter username to add and press [Enter]: " username
 
-    if id "$username" >/dev/null 2>&1;then
+    if id "$username" >/dev/null 2>&1; then
       log "ERROR: $username already exists. Try again."
-
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
@@ -48,9 +58,8 @@ get_username() {
 # Get highest current UID and increment +1.
 
 get_uid() {
-  uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
-  
-  increment_uid=$((uid +1))
+  uid=$(dscl . -list /Users UniqueID | sort --numeric-sort --key=2 | awk 'END{print $2}')
+  increment_uid=$((uid + 1))
 }
 
 # Real name prompt.
@@ -63,7 +72,6 @@ get_realname() {
 
 get_primarygroup() {
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard"
-
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 }
 
@@ -77,16 +85,13 @@ get_hint() {
 
 get_password() {
   while true; do
-
     read -r -s -p "Enter password to add and press [Enter]: " pass1
     printf "\n"
-
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2
     printf "\n"
 
     if [[ "$pass1" != "$pass2" ]]; then
-      log "%s\n" "ERROR: Passwords do no match."
-
+      log "ERROR: Passwords do not match."
     else
       log "Passwords match. Continuing..."
       break
@@ -94,24 +99,24 @@ get_password() {
   done
 }
 
+# Check OS for admin group via `dseditgroup`,
+# then, using `dseditgroup`, add user to group.
+
 add_admin_user() {
   read -r -p "Add user to admin group [yes/no]? " prompt
 
   if [[ "${prompt,,}" = "yes" ]]; then
     printf "%s\n" "Checking for admin group."
 
-    if [ "$(dseditgroup -o read admin 2>/dev/null)" ]; then
+    if dseditgroup -o read admin 2>/dev/null; then
       printf "%s\n" "Adding user to admin group..."
       dseditgroup -o edit -a "$username" -t user admin
-
     else
-      printf "%s\n" "ERROR: No admin group found. Exiting." >&2
+      log "ERROR: No admin group found. Exiting." >&2
       exit 1
     fi
   fi
 }
-
-add_admin_user
 
 # User info wrapper.
 
@@ -160,10 +165,9 @@ create_account() {
 
 exit_status() {
   if [[ $1 -ne 0 ]]; then
-    log "%s\n" "Something went wrong, homie."
-
+    log "Something went wrong, homie."
   else
-    log "%s\n" "Done."
+    log "Done."
   fi
 }
 
@@ -175,10 +179,9 @@ main() {
   while true; do
     read -r -p "Create user account? (yes/no): " answer
 
-    if [ "$answer" = yes ]; then
+    if [[ "${answer,,}" = "yes" ]]; then
       printf "%s\n" "Let's add a user..."
       create_account
-
     else
       printf "%s\n" "Exiting."
       exit 0
