@@ -94,6 +94,25 @@ get_password() {
   done
 }
 
+add_admin_user() {
+  read -r -p "Add user to admin group [yes/no]? " prompt
+
+  if [[ "${prompt,,}" = "yes" ]]; then
+    printf "%s\n" "Checking for admin group."
+
+    if [ "$(dseditgroup -o read admin 2>/dev/null)" ]; then
+      printf "%s\n" "Adding user to admin group..."
+      dseditgroup -o edit -a "$username" -t user admin
+
+    else
+      printf "%s\n" "ERROR: No admin group found. Exiting." >&2
+      exit 1
+    fi
+  fi
+}
+
+add_admin_user
+
 # User info wrapper.
 
 user_info() {
@@ -103,6 +122,7 @@ user_info() {
   get_primarygroup
   get_hint
   get_password
+  add_admin_user
 }
 
 # Create account via dscl using input from user_info.
