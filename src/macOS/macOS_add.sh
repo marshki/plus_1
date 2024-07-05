@@ -37,6 +37,7 @@ get_username() {
 
     if id "$username" >/dev/null 2>&1; then
       log "ERROR: $username already exists. Try again."
+
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
@@ -81,6 +82,7 @@ get_password() {
 
     if [[ "$pass1" != "$pass2" ]]; then
       log "ERROR: Passwords do not match."
+
     else
       log "Passwords match. Continuing..."
       break
@@ -100,6 +102,7 @@ add_admin_user() {
     if dseditgroup -o read admin 2>/dev/null; then
       printf "%s\n" "Adding user to admin group..."
       dseditgroup -o edit -a "$username" -t user admin
+
     else
       log "ERROR: No admin group found. Exiting." >&2
       exit 1
@@ -171,6 +174,7 @@ main() {
     if [[ "${answer,,}" = "yes" ]]; then
       printf "%s\n" "Let's add a user..."
       create_account
+
     else
       printf "%s\n" "Exiting."
       exit 0
