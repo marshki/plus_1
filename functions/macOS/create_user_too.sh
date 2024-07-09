@@ -20,8 +20,6 @@ create_user() {
               -home /Users/"$username" \
               -passwordHint "$passhint" \
               -primaryGroupID "$primarygroup"
-
-  # log "New user created: name='$username', home=/Users/'$username', shell=/bin/bash, primary group ID='$primarygroup'"
 }
 
 create_user
