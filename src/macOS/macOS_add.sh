@@ -137,6 +137,7 @@ create_account() {
 exit_status() {
   if [[ $1 -ne 0 ]]; then
     log "Something went wrong, homie."
+
   else
     log "Done."
   fi
