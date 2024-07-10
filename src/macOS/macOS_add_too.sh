@@ -9,7 +9,7 @@
 # Date: 2024.07.09
 # License: MIT
 
-LOG_FILE="macOS_add.log"
+LOG_FILE="macOS_add_too.log"
 
 # LOG
 # Write changes w/ timestamp to LOG_FILE for tracking.
@@ -18,7 +18,7 @@ log() {
   printf "%s\n" "$(date +"%b %d %X") $*" | tee -a "$LOG_FILE"
 }
 
-# macOS_add
+# macOS_add_too
 
 # Is current UID 0? If not, exit.
 
@@ -122,7 +122,6 @@ create_account() {
   user_info
   create_user
   create_homedir
-  add_admin_user
 }
 
 # Exit status check.
