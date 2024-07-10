@@ -116,19 +116,6 @@ create_user() {
   log "New user created: name='$username', home=/Users/'$username', shell=/bin/bash"
 }
 
-# Add user to admin group.
-
-add_admin_user() {
-  read -r -p "Add user to admin group [yes/no]? " prompt
-
-  if [[ "${prompt,,}" = "yes" ]]; then
-    printf "%s\n" "Adding user to admin group..."
-
-    sysadminctl -secureTokenOn "$username" -password "$pass2"
-    dseditgroup -o edit -a "$username" -t user admin
-  fi
-}
-
 # Create account function.
 
 create_account() {
