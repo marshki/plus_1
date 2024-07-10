@@ -107,11 +107,13 @@ create_user() {
   printf "%s\n" "Adding user..."
 
   sysadminctl -addUser "$username" \
-              -fullName "$realname" \
               -UID "$increment_uid" \
-              -shell /bin/bash \
+	      -fullName "$realname" \
               -password "$pass2" \
-              -home /Users/"$username"
+              -passwordHint "$passhint" \
+	      -home /Users/"$username" \
+              -shell /bin/bash \
+	      -group "$primarygroup"
 
   log "New user created: name='$username', home=/Users/'$username', shell=/bin/bash"
 }
@@ -121,7 +123,6 @@ create_user() {
 create_account() {
   user_info
   create_user
-  create_homedir
 }
 
 # Exit status check.
