@@ -186,7 +186,6 @@ get_primarygroup() {
 # Create account in macOS via dscl using input from user_info.
 
 create_user_macOS() {
-
   printf "%s\n" "Adding user..."
 
   dscl . -create /Users/"$username"
