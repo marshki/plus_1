@@ -75,7 +75,6 @@ get_password() {
 # User info wrapper.
 
 user_info() {
-
   get_username
   get_realname 
   get_password
