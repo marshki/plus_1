@@ -130,10 +130,9 @@ create_default_dirs() {
 }
 
 add_admin_user() {
+  read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " prompt
 
-  read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " PROMPT
-
-  if [[ "$PROMPT" = "yes" ]]; then
+  if [[ "$prompt" = "yes" ]]; then
 
     printf "%s\n" "Checking for administrator group..."
     
