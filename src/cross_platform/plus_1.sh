@@ -95,16 +95,21 @@ create_user_linux() {
   else
     log "Error: Failed to create user $username"
     exit 1
-  fi  
+  fi
 }
 
 # Set password.
 
 set_password_linux() {
-
   printf "%s\n" "Setting password..."
 
-  printf "%s" "$username:$pass2" | chpasswd
+  if printf "%s" "$username:$pass2" | chpasswd; then
+    log "Password set for user $username"
+
+  else
+    log "ERROR: Failed to set password for user $username"
+      exit 1 
+  fi 
 }
 
 # Create desktop directory structure (user option).
