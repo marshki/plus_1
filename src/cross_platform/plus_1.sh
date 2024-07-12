@@ -24,9 +24,7 @@ log() {
 # Is current UID 0? If not, exit.
  
 root_check() {
-
-  if [ "$EUID" != "0" ] ; then
-
+  if [ "$EUID" -ne "0" ]; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
     exit 1
 fi
@@ -35,17 +33,13 @@ fi
 # Username prompt.
 
 get_username() {
-
   while true; do
-
   read -r -p "Enter username to add and press [Enter]: " username
   
     if id "$username" >/dev/null 2>&1; then
-
       log "ERROR: $username already exists. Try again."
 
     else
-	    
       printf "%s\n" "$username does not exist. Continuing..."
       break
     fi
