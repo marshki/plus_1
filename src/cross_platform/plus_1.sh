@@ -87,12 +87,15 @@ user_info() {
 # Create account in GNU/Linux via useradd using input from user_info.
 
 create_user_linux() {
-
   printf "%s\n" "Adding user..."
 
-  useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
+  if useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"; then
+    log "new user: name=$username, home=/home/$username, shell=/bin/bash"
 
-  log "new user: name=$username, home=/home/$username, shell=/bin/bash"
+  else
+    log "Error: Failed to create user $username"
+    exit 1
+  fi  
 }
 
 # Set password.
