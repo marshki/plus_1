@@ -10,8 +10,8 @@ os_check() {
     Linux)
       printf "%s\n" "GNU/Linux"
       ;;
-    *)
 
+    *)
       printf "%s\n" "He can't handle your speed, $(uname -s)"
       ;;
     esac
