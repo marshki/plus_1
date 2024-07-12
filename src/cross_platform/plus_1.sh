@@ -203,16 +203,13 @@ create_user_macOS() {
 # Create home directory macOS.
 
 create_homedir() {
-
   printf "%s\n" "Creating home directory..."
-
   createhomedir -u "$username" -c
 }
 
 # macOS wrapper.
 
 add_macOS() {
-
   get_uid
   get_primarygroup
   create_user_macOS
@@ -226,23 +223,18 @@ add_macOS() {
 # Exit status check.
 
 exit_status() {
-
-  if [[ $retVal != 0 ]]; then
-
-    printf "%s\n" "Something went wrong, homie..."
+  if [[ $1 -ne 0 ]]; then
+    log "Something went wrong, homie..."
 
   else
-
-    printf "%s\n" "Done."
+    log "%s\n" "Done."
   fi
 }
 
 # Detect system architecture, then act.
   
 plus_1() {
-
     case $(uname -s) in
-
     Darwin)
       add_macOS
       ;;
@@ -252,9 +244,7 @@ plus_1() {
       ;;
 
     *)
-
       printf "%s\n" "You got the wrong one, homie"
-
       ;;
     esac
 }
@@ -287,4 +277,4 @@ main() {
 main "$@"
 
 retVal=$?
-exit_status
+exit_status $retVal
