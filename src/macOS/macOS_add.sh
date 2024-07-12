@@ -97,7 +97,7 @@ user_info() {
   get_username
   get_realname
   get_primarygroup
-  get_hint
+  #get_hint
   get_password
 }
 
