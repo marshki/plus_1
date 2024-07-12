@@ -132,31 +132,28 @@ create_default_dirs() {
 add_admin_user() {
   read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " prompt
 
-  if [[ "$prompt" = "yes" ]]; then
+    if [[ "$prompt" == "yes" ]]; then
+        printf "%s\n" "Checking for administrator group..."
 
-    printf "%s\n" "Checking for administrator group..."
-    
-    if [ "$(getent group sudo)" ]; then
+        if getent group sudo >/dev/null; then
+            if usermod --append --groups sudo "$username"; then
+                log "User $username added to sudo group"
+            else
+                log "ERROR: Failed to add user $username to sudo group"
+            fi
 
-      printf "%s\n" "Adding user to sudo group..."
+        elif getent group wheel >/dev/null; then
+            if usermod --append --groups wheel "$username"; then
+                log "User $username added to wheel group"
+            else
+                log "ERROR: Failed to add user $username to wheel group"
+            fi
 
-      log usermod --append --groups sudo "$username"
-
-    elif [ "$(getent group wheel)" ]; then
-
-      printf "%s\n" "Adding user to wheel group..."
-
-      log usermod --append --groups wheel "$username"
-
-    else
-
-      if ! [ "$(getent group sudo)" ] && ! [ "$(getent group wheel)" ]; then
-
-        log "ERROR: No admin group found. Exiting." >&2
-        exit 1
-      fi
+        else
+            log "ERROR: No admin group found. Exiting." >&2
+            exit 1
+        fi
     fi
-  fi
 }
 
 # GNU/Linux wrapper.
