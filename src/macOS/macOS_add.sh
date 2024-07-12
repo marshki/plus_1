@@ -66,10 +66,10 @@ get_primarygroup() {
 }
 
 # Password hint prompt.
-
-get_hint() {
-  read -rp "Enter password hint to add and press [Enter]: " passhint
-}
+#
+#get_hint() {
+#  read -rp "Enter password hint to add and press [Enter]: " passhint
+#}
 
 # Password prompt.
 
@@ -112,7 +112,7 @@ create_user() {
   dscl . -create /Users/"$username" RealName "$realname"
   dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
   dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
-  dscl . -create /Users/"$username" hint "$passhint"
+  #dscl . -create /Users/"$username" hint "$passhint"
   dscl . -passwd /Users/"$username" "$pass2"
 
   log "new user: name='$username', home=/Users/'$username', shell=/bin/bash"
