@@ -159,7 +159,6 @@ add_admin_user() {
 # GNU/Linux wrapper.
 
 add_linux() {
-
   create_user_linux
   set_password_linux
   create_default_dirs
@@ -173,18 +172,14 @@ add_linux() {
 # Get highest current UID and increment +1.
 
 get_uid() {
-
   uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
-
   increment_uid=$((uid +1))
 }
 
 # Primary group ID prompt.
 
 get_primarygroup() {
-
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard"
-
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 }
 
