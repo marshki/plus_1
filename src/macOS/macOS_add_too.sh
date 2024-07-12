@@ -66,10 +66,10 @@ get_primarygroup() {
 }
 
 # Password hint prompt.
-
-get_hint() {
-  read -rp "Enter password hint to add and press [Enter]: " passhint
-}
+#
+#get_hint() {
+#  read -rp "Enter password hint to add and press [Enter]: " passhint
+#}
 
 # Password prompt.
 
@@ -97,7 +97,7 @@ user_info() {
   get_username
   get_realname
   get_primarygroup
-  get_hint
+  #get_hint
   get_password
 }
 
@@ -110,7 +110,7 @@ create_user() {
               -UID "$increment_uid" \
 	      -fullName "$realname" \
               -password "$pass2" \
-              -passwordHint "$passhint" \
+              #-passwordHint "$passhint" \
 	      -home /Users/"$username" \
               -shell /bin/bash \
 	      -group "$primarygroup"
