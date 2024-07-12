@@ -43,7 +43,6 @@ get_username() {
       printf "%s\n" "$username does not exist. Continuing..."
       break
     fi
-  
   done
 }
 
