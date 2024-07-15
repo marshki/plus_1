@@ -6,7 +6,7 @@
 # GNU/Linux (via useradd) or macOS (via dscl).
 # 
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
-# Date: 2023.09.26
+# Date: 2024.07.15
 # License: MIT
 
 LOG_FILE="plus_1.log"
