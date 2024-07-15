@@ -199,7 +199,7 @@ create_user_macOS() {
   log "new user: name='$username', home=/Users/'$username', shell=/bin/bash"
 }
 
-# Create home directory macOS.
+# Create home directory in macOS.
 
 create_homedir() {
   printf "%s\n" "Creating home directory..."
