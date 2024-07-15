@@ -76,7 +76,7 @@ get_password() {
 
 user_info() {
   get_username
-  get_realname 
+  get_realname
   get_password
 }
 
@@ -108,8 +108,8 @@ set_password_linux() {
 
   else
     log "ERROR: Failed to set password for user $username"
-      exit 1 
-  fi 
+    exit 1
+  fi
 }
 
 # Create desktop directory structure (user option).
