@@ -51,12 +51,12 @@ Log file is writtern to the location the script is called from. This is user mod
 
 ## TODOs
 
-- [ ] Refactor?
+- [x] Refactor?
 
-- [ ] Add admin/wheel function to macOS add user script.
+- [ ] ~~Add admin/wheel function to macOS add user script.~~
 
 - [ ] Add TUI?
 
-- [ ] Unit tests?
+- [x] Unit tests?
 
-- [ ] Replace `dscl` with `sysadminctl` in macOS?
+- [x] Replace `dscl` with `sysadminctl` in macOS?
