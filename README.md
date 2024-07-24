@@ -49,3 +49,7 @@ Log file is writtern to the location the script is called from. This is user mod
 
 ## License 
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
+
+##TODO
+
+[ ] Test on various versions of GNU/Linux, macOS.
