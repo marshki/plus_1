@@ -52,4 +52,4 @@ Log file is writtern to the location the script is called from. This is user mod
 
 ## TODO
 
-[ ] Test on various versions of GNU/Linux, macOS.
+- [ ] Test on various versions of GNU/Linux, macOS.
