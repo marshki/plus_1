@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
+#
 # Password prompt (twice).
+# Note: printf "%s\n" "$pass1" and "$pass2" for illustrative purposes,
+# you almost certainly don't want this.
+
 # Exit if passwords do not match.
-
-# printf "%s\n" "$pass1" and "$pass2" for illustrative purposes,
-# you almost certainly don't want this
-
 # read -r (esc. key binding), -s silently, & -p present prompt  
-
 get_password() {
   read -r -s -p "Enter password to add and press [Enter]: " pass1
   printf "%s\n" "$pass1"
