@@ -46,13 +46,10 @@ get_password() {
   while true; do
     read -r -s -p "Enter password to add and press [Enter]: " pass1
     printf "\\n"
-
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2
     printf "\\n"
-
     if [[ "$pass1" != "$pass2" ]]; then
       log "ERROR: Passwords do no match."
-
     else
       printf "%s\n" "Passwords match. Continuing..."
       break
@@ -140,7 +137,7 @@ add_admin_user() {
 # plus_1/account creation wrapper.
 create_account() {
   user_info
-  create_user
+  #create_user
   set_password
   create_default_dirs
   add_admin_user
