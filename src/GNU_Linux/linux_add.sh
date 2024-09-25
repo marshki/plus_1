@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #
-# linux_installer
-#
-# Create local user account(s) in GNU/Linux via `user add` utility.
+# plus_1
+# 
+# User account creation via `user add` utility (GNU/Linux).
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
-# Date: 2024.06.28
+# Date: 2024.09.25
 # License: MIT
 
-LOG_FILE="linux_add.log"
+LOG_FILE="plus_1.log"
 
 # Log
 # Write changes/errors w/timestamp to LOG_FILE for tracking.
