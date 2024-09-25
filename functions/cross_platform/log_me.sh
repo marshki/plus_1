@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
 # Create log file and write to it when called.
-# With write permission, one can set the log path, e.g.: /var/log.
-# LOG_FILE="/var/log/logfile"
-# default is write to directory script is executed frome.
 
+# With write permission user can set the log path, e.g.:
+# LOG_FILE="/var/log/logfile"
+# Default is write log to dir script is executed from.
 LOG_FILE="logfile"
 
 log() {
