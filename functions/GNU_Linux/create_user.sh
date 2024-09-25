@@ -6,7 +6,6 @@ realname='Steve Jobs'
 
 create_user() {
   printf "%s\\n" "Adding user..."
-
   useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
 }
 
