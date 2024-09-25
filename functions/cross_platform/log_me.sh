@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+#
 # Create log file and write to it when called.
 # With write permission, one can set the log path, e.g.: /var/log.
+# LOG_FILE="/var/log/plus_1"
 
 LOG_FILE="logfile"
 
@@ -9,7 +11,6 @@ log() {
 }
 
 # Use the `log` functon like  this:
-
 print_me() {
   log "Lettuce log the following:"
   for file in *; do
