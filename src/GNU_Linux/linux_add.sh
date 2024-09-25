@@ -27,10 +27,8 @@ root_check() {
 get_username() {
   while true; do
     read -r -p "Enter username to add and press [Enter]: " username
-
     if id "$username" >/dev/null 2>&1; then
       log "ERROR: $username already exists. Try again."
-
     else
       printf "%s\n" "$username does not exist. Continuing..."
       break
