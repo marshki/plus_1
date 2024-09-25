@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Create log file and write to it when called.
-
-# You can set the log path, e.g. /var/log, provided you have write access.
+# With write permission, one can set the log path, e.g.: /var/log.
 
 LOG_FILE="logfile"
 
@@ -13,11 +12,9 @@ log() {
 
 print_me() {
   log "Lettuce log the following:"
-
   for file in *; do
     log "$(ls -laH "$file")"
   done
-
   log "Now, lettuce stop!"
 }
 
