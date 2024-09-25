@@ -10,17 +10,12 @@
 
 LOG_FILE="plus_1.log"
 
-# Log
 # Write changes/errors w/timestamp to LOG_FILE for tracking.
-
 log() {
   printf "%s\n" "$(date +"%b %d %X") $*" |tee -a "$LOG_FILE"
 }
 
-# linux_add.sh
-
 # Is current UID 0? If not, exit.
- 
 root_check() {
   if [ "$EUID" -ne "0" ]; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
@@ -29,7 +24,6 @@ root_check() {
 }
 
 # Username prompt w/check.
-
 get_username() {
   while true; do
     read -r -p "Enter username to add and press [Enter]: " username
@@ -45,13 +39,11 @@ get_username() {
 }
 
 # 'Real' name prompt.
-
 get_realname() {
   read -r -p "Enter 'real name' to add and press [Enter]: " realname
 }
 
 # Password prompt.
-
 get_password() {
   while true; do
     read -r -s -p "Enter password to add and press [Enter]: " pass1
@@ -71,7 +63,6 @@ get_password() {
 }
 
 # Wrapper.
-
 user_info() {
   get_username
   get_realname
@@ -79,7 +70,6 @@ user_info() {
 }
 
 # Create account via useradd using input from user_info.
-
 create_user() {
   printf "%s\n" "Adding user..."
 
@@ -93,7 +83,6 @@ create_user() {
 }
 
 # Set password.
-
 set_password() {
   printf "%s\n" "Setting password..."
 
@@ -107,7 +96,6 @@ set_password() {
 }
 
 # Create default directories.
-
 create_default_dirs() {
   read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
 
@@ -124,7 +112,6 @@ create_default_dirs() {
 }
 
 # Add user to admin group.
-
 add_admin_user() {
   read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " prompt
 
@@ -153,7 +140,6 @@ add_admin_user() {
 }
 
 # plus_1/account creation wrapper.
-
 create_account() {
   user_info
   create_user
@@ -163,7 +149,6 @@ create_account() {
 }
  
 # Exit status check.
-
 exit_status() {
   if [[ $retVal -ne 0 ]]; then
     log "Something went wrong, homie..."
