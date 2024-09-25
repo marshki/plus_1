@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Get user input.  
-
 # read -r (esc. key binding) & present prompt
 # assign user input to variable
 
