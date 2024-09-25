@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Is current UID 0? If not, exit.
-
 # Root UID is 0.
 # If user's UID is not 0 redirect output to standard error, then exit.
 
