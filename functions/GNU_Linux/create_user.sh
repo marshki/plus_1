@@ -12,3 +12,13 @@ create_user() {
 }
 
 create_user
+
+#create_user() {
+#    printf "%s\n" "Adding user..."
+#    if useradd --create-home --user-group --home "/home/$username" --comment "$realname" --shell /bin/bash "$username"; then
+#        log "New user created: name='$username', home='/home/$username', shell='/bin/bash'"
+#    else
+#        log "ERROR: Failed to create user $username"
+#        exit 1
+#    fi
+#}
