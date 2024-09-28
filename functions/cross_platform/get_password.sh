@@ -19,7 +19,6 @@ confirm_password() {
 check_password() {
   if [[ "$pass1" != "$pass2" ]]; then
     printf "%s\n" "ERROR: Passwords do not match."
-
   else
     printf "%s\n" "Passwords match. Exiting."
     exit 1
