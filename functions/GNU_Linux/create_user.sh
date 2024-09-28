@@ -8,7 +8,8 @@ realname='Steve Jobs'
 # For reference: https://linux.die.net/man/8/useradd
 create_user() {
   printf "%s\\n" "Adding user..."
-  useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"
+  useradd --create-home --user-group --home /home/"$username" \
+  --comment "$realname" --shell /bin/bash "$username"
 }
 
 create_user
