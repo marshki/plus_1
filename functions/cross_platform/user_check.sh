@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
 # Exit if username exists.
-
 name='someuser'
 
 # Check if id exists. Send id and standard error to /dev/null.
