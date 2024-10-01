@@ -18,7 +18,8 @@ realname='Steve Jobs'
 
 create_user() {
     printf "%s\n" "Adding user..."
-    if useradd --create-home --user-group --home "/home/$username" --comment "$realname" --shell /bin/bash "$username"; then
+    if useradd --create-home --user-group --home "/home/$username" \
+               --comment "$realname" --shell /bin/bash "$username"; then
         printf "%s\n" "New user created: name='$username', home='/home/$username', shell='/bin/bash'"
     else
         printf "%s\n" "ERROR: Failed to create user $username"
