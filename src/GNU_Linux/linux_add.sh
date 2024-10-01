@@ -79,10 +79,8 @@ create_user() {
 # Set password.
 set_password() {
   printf "%s\n" "Setting password..."
-
   if printf "%s" "$username:$pass2" | chpasswd; then
     log "Password set for user $username"
-
   else
     log "ERROR: Failed to set password for user $username"
       exit 1
