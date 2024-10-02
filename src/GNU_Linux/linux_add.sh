@@ -90,17 +90,14 @@ set_password() {
 # Create default directories.
 create_default_dirs() {
   read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
-
   if [[ "$prompt" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
     printf "%s\n" "Creating default directories..."
-    
     if su "${username}" -c xdg-user-dirs-update; then
       log "Default directory structure created for $username"
-
     else
       log "ERROR: Failed to create default directory structure for $username"
     fi
-  fi 
+  fi
 }
 
 # Add user to admin group.
