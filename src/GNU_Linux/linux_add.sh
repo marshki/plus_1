@@ -133,7 +133,7 @@ create_account() {
   user_info
   create_user
   set_password
-  #create_default_dirs
+  create_default_dirs
   #add_admin_user
 }
  
