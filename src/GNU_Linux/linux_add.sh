@@ -83,7 +83,7 @@ set_password() {
     log "Password set for user $username"
   else
     log "ERROR: Failed to set password for user $username"
-      exit 1
+    exit 1
   fi
 }
 
@@ -96,6 +96,7 @@ create_default_dirs() {
       log "Default directory structure created for $username"
     else
       log "ERROR: Failed to create default directory structure for $username"
+      exit 1
     fi
   fi
 }
@@ -135,11 +136,10 @@ create_account() {
  
 # Exit status check.
 exit_status() {
-  if [[ $retVal -ne 0 ]]; then
+  if [[ $1 -ne 0 ]]; then
     log "Something went wrong, homie..."
-
   else
-    printf "%s\n" "Done."
+    log "%s\n" "Done."
   fi
 }
 
@@ -148,14 +148,13 @@ exit_status() {
 main() {
   root_check
   printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux."
-
   while true; do
     read -r -p "Create new user account? (yes/no): " answer
-
     if [ "$answer" = yes ]; then
       printf "%s\n" "Let's add a user..."
       create_account
-
+      retVal=$?
+      exit_status $retVal
     else
       printf "%s\n" "Exiting."
       exit 0
@@ -164,6 +163,3 @@ main() {
 }
 
 main "$@"
-
-retVal=$?
-log exit_status
