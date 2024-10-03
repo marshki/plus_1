@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Get user input.  
+#
+# Get user input.
+
 # read -r (esc. key binding) & present prompt
 # assign user input to variable
-
 get_username() {
   read -r -p "Enter user name to add and press [Enter]: " username
   printf "%s\n" "$username"
