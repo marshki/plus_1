@@ -5,9 +5,12 @@
 username='sjobs'
 realname='Steve Jobs'
 
-# For reference: https://linux.die.net/man/8/useradd
-# TODO: add explicit description of this command. 
-
+# 'useradd' reference:
+# --create-home: create user's home directory
+# --user-group: create a group with the same name as the user
+# --home: define path of user's home directory
+# --comment: users full name or description of account
+# --shell: define default login shell
 create_user() {
     printf "%s\n" "Adding user..."
     if useradd --create-home --user-group --home "/home/$username" \
