@@ -4,7 +4,6 @@
 # in user's /home directory
 # For reference:
 # https://wiki.archlinux.org/index.php/XDG_user_directories
-
 username='sjobs'
 
 create_default_dirs() {
