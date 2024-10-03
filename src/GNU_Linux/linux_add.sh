@@ -130,7 +130,7 @@ create_account() {
   create_user
   set_password
   create_default_dirs
-  #add_admin_user
+  add_admin_user
 }
  
 # Exit status check.
