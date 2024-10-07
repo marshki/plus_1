@@ -142,7 +142,6 @@ exit_status() {
 }
 
 # Main.
-
 main() {
   root_check
   whiptail --msgbox "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40 --title "plus_1"
@@ -161,4 +160,3 @@ main() {
 }
 
 main "$@"
-
