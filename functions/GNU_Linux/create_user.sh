@@ -2,6 +2,9 @@
 #
 # Add user via useradd utility.
 
+# useradd="/usr/sbin/useradd"
+
+
 username='sjobs'
 realname='Steve Jobs'
 
