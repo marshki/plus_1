@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 #
 # plus_1
-#
-# User account creation via `useradd` utility (GNU/Linux)
-# w/ `Whiptail` TUI.
+# 
+# User account creation via `useradd` utility (GNU/Linux).
+# GUI via `whiptail`.
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
-# Date: 2024.10.08
+# Date: 2024.09.25
 # License: MIT
 
 LOG_FILE="plus_1.log"
 
-# Write changes/errors with a timestamp to LOG_FILE for tracking.
+# Write changes/errors w/timestamp to LOG_FILE for tracking.
 log() {
   printf "%s\n" "$(date +"%b %d %X") $*" | tee -a "$LOG_FILE"
 }
 
-# Check if the script is run with root privileges. If not, exit.
+# Is current UID 0? If not, exit.
 root_check() {
   if [ "$EUID" -ne 0 ]; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
@@ -24,50 +24,48 @@ root_check() {
   fi
 }
 
-# Prompt for the username and ensure it does not already exist.
+# Username prompt w/check.
 get_username() {
   while true; do
-    read -r -p "Enter username to add and press [Enter]: " username
+    username=$(whiptail --inputbox "Enter username to add and press [Enter]:" 8 40 --title "Username Prompt" 3>&1 1>&2 2>&3)
     if id "$username" >/dev/null 2>&1; then
-      log "ERROR: $username already exists. Try again."
+      whiptail --msgbox "ERROR: $username already exists. Try again." 8 40 --title "Error"
     else
-      printf "%s\n" "$username does not exist. Continuing..."
+      whiptail --msgbox "$username does not exist. Continuing..." 8 40 --title "Info"
       break
     fi
   done
 }
 
-# Prompt for the 'real' name.
+# 'Real' name prompt.
 get_realname() {
-  read -r -p "Enter 'real name' to add and press [Enter]: " realname
+  realname=$(whiptail --inputbox "Enter 'real name' to add and press [Enter]:" 8 40 --title "Real Name Prompt" 3>&1 1>&2 2>&3)
 }
 
-# Prompt for the password and confirm it.
+# Password prompt.
 get_password() {
   while true; do
-    read -r -s -p "Enter password to add and press [Enter]: " pass1
-    printf "\\n"
-    read -r -s -p "Re-enter password to add and press [Enter]: " pass2
-    printf "\\n"
+    pass1=$(whiptail --passwordbox "Enter password to add and press [Enter]:" 8 40 --title "Password Prompt" 3>&1 1>&2 2>&3)
+    pass2=$(whiptail --passwordbox "Re-enter password to add and press [Enter]:" 8 40 --title "Password Prompt" 3>&1 1>&2 2>&3)
     if [[ "$pass1" != "$pass2" ]]; then
-      log "ERROR: Passwords do not match."
+      whiptail --msgbox "ERROR: Passwords do not match." 8 40 --title "Error"
     else
-      printf "%s\n" "Passwords match. Continuing..."
+      whiptail --msgbox "Passwords match. Continuing..." 8 40 --title "Info"
       break
     fi
   done
 }
 
-# Wrapper function to gather user information.
+# Wrapper.
 user_info() {
   get_username
   get_realname
   get_password
 }
 
-# Create a user account using useradd with the gathered information.
+# Create account via useradd using input from user_info.
 create_user() {
-  printf "%s\n" "Adding user..."
+  whiptail --msgbox "Adding user..." 8 40 --title "Info"
   if useradd --create-home --user-group --home "/home/$username" \
              --comment "$realname" --shell /bin/bash "$username"; then
     log "New user created: name='$username', home=/home/'$username', shell=/bin/bash"
@@ -77,9 +75,9 @@ create_user() {
   fi
 }
 
-# Set the password for the new user.
+# Set password.
 set_password() {
-  printf "%s\n" "Setting password..."
+  whiptail --msgbox "Setting password..." 8 40 --title "Info"
   if printf "%s" "$username:$pass2" | chpasswd; then
     log "Password set for user $username"
   else
@@ -88,42 +86,36 @@ set_password() {
   fi
 }
 
-# Create default directories if xdg-user-dirs-update is available.
+# Create default directories.
 create_default_dirs() {
-  if command -v xdg-user-dirs-update >/dev/null; then
-    read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
-    if [[ "$prompt" = "yes" ]]; then
-      printf "%s\n" "Creating default directories..."
-      if su "${username}" -c xdg-user-dirs-update; then
-        log "Default directory structure created for $username"
-      else
-        log "ERROR: Failed to create default directory structure for $username"
-        exit 1
-      fi
+  prompt=$(whiptail --yesno "Add default directory structure (desktop users generally want this)?" 8 40 --title "Default Directories" 3>&1 1>&2 2>&3)
+  if [[ $? -eq 0 ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
+    whiptail --msgbox "Creating default directories..." 8 40 --title "Info"
+    if su "${username}" -c xdg-user-dirs-update; then
+      log "Default directory structure created for $username"
+    else
+      log "ERROR: Failed to create default directory structure for $username"
+      exit 1
     fi
-  else
-    log "xdg-user-dirs-update command not available. Skipping default directory creation."
   fi
 }
 
-# Add the user to the sudo or wheel group if desired.
+# Add user to admin group.
 add_admin_user() {
-  read -r -p "Add user to administrator (sudo/wheel) group [yes/no]? " prompt
-  if [[ "$prompt" == "yes" ]]; then
-    printf "%s\n" "Checking for administrator group..."
+  prompt=$(whiptail --yesno "Add user to administrator (sudo/wheel) group?" 8 40 --title "Admin Group" 3>&1 1>&2 2>&3)
+  if [[ $? -eq 0 ]]; then
+    whiptail --msgbox "Checking for administrator group..." 8 40 --title "Info"
     if getent group sudo >/dev/null; then
       if usermod --append --groups sudo "$username"; then
         log "User $username added to sudo group"
       else
         log "ERROR: Failed to add user $username to sudo group"
-        exit 1
       fi
     elif getent group wheel >/dev/null; then
       if usermod --append --groups wheel "$username"; then
         log "User $username added to wheel group"
       else
         log "ERROR: Failed to add user $username to wheel group"
-        exit 1
       fi
     else
       log "ERROR: No admin group found. Exiting." >&2
@@ -132,7 +124,7 @@ add_admin_user() {
   fi
 }
 
-# Wrapper function to create the account.
+# plus_1/account creation wrapper.
 create_account() {
   user_info
   create_user
@@ -144,25 +136,25 @@ create_account() {
 # Exit status check.
 exit_status() {
   if [[ $1 -ne 0 ]]; then
-    log "ERROR: Something went wrong, homie..."
+    log "Something went wrong, homie..."
   else
     log "Done."
   fi
 }
 
-# Main function.
+# Main.
 main() {
   root_check
-  printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux."
+  whiptail --msgbox "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40 --title "plus_1"
   while true; do
-    read -r -p "Create new user account? (yes/no): " answer
-    if [ "$answer" = yes ]; then
-      printf "%s\n" "Let's add a user..."
+    answer=$(whiptail --yesno "Create new user account?" 8 40 --title "Create User" 3>&1 1>&2 2>&3)
+    if [[ $? -eq 0 ]]; then
+      whiptail --msgbox "Let's add a user..." 8 40 --title "Info"
       create_account
       retVal=$?
       exit_status $retVal
     else
-      printf "%s\n" "Exiting."
+      whiptail --msgbox "Exiting." 8 40 --title "Exit"
       exit 0
     fi
   done
