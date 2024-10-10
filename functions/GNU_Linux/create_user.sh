@@ -2,8 +2,8 @@
 #
 # Add user via useradd utility.
 
-# useradd="/usr/sbin/useradd"
-
+# Declare bin path explicitly.
+useradd="/usr/sbin/useradd"
 
 username='sjobs'
 realname='Steve Jobs'
