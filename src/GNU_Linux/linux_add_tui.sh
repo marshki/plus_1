@@ -22,7 +22,7 @@ log() {
 root_check() {
   if [ "$EUID" -ne 0 ]; then
     whiptail --title "$program" --msgbox \
-      "ERROR: Root privileges required to continue. Exiting." 8 40 >&2
+      "ERROR: Root privileges required to continue. Exiting." 8 40 3>&1 1>&2 2>&3
     exit 1
   fi
 }
@@ -30,7 +30,7 @@ root_check() {
 # Username prompt w/check.
 get_username() {
   while true; do
-    username=$(whiptail --backtitle "$script" --title "$program" --inputbox \
+    username=$(whiptail --title "$program" --inputbox \
       "Enter username to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
     if id "$username" >/dev/null 2>&1; then
       whiptail --msgbox "ERROR: $username already exists. Try again." 8 40 --title "Error"
@@ -149,7 +149,8 @@ exit_status() {
 # Main.
 main() {
   root_check
-  whiptail --msgbox "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40 --title "plus_1"
+  whiptail --title "$program" --msgbox \
+    "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40   
   while true; do
     answer=$(whiptail --yesno "Create new user account?" 8 40 --title "Create User" 3>&1 1>&2 2>&3)
     if [[ $? -eq 0 ]]; then
