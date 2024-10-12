@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # plus_1
-# 
+#
 # User account creation via `useradd` utility (GNU/Linux).
 # GUI via `whiptail`.
 #
@@ -9,17 +9,20 @@
 # Date: 2024.09.25
 # License: MIT
 
-LOG_FILE="plus_1.log"
+#script=$(basename "$0")
+program="plus_1"
+log_file="plus_1.log"
 
-# Write changes/errors w/timestamp to LOG_FILE for tracking.
+# Write changes/errors w/timestamp to log_file for tracking.
 log() {
-  printf "%s\n" "$(date +"%b %d %X") $*" | tee -a "$LOG_FILE"
+  printf "%s\n" "$(date +"%b %d %X") $*" | tee -a "$log_file"
 }
 
 # Is current UID 0? If not, exit.
 root_check() {
   if [ "$EUID" -ne 0 ]; then
-    log "ERROR: Root privileges required to continue. Exiting." >&2
+    whiptail --title "$program" --msgbox \
+      "ERROR: Root privileges required to continue. Exiting." 8 40 >&2
     exit 1
   fi
 }
@@ -27,7 +30,8 @@ root_check() {
 # Username prompt w/check.
 get_username() {
   while true; do
-    username=$(whiptail --inputbox "Enter username to add and press [Enter]:" 8 40 --title "Username Prompt" 3>&1 1>&2 2>&3)
+    username=$(whiptail --backtitle "$script" --title "$program" --inputbox \
+      "Enter username to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
     if id "$username" >/dev/null 2>&1; then
       whiptail --msgbox "ERROR: $username already exists. Try again." 8 40 --title "Error"
     else
@@ -150,7 +154,7 @@ main() {
     answer=$(whiptail --yesno "Create new user account?" 8 40 --title "Create User" 3>&1 1>&2 2>&3)
     if [[ $? -eq 0 ]]; then
       whiptail --msgbox "Let's add a user..." 8 40 --title "Info"
-      create_account
+      #create_account
       retVal=$?
       exit_status $retVal
     else
