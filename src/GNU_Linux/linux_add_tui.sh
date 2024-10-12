@@ -33,9 +33,11 @@ get_username() {
     username=$(whiptail --title "$program" --inputbox \
       "Enter username to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
     if id "$username" >/dev/null 2>&1; then
-      whiptail --msgbox "ERROR: $username already exists. Try again." 8 40 --title "Error"
+      whiptail --title "$program" --msgbox \
+        "ERROR: $username already exists. Try again." 8 40
     else
-      whiptail --msgbox "$username does not exist. Continuing..." 8 40 --title "Info"
+      whiptail --title "$program" --msgbox \
+        "$username does not exist. Continuing..." 8 40
       break
     fi
   done
@@ -43,18 +45,21 @@ get_username() {
 
 # 'Real' name prompt.
 get_realname() {
-  realname=$(whiptail --inputbox "Enter 'real name' to add and press [Enter]:" 8 40 --title "Real Name Prompt" 3>&1 1>&2 2>&3)
+  realname=$(whiptail --title "$program" --inputbox \
+    "Enter 'real name' to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
 }
 
 # Password prompt.
 get_password() {
   while true; do
-    pass1=$(whiptail --passwordbox "Enter password to add and press [Enter]:" 8 40 --title "Password Prompt" 3>&1 1>&2 2>&3)
-    pass2=$(whiptail --passwordbox "Re-enter password to add and press [Enter]:" 8 40 --title "Password Prompt" 3>&1 1>&2 2>&3)
+    pass1=$(whiptail --tile "$program" --passwordbox \
+      "Enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
+    pass2=$(whiptail --tile "$program" --passwordbox \
+      "Re-enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
     if [[ "$pass1" != "$pass2" ]]; then
-      whiptail --msgbox "ERROR: Passwords do not match." 8 40 --title "Error"
+      whiptail --tile "$program" --msgbox "ERROR: Passwords do not match." 8 40
     else
-      whiptail --msgbox "Passwords match. Continuing..." 8 40 --title "Info"
+      whiptail --tile "$program" --msgbox "Passwords match. Continuing..." 8 40
       break
     fi
   done
@@ -131,10 +136,10 @@ add_admin_user() {
 # plus_1/account creation wrapper.
 create_account() {
   user_info
-  create_user
-  set_password
-  create_default_dirs
-  add_admin_user
+  #create_user
+  #set_password
+  #create_default_dirs
+  #add_admin_user
 }
 
 # Exit status check.
@@ -150,17 +155,17 @@ exit_status() {
 main() {
   root_check
   whiptail --title "$program" --msgbox \
-    "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40   
+    "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40
   while true; do
     answer=$(whiptail --title "$program" \
       --yesno "Create new user account?" 8 40 3>&1 1>&2 2>&3)
     if [[ $? -eq 0 ]]; then
       whiptail --msgbox "Let's add a user..." 8 40 --title "Info"
-      #create_account
+      create_account
       retVal=$?
       exit_status $retVal
     else
-      whiptail --msgbox "Exiting." 8 40 --title "Exit"
+      whiptail --title "$program" --msgbox "Exiting." 8 40
       exit 0
     fi
   done
