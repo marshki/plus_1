@@ -152,7 +152,8 @@ main() {
   whiptail --title "$program" --msgbox \
     "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40   
   while true; do
-    answer=$(whiptail --yesno "Create new user account?" 8 40 --title "Create User" 3>&1 1>&2 2>&3)
+    answer=$(whiptail --title "$program" \
+      --yesno "Create new user account?" 8 40 3>&1 1>&2 2>&3)
     if [[ $? -eq 0 ]]; then
       whiptail --msgbox "Let's add a user..." 8 40 --title "Info"
       #create_account
