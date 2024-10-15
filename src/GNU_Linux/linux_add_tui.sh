@@ -86,7 +86,7 @@ create_user() {
 
 # Set password.
 set_password() {
-  whiptail --msgbox "Setting password..." 8 40 --title "Info"
+  whiptail --title "$program" --msgbox "Setting password..." 8 40
   if printf "%s" "$username:$pass2" | chpasswd; then
     log "Password set for user $username"
   else
