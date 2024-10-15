@@ -74,7 +74,7 @@ user_info() {
 
 # Create account via useradd using input from user_info.
 create_user() {
-  whiptail --msgbox "Adding user..." 8 40 --title "Info"
+  whiptail --title "$program" --msgbox "Adding user..." 8 40
   if useradd --create-home --user-group --home "/home/$username" \
              --comment "$realname" --shell /bin/bash "$username"; then
     log "New user created: name='$username', home=/home/'$username', shell=/bin/bash"
