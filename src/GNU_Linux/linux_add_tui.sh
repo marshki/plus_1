@@ -97,7 +97,9 @@ set_password() {
 
 # Create default directories.
 create_default_dirs() {
-  prompt=$(whiptail --yesno "Add default directory structure (desktop users generally want this)?" 8 40 --title "Default Directories" 3>&1 1>&2 2>&3)
+  prompt=$(whiptail --title "$program" --yesno
+    "Add default directory structure (desktop users generally want this)?" 8 40 \
+    3>&1 1>&2 2>&3)
   if [[ $? -eq 0 ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
     whiptail --msgbox "Creating default directories..." 8 40 --title "Info"
     if su "${username}" -c xdg-user-dirs-update; then
