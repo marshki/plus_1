@@ -113,7 +113,8 @@ create_default_dirs() {
 
 # Add user to admin group.
 add_admin_user() {
-  prompt=$(whiptail --yesno "Add user to administrator (sudo/wheel) group?" 8 40 --title "Admin Group" 3>&1 1>&2 2>&3)
+  prompt=$(whiptail --title "$program" --yesno "Add user to administrator (sudo/wheel) group?" 8 40 \
+    3>&1 1>&2 2>&3)
   if [[ $? -eq 0 ]]; then
     whiptail --msgbox "Checking for administrator group..." 8 40 --title "Info"
     if getent group sudo >/dev/null; then
