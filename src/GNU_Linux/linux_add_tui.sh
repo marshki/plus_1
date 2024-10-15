@@ -162,7 +162,7 @@ main() {
     answer=$(whiptail --title "$program" \
       --yesno "Create new user account?" 8 40 3>&1 1>&2 2>&3)
     if [[ $? -eq 0 ]]; then
-      whiptail --msgbox "Let's add a user..." 8 40 --title "Info"
+      whiptail --title "$program" --msgbox "Let's add a user..." 8 40
       create_account
       retVal=$?
       exit_status $retVal
