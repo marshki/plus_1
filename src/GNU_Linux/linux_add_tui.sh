@@ -52,9 +52,9 @@ get_realname() {
 # Password prompt.
 get_password() {
   while true; do
-    pass1=$(whiptail --tile "$program" --passwordbox \
+    pass1=$(whiptail --title "$program" --passwordbox \
       "Enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
-    pass2=$(whiptail --tile "$program" --passwordbox \
+    pass2=$(whiptail --title "$program" --passwordbox \
       "Re-enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
     if [[ "$pass1" != "$pass2" ]]; then
       whiptail --tile "$program" --msgbox "ERROR: Passwords do not match." 8 40
@@ -139,10 +139,10 @@ add_admin_user() {
 # plus_1/account creation wrapper.
 create_account() {
   user_info
-  create_user
-  set_password
-  create_default_dirs
-  add_admin_user
+  #create_user
+  #set_password
+  #create_default_dirs
+  #add_admin_user
 }
 
 # Exit status check.
