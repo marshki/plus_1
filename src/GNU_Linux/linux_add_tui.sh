@@ -9,7 +9,6 @@
 # Date: 2024.09.25
 # License: MIT
 
-#script=$(basename "$0")
 program="plus_1"
 log_file="plus_1.log"
 
