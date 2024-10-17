@@ -2,8 +2,7 @@
 #
 # plus_1
 #
-# User account creation via `useradd` utility (GNU/Linux).
-# GUI via `whiptail`.
+# TUI-based user account creation via `useradd` utility (GNU/Linux).
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
 # Date: 2024.09.25
