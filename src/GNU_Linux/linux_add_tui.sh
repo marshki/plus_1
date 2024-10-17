@@ -75,7 +75,7 @@ user_info() {
 create_user() {
   whiptail --title "$program" --msgbox "Adding user..." 8 40
   if useradd --create-home --user-group --home "/home/$username" \
-             --comment "$realname" --shell /bin/bash "$username"; then
+    --comment "$realname" --shell /bin/bash "$username"; then
     log "New user created: name='$username', home=/home/'$username', shell=/bin/bash"
   else
     log "ERROR: Failed to create user $username"
@@ -96,7 +96,7 @@ set_password() {
 
 # Create default directories.
 create_default_dirs() {
-  prompt=$(whiptail --title "$program" --yesno
+  prompt=$(whiptail --title "$program" --yesno \
     "Add default directory structure (desktop users generally want this)?" 8 40 \
     3>&1 1>&2 2>&3)
   if [[ $? -eq 0 ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
@@ -112,7 +112,8 @@ create_default_dirs() {
 
 # Add user to admin group.
 add_admin_user() {
-  prompt=$(whiptail --title "$program" --yesno "Add user to administrator (sudo/wheel) group?" 8 40 \
+  prompt=$(whiptail --title "$program" --yesno \
+    "Add user to administrator (sudo/wheel) group?" 8 40 \
     3>&1 1>&2 2>&3)
   if [[ $? -eq 0 ]]; then
     whiptail --msgbox "Checking for administrator group..." 8 40 --title "Info"
@@ -159,8 +160,8 @@ main() {
   whiptail --title "$program" --msgbox \
     "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40
   while true; do
-    answer=$(whiptail --title "$program" \
-      --yesno "Create new user account?" 8 40 3>&1 1>&2 2>&3)
+    answer=$(whiptail --title "$program" --yesno \
+      "Create new user account?" 8 40 3>&1 1>&2 2>&3)
     if [[ $? -eq 0 ]]; then
       whiptail --title "$program" --msgbox "Let's add a user..." 8 40
       create_account
