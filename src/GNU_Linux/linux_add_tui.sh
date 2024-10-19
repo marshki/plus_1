@@ -138,10 +138,10 @@ add_admin_user() {
 # plus_1/account creation wrapper.
 create_account() {
   user_info
-  #create_user
-  #set_password
-  #create_default_dirs
-  #add_admin_user
+  create_user
+  set_password
+  create_default_dirs
+  add_admin_user
 }
 
 # Exit status check.
