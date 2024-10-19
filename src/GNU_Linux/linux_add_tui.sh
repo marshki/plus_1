@@ -55,9 +55,9 @@ get_password() {
     pass2=$(whiptail --title "$program" --passwordbox \
       "Re-enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
     if [[ "$pass1" != "$pass2" ]]; then
-      whiptail --tile "$program" --msgbox "ERROR: Passwords do not match." 8 40
+      whiptail --title "$program" --msgbox "ERROR: Passwords do not match." 8 40
     else
-      whiptail --tile "$program" --msgbox "Passwords match. Continuing..." 8 40
+      whiptail --title "$program" --msgbox "Passwords match. Continuing..." 8 40
       break
     fi
   done
