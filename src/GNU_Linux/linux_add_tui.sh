@@ -148,10 +148,22 @@ create_account() {
 exit_status() {
   if [[ $1 -ne 0 ]]; then
     log "Something went wrong, homie..."
+    whiptail --title "$program" --msgbox "ERROR: User account creation failed." 8 40
   else
     log "Done."
+    whiptail --title "$program" --msgbox "User account created successfully." 8 40
   fi
 }
+
+
+# Exit status check.
+#exit_status() {
+#  if [[ $1 -ne 0 ]]; then
+#    log "Something went wrong, homie..."
+#  else
+#    log "Done."
+#  fi
+#}
 
 # Main.
 main() {
