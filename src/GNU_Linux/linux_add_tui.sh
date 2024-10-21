@@ -155,16 +155,6 @@ exit_status() {
   fi
 }
 
-
-# Exit status check.
-#exit_status() {
-#  if [[ $1 -ne 0 ]]; then
-#    log "Something went wrong, homie..."
-#  else
-#    log "Done."
-#  fi
-#}
-
 # Main.
 main() {
   root_check
