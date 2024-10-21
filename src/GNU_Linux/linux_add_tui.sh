@@ -77,7 +77,7 @@ create_user() {
     --comment "$realname" --shell /bin/bash "$username"; then
     log "New user created: name='$username', home=/home/'$username', shell=/bin/bash"
   else
-    log "ERROR: Failed to create user $username"
+    log "ERROR: Failed to create user $username."
     exit 1
   fi
 }
@@ -86,9 +86,9 @@ create_user() {
 set_password() {
   whiptail --title "$program" --msgbox "Setting password..." 8 40
   if printf "%s" "$username:$pass2" | chpasswd; then
-    log "Password set for user $username"
+    log "Password set for user $username."
   else
-    log "ERROR: Failed to set password for user $username"
+    log "ERROR: Failed to set password for user $username."
     exit 1
   fi
 }
@@ -101,9 +101,9 @@ create_default_dirs() {
   if [[ $? -eq 0 ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
     whiptail --msgbox "Creating default directories..." 8 40 --title "Info"
     if su "${username}" -c xdg-user-dirs-update; then
-      log "Default directory structure created for $username"
+      log "Default directory structure created for $username."
     else
-      log "ERROR: Failed to create default directory structure for $username"
+      log "ERROR: Failed to create default directory structure for $username."
       exit 1
     fi
   fi
@@ -118,15 +118,15 @@ add_admin_user() {
     whiptail --msgbox "Checking for administrator group..." 8 40 --title "Info"
     if getent group sudo >/dev/null; then
       if usermod --append --groups sudo "$username"; then
-        log "User $username added to sudo group"
+        log "User $username added to sudo group."
       else
-        log "ERROR: Failed to add user $username to sudo group"
+        log "ERROR: Failed to add user $username to sudo group."
       fi
     elif getent group wheel >/dev/null; then
       if usermod --append --groups wheel "$username"; then
-        log "User $username added to wheel group"
+        log "User $username added to wheel group."
       else
-        log "ERROR: Failed to add user $username to wheel group"
+        log "ERROR: Failed to add user $username to wheel group."
       fi
     else
       log "ERROR: No admin group found. Exiting." >&2
