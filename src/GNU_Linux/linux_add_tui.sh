@@ -75,7 +75,7 @@ create_user() {
   whiptail --title "$program" --msgbox "Adding user..." 8 40
   if useradd --create-home --user-group --home "/home/$username" \
     --comment "$realname" --shell /bin/bash "$username"; then
-    log "New user created: name='$username', home=/home/'$username', shell=/bin/bash"
+    log "New user created: name='$username', home=/home/'$username', shell=/bin/bash."
   else
     log "ERROR: Failed to create user $username."
     exit 1
@@ -99,7 +99,7 @@ create_default_dirs() {
     "Add default directory structure (desktop users generally want this)?" 8 40 \
     3>&1 1>&2 2>&3)
   if [[ $? -eq 0 ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
-    whiptail --msgbox "Creating default directories..." 8 40 --title "Info"
+    whiptail --title "$program" --msgbox "Creating default directories..." 8 40
     if su "${username}" -c xdg-user-dirs-update; then
       log "Default directory structure created for $username."
     else
@@ -115,7 +115,7 @@ add_admin_user() {
     "Add user to administrator (sudo/wheel) group?" 8 40 \
     3>&1 1>&2 2>&3)
   if [[ $? -eq 0 ]]; then
-    whiptail --msgbox "Checking for administrator group..." 8 40 --title "Info"
+    whiptail --title "$program" --msgbox "Checking for administrator group..." 8 40
     if getent group sudo >/dev/null; then
       if usermod --append --groups sudo "$username"; then
         log "User $username added to sudo group."
