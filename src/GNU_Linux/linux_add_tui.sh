@@ -7,9 +7,10 @@
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
 # Date: 2024.09.25
 # License: MIT
-useradd="/usr/sbin/useradd"
 program="plus_1"
 log_file="plus_1.log"
+
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
 # Write changes/errors w/timestamp to log_file for tracking.
 log() {
@@ -73,7 +74,7 @@ user_info() {
 # Create account via useradd using input from user_info.
 create_user() {
   whiptail --title "$program" --msgbox "Adding user..." 8 40
-  if $useradd --create-home --user-group --home "/home/$username" \
+  if useradd --create-home --user-group --home "/home/$username" \
     --comment "$realname" --shell /bin/bash "$username"; then
     log "New user created: name='$username', home=/home/'$username', shell=/bin/bash."
   else
