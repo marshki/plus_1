@@ -10,6 +10,9 @@
 
 LOG_FILE="plus_1.log"
 
+# Ensure PATH includes common directories.
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+
 # Write changes/errors with a timestamp to LOG_FILE for tracking.
 log() {
   printf "%s\n" "$(date +"%b %d %X") $*" | tee -a "$LOG_FILE"
