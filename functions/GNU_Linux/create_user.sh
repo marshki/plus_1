@@ -2,8 +2,8 @@
 #
 # Add user via useradd utility.
 
-# Declare bin path explicitly.
-useradd="/usr/sbin/useradd"
+# Export binary paths.
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
 username='sjobs'
 realname='Steve Jobs'
@@ -16,9 +16,10 @@ realname='Steve Jobs'
 # --shell: define default login shell
 create_user() {
   printf "%s\n" "Adding user..."
-  if $useradd --create-home --user-group --home "/home/$username" \
-             --comment "$realname" --shell /bin/bash "$username"; then
-    printf "%s\n" "New user created: name='$username', home='/home/$username', shell='/bin/bash'"
+  if useradd --create-home --user-group --home "/home/$username" \
+    --comment "$realname" --shell /bin/bash "$username"; then
+    printf "%s\n" "New user created: name='$username', \ 
+      home='/home/$username', shell='/bin/bash'"
   else
     printf "%s\n" "ERROR: Failed to create user $username"
     exit 1
