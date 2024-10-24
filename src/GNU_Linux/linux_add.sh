@@ -24,7 +24,7 @@ root_check() {
   fi
 }
 
-# Prompt for the username and ensure it does not already exist.
+# Prompt for the username and ensure it does not exist.
 get_username() {
   while true; do
     read -r -p "Enter username to add and press [Enter]: " username
@@ -91,7 +91,8 @@ set_password() {
 # Create default directories if xdg-user-dirs-update is available.
 create_default_dirs() {
   if command -v xdg-user-dirs-update >/dev/null; then
-    read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
+    read -r -p "Add default directory structure\
+      (desktop users generally want this) [yes/no]? " prompt
     if [[ "$prompt" = "yes" ]]; then
       printf "%s\n" "Creating default directories..."
       if su "${username}" -c xdg-user-dirs-update; then
