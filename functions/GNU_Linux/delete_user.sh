@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
 # Delete user account in GNU/Linux.
-
 # Export binary paths.
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
