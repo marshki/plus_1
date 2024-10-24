@@ -1,10 +1,11 @@
 #!/use/bin/env bash
 #
 # Grant user administrator privileges.
-username='sjobs'
 
 # Export binary paths.
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+
+username='sjobs'
 
 # Check OS for administrative group via `getent`,
 # then, using `usermod`, add user to group.
