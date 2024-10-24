@@ -149,7 +149,7 @@ exit_status() {
     printf "%s\n" "Error: User account creation failed."
   else
     log "Done."
-    printf "%s\n" "Error: User account creation failed."
+    printf "%s\n" "User account created successfully."
   fi
 }
 
