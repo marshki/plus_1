@@ -1,7 +1,6 @@
 #!/use/bin/env bash
 #
 # Grant user administrator privileges.
-
 # Export binary paths.
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
