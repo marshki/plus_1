@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
 # Add user via useradd utility.
-
 # Export binary paths.
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
