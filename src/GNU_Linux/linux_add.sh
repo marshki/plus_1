@@ -70,9 +70,9 @@ create_user() {
   printf "%s\n" "Adding user..."
   if useradd --create-home --user-group --home "/home/$username" \
     --comment "$realname" --shell /bin/bash "$username"; then
-    log "New user created: name='$username', home=/home/'$username', shell=/bin/bash"
+    log "New user created: name='$username', home=/home/'$username', shell=/bin/bash."
   else
-    log "ERROR: Failed to create user $username"
+    log "ERROR: Failed to create user $username."
     exit 1
   fi
 }
@@ -81,9 +81,9 @@ create_user() {
 set_password() {
   printf "%s\n" "Setting password..."
   if printf "%s" "$username:$pass2" | chpasswd; then
-    log "Password set for user $username"
+    log "Password set for user $username."
   else
-    log "ERROR: Failed to set password for user $username"
+    log "ERROR: Failed to set password for user $username."
     exit 1
   fi
 }
@@ -95,9 +95,9 @@ create_default_dirs() {
     if [[ "$prompt" = "yes" ]]; then
       printf "%s\n" "Creating default directories..."
       if su "${username}" -c xdg-user-dirs-update; then
-        log "Default directory structure created for $username"
+        log "Default directory structure created for $username."
       else
-        log "ERROR: Failed to create default directory structure for $username"
+        log "ERROR: Failed to create default directory structure for $username."
         exit 1
       fi
     fi
@@ -113,16 +113,16 @@ add_admin_user() {
     printf "%s\n" "Checking for administrator group..."
     if getent group sudo >/dev/null; then
       if usermod --append --groups sudo "$username"; then
-        log "User $username added to sudo group"
+        log "User $username added to sudo group."
       else
-        log "ERROR: Failed to add user $username to sudo group"
+        log "ERROR: Failed to add user $username to sudo group."
         exit 1
       fi
     elif getent group wheel >/dev/null; then
       if usermod --append --groups wheel "$username"; then
-        log "User $username added to wheel group"
+        log "User $username added to wheel group."
       else
-        log "ERROR: Failed to add user $username to wheel group"
+        log "ERROR: Failed to add user $username to wheel group."
         exit 1
       fi
     else
