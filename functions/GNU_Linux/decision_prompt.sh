@@ -1,6 +1,9 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
 #
 # Should script add default directory structure? Yes/No?
+
+# Export binary paths.
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
 # Set username.
 username='sjobs'
