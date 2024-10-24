@@ -16,15 +16,15 @@ add_admin_user() {
       printf "%s\n" "Checking for administrator group..."
       if getent group sudo >/dev/null; then
           if usermod --append --groups sudo "$username"; then
-              printf "%s\n" "User $username added to sudo group"
+              printf "%s\n" "User $username added to sudo group."
           else
-              printf "%s\n" "ERROR: Failed to add user $username to sudo group"
+              printf "%s\n" "ERROR: Failed to add user $username to sudo group."
           fi
       elif getent group wheel >/dev/null; then
           if usermod --append --groups wheel "$username"; then
-              printf "%s\n" "User $username added to wheel group"
+              printf "%s\n" "User $username added to wheel group."
           else
-              printf "%s\n" "ERROR: Failed to add user $username to wheel group"
+              printf "%s\n" "ERROR: Failed to add user $username to wheel group."
           fi
       else
           printf "%s\n" "ERROR: No admin group found. Exiting." >&2
