@@ -4,6 +4,10 @@
 # in user's /home directory
 # For reference:
 # https://wiki.archlinux.org/index.php/XDG_user_directories
+
+# Export binary paths.
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+
 username='sjobs'
 
 create_default_dirs() {
