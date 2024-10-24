@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 #
 # Create password for user.
-chpasswd="usr/sbin/chpasswd"
+
+# Export binary paths.
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
 username='sjobs'
 passy='1morething'
