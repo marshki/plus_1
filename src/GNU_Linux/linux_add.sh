@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # plus_1
-# 
+#
 # User account creation via `useradd` utility (GNU/Linux).
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
@@ -145,8 +145,10 @@ create_account() {
 exit_status() {
   if [[ $1 -ne 0 ]]; then
     log "ERROR: Something went wrong, homie..."
+    printf "%s\n" "Error: User account creation failed."
   else
     log "Done."
+    printf "%s\n" "Error: User account creation failed."
   fi
 }
 
