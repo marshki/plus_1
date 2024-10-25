@@ -96,44 +96,44 @@ set_password() {
 
 # Create default directories.
 create_default_dirs() {
-  if whiptail --title "$program" --yesno \
+  prompt=$(whiptail --title "$program" --yesno \
     "Add default directory structure (desktop users generally want this)?" 8 40 \
-    3>&1 1>&2 2>&3; then
-    if [[ -n $(command -v xdg-user-dirs-update) ]]; then
-      whiptail --title "$program" --msgbox "Creating default directories..." 8 40
-      if su "${username}" -c xdg-user-dirs-update; then
-        log "Default directory structure created for $username."
-      else
-        log "ERROR: Failed to create default directory structure for $username."
-        exit 1
-      end
+    3>&1 1>&2 2>&3)
+  if [[ $? -eq 0 ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
+    whiptail --title "$program" --msgbox "Creating default directories..." 8 40
+    if su "${username}" -c xdg-user-dirs-update; then
+      log "Default directory structure created for $username."
+    else
+      log "ERROR: Failed to create default directory structure for $username."
+      exit 1
     fi
   fi
 }
 
 # Add user to admin group.
 add_admin_user() {
-  if whiptail --title "$program" --yesno \
+  prompt=$(whiptail --title "$program" --yesno \
     "Add user to administrator (sudo/wheel) group?" 8 40 \
-    3>&1 1>&2 2>&3; then
+    3>&1 1>&2 2>&3)
+  if [[ $? -eq 0 ]]; then
     whiptail --title "$program" --msgbox "Checking for administrator group..." 8 40
     if getent group sudo >/dev/null; then
       if usermod --append --groups sudo "$username"; then
         log "User $username added to sudo group."
       else
         log "ERROR: Failed to add user $username to sudo group."
-      end
+      fi
     elif getent group wheel >/dev/null; then
       if usermod --append --groups wheel "$username"; then
         log "User $username added to wheel group."
       else
         log "ERROR: Failed to add user $username to wheel group."
-      end
+      fi
     else
       log "ERROR: No admin group found. Exiting." >&2
       exit 1
-    end
-  end
+    fi
+  fi
 }
 
 # plus_1/account creation wrapper.
