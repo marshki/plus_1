@@ -40,6 +40,7 @@ Log file is writtern to the location the script is called from. This is user mod
 
 |Version  |Release Date  |  
 |---      |---           |
+| 0.6     | 30-OCT-2024  |
 | 0.5     | 17-JUL-2024  |
 | 0.4     | 26-SEP-2023  |
 | 0.3     | 26-FEB-2022  |
