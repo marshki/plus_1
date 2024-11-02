@@ -26,11 +26,20 @@ root_check() {
   fi
 }
 
+# Function to check the exit status of whiptail commands.
+check_exit_status() {
+  if [[ $? -ne 0 ]]; then
+    whiptail --title "$program" --msgbox "Operation cancelled. Exiting." 8 40
+    exit 1
+  fi
+}
+
 # Username prompt w/check.
 get_username() {
   while true; do
     username=$(whiptail --title "$program" --inputbox \
       "Enter username to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
+    check_exit_status
     if id "$username" >/dev/null 2>&1; then
       whiptail --title "$program" --msgbox \
         "ERROR: $username already exists. Try again." 8 40
@@ -46,6 +55,7 @@ get_username() {
 get_realname() {
   realname=$(whiptail --title "$program" --inputbox \
     "Enter 'real name' to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
+  check_exit_status
 }
 
 # Password prompt.
@@ -53,8 +63,10 @@ get_password() {
   while true; do
     pass1=$(whiptail --title "$program" --passwordbox \
       "Enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
+    check_exit_status
     pass2=$(whiptail --title "$program" --passwordbox \
       "Re-enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
+    check_exit_status
     if [[ "$pass1" != "$pass2" ]]; then
       whiptail --title "$program" --msgbox "ERROR: Passwords do not match." 8 40
     else
@@ -74,6 +86,7 @@ user_info() {
 # Create account via useradd using input from user_info.
 create_user() {
   whiptail --title "$program" --msgbox "Adding user..." 8 40
+  check_exit_status
   if useradd --create-home --user-group --home "/home/$username" \
     --comment "$realname" --shell /bin/bash "$username"; then
     log "New user created: name='$username', home=/home/'$username', shell=/bin/bash."
@@ -86,6 +99,7 @@ create_user() {
 # Set password.
 set_password() {
   whiptail --title "$program" --msgbox "Setting password..." 8 40
+  check_exit_status
   if printf "%s" "$username:$pass2" | chpasswd; then
     log "Password set for user $username."
   else
@@ -96,26 +110,26 @@ set_password() {
 
 # Create default directories.
 create_default_dirs() {
-  if whiptail --title "$program" --yesno \
+  prompt=$(whiptail --title "$program" --yesno \
     "Add default directory structure (desktop users generally want this)?" 8 40 \
-    3>&1 1>&2 2>&3; then
-    if [[ -n $(command -v xdg-user-dirs-update) ]]; then
-      whiptail --title "$program" --msgbox "Creating default directories..." 8 40
-      if su "${username}" -c xdg-user-dirs-update; then
-        log "Default directory structure created for $username."
-      else
-        log "ERROR: Failed to create default directory structure for $username."
-        exit 1
-      fi
+    3>&1 1>&2 2>&3)
+  if [[ $? -eq 0 ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
+    whiptail --title "$program" --msgbox "Creating default directories..." 8 40
+    if su "${username}" -c xdg-user-dirs-update; then
+      log "Default directory structure created for $username."
+    else
+      log "ERROR: Failed to create default directory structure for $username."
+      exit 1
     fi
   fi
 }
 
 # Add user to admin group.
 add_admin_user() {
-  if whiptail --title "$program" --yesno \
+  prompt=$(whiptail --title "$program" --yesno \
     "Add user to administrator (sudo/wheel) group?" 8 40 \
-    3>&1 1>&2 2>&3; then
+    3>&1 1>&2 2>&3)
+  if [[ $? -eq 0 ]]; then
     whiptail --title "$program" --msgbox "Checking for administrator group..." 8 40
     if getent group sudo >/dev/null; then
       if usermod --append --groups sudo "$username"; then
@@ -161,10 +175,13 @@ main() {
   root_check
   whiptail --title "$program" --msgbox \
     "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40
+  check_exit_status
   while true; do
-    if whiptail --title "$program" --yesno \
-      "Create new user account?" 8 40 3>&1 1>&2 2>&3; then
+    answer=$(whiptail --title "$program" --yesno \
+      "Create new user account?" 8 40 3>&1 1>&2 2>&3)
+    if [[ $? -eq 0 ]]; then
       whiptail --title "$program" --msgbox "Let's add a user..." 8 40
+      check_exit_status
       create_account
       retVal=$?
       exit_status $retVal
