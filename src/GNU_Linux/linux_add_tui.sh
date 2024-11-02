@@ -109,9 +109,9 @@ set_password() {
 
 # Create default directories.
 create_default_dirs() {
-  prompt=$(whiptail --title "$program" --yesno \
+  whiptail --title "$program" --yesno \
     "Add default directory structure (desktop users generally want this)?" 8 40 \
-    3>&1 1>&2 2>&3)
+    3>&1 1>&2 2>&3
   if [[ $? -eq 0 ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
     whiptail --title "$program" --msgbox "Creating default directories..." 8 40
     if su "${username}" -c xdg-user-dirs-update; then
@@ -125,9 +125,9 @@ create_default_dirs() {
 
 # Add user to admin group.
 add_admin_user() {
-  prompt=$(whiptail --title "$program" --yesno \
+  whiptail --title "$program" --yesno \
     "Add user to administrator (sudo/wheel) group?" 8 40 \
-    3>&1 1>&2 2>&3)
+    3>&1 1>&2 2>&3
   if [[ $? -eq 0 ]]; then
     whiptail --title "$program" --msgbox "Checking for administrator group..." 8 40
     if getent group sudo >/dev/null; then
