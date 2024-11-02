@@ -28,7 +28,7 @@ root_check() {
 }
 
 # Check the exit status of whiptail commands.
-check_cancel_status() {
+cancel_check() {
   if [[ $? -ne 0 ]]; then
     whiptail --title "$program" --msgbox "Operation cancelled. Exiting." 8 40
     exit 1
@@ -40,7 +40,7 @@ get_username() {
   while true; do
     username=$(whiptail --title "$program" --inputbox \
       "Enter username to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
-    check_cancel_status
+    cancel_check
     if id "$username" >/dev/null 2>&1; then
       whiptail --title "$program" --msgbox \
         "ERROR: $username already exists. Try again." 8 40
@@ -56,7 +56,7 @@ get_username() {
 get_realname() {
   realname=$(whiptail --title "$program" --inputbox \
     "Enter 'real name' to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
-  check_cancel_status
+  cancel_check
 }
 
 # Password prompt.
@@ -64,10 +64,10 @@ get_password() {
   while true; do
     pass1=$(whiptail --title "$program" --passwordbox \
       "Enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
-    check_cancel_status
+    cancel_check
     pass2=$(whiptail --title "$program" --passwordbox \
       "Re-enter password to add and press [Enter]:" 8 40 3>&1 1>&2 2>&3)
-    check_cancel_status
+    cancel_check
     if [[ "$pass1" != "$pass2" ]]; then
       whiptail --title "$program" --msgbox "ERROR: Passwords do not match." 8 40
     else
@@ -87,7 +87,7 @@ user_info() {
 # Create account via useradd using input from user_info.
 create_user() {
   whiptail --title "$program" --msgbox "Adding user..." 8 40
-  check_cancel_status
+  cancel_check
   if useradd --create-home --user-group --home "/home/$username" \
     --comment "$realname" --shell /bin/bash "$username"; then
     log "User created: name='$username', home=/home/'$username', shell=/bin/bash."
@@ -175,13 +175,13 @@ main() {
   root_check
   whiptail --title "$program" --msgbox \
     "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40
-  check_cancel_status
+  cancel_check
   while true; do
     answer=$(whiptail --title "$program" --yesno \
       "Create new user account?" 8 40 3>&1 1>&2 2>&3)
     if [[ $? -eq 0 ]]; then
       whiptail --title "$program" --msgbox "Let's add a user..." 8 40
-      check_cancel_status
+      cancel_check
       create_account
       retVal=$?
       exit_status $retVal
