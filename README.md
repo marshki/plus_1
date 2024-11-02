@@ -55,6 +55,4 @@ Log file is writtern to the location the script is called from. This is user mod
 
 - [ ] Test on various versions of GNU/Linux, macOS.
 
-- [x] Refactor GNU/Linux installers.
-
 - [ ] Screen recording of TUI in action.
