@@ -87,7 +87,6 @@ user_info() {
 # Create account via useradd using input from user_info.
 create_user() {
   whiptail --title "$program" --msgbox "Adding user..." 8 40
-  cancel_check
   if useradd --create-home --user-group --home "/home/$username" \
     --comment "$realname" --shell /bin/bash "$username"; then
     log "User created: name='$username', home=/home/'$username', shell=/bin/bash."
@@ -175,13 +174,11 @@ main() {
   root_check
   whiptail --title "$program" --msgbox \
     "plus_1: A Bash script to create local user accounts in GNU/Linux." 8 40
-  cancel_check
   while true; do
     answer=$(whiptail --title "$program" --yesno \
       "Create new user account?" 8 40 3>&1 1>&2 2>&3)
     if [[ $? -eq 0 ]]; then
       whiptail --title "$program" --msgbox "Let's add a user..." 8 40
-      cancel_check
       create_account
       retVal=$?
       exit_status $retVal
