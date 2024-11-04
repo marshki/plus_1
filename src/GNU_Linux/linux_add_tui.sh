@@ -27,7 +27,7 @@ root_check() {
   fi
 }
 
-# Check the exit status of whiptail commands.
+# Check the 'cancel' status of whiptail.
 cancel_check() {
   if [[ $? -ne 0 ]]; then
     whiptail --title "$program" --msgbox "Operation cancelled. Exiting." 8 40
