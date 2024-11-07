@@ -151,7 +151,7 @@ main() {
   while true; do
     read -r -p "Create user account? (yes/no): " answer
 
-    if [[ "${answer,,}" = "yes" ]]; then
+    if [[ "${answer}" = "yes" ]]; then
       printf "%s\n" "Let's add a user..."
       create_account
 
