@@ -133,6 +133,7 @@ exit_status() {
 
   else
     log "Done."
+    printf "%s\n" "User account created successfully."
   fi
 }
 
