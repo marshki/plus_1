@@ -40,7 +40,8 @@ get_username() {
 
 # Get highest current UID and increment +1.
 get_uid() {
-  uid=$(getent passwd | awk -F: '{print $3}' | sort -n | tail -1)
+  uid=$(dscl . -list /Users UniqueID | sort --numeric-sort --key=2 | \
+    awk 'END{print $2}')
   increment_uid=$((uid + 1))
 }
 
