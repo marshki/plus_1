@@ -40,7 +40,8 @@ get_username() {
 
 # Get highest current UID and increment +1.
 get_uid() {
-  uid=$(dscl . -list /Users UniqueID | sort --numeric-sort --key=2 | awk 'END{print $2}')
+  uid=$(dscl . -list /Users UniqueID | sort --numeric-sort --key=2 | \
+    awk 'END{print $2}')
   increment_uid=$((uid + 1))
 }
 
@@ -56,10 +57,9 @@ get_primarygroup() {
 }
 
 # Password hint prompt.
-#
-#get_hint() {
-#  read -rp "Enter password hint to add and press [Enter]: " passhint
-#}
+get_hint() {
+  read -rp "Enter password hint to add and press [Enter]: " passhint
+}
 
 # Password prompt.
 get_password() {
@@ -68,7 +68,6 @@ get_password() {
     printf "\n"
     read -r -s -p "Re-enter password to add and press [Enter]: " pass2
     printf "\n"
-
     if [[ "$pass1" != "$pass2" ]]; then
       log "ERROR: Passwords do not match."
     else
@@ -84,34 +83,30 @@ user_info() {
   get_username
   get_realname
   get_primarygroup
-  #get_hint
+  get_hint
   get_password
 }
 
 # Create account via dscl using input from user_info.
 create_user() {
   printf "%s\n" "Adding user..."
-
   dscl . -create /Users/"$username"
   dscl . -create /Users/"$username" UniqueID "$increment_uid"
   dscl . -create /Users/"$username" UserShell /bin/bash
   dscl . -create /Users/"$username" RealName "$realname"
   dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
   dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
-  #dscl . -create /Users/"$username" hint "$passhint"
+  dscl . -create /Users/"$username" hint "$passhint"
   dscl . -passwd /Users/"$username" "$pass2"
-
   log "new user: name='$username', home=/Users/'$username', shell=/bin/bash"
 }
 
 # Create home directory.
-
 create_homedir() {
   createhomedir -u "$username" -c
 }
 
 # Create account function.
-
 create_account() {
   user_info
   create_user
@@ -131,7 +126,6 @@ exit_status() {
 main() {
   root_check
   printf "%s\n" "plus_1: A Bash script to create local user accounts in macOS."
-
   while true; do
     read -r -p "Create user account? (yes/no): " answer
     if [[ "${answer}" = "yes" ]]; then
@@ -143,7 +137,6 @@ main() {
     fi
   done
 }
-
 main "$@"
 
 retVal=$?
