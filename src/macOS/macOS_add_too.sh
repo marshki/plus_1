@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# macOS_add
+# macOS_add_too
 #
 # Create local user account(s) in macOS w/directory in /Users
 # via sysadminctl utility.
@@ -13,13 +13,11 @@ LOG_FILE="macOS_add_too.log"
 
 # LOG
 # Write changes w/ timestamp to LOG_FILE for tracking.
-
 log() {
   printf "%s\n" "$(date +"%b %d %X") $*" | tee -a "$LOG_FILE"
 }
 
 # Is current UID 0? If not, exit.
-
 root_check() {
   if [ "$EUID" -ne 0 ]; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
@@ -47,26 +45,22 @@ get_uid() {
 }
 
 # Real name prompt.
-
 get_realname() {
   read -rp "Enter 'real name' to add and press [Enter]: " realname
 }
 
 # Primary group ID prompt.
-
 get_primarygroup() {
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard"
   read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
 }
 
 # Password hint prompt.
-#
-#get_hint() {
-#  read -rp "Enter password hint to add and press [Enter]: " passhint
-#}
+get_hint() {
+  read -rp "Enter password hint to add and press [Enter]: " passhint
+}
 
 # Password prompt.
-
 get_password() {
   while true; do
     read -r -s -p "Enter password to add and press [Enter]: " pass1
@@ -99,7 +93,7 @@ create_user() {
               -UID "$increment_uid" \
 	      -fullName "$realname" \
               -password "$pass2" \
-              #-passwordHint "$passhint" \
+              -passwordHint "$passhint" \
 	      -home /Users/"$username" \
               -shell /bin/bash \
 	      -group "$primarygroup"
@@ -116,7 +110,6 @@ create_account() {
 exit_status() {
   if [[ $1 -ne 0 ]]; then
     log "Something went wrong, homie."
-
   else
     log "Done."
     printf "%s\n" "User account created successfully."
