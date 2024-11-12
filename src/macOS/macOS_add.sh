@@ -53,7 +53,14 @@ get_realname() {
 # Primary group ID prompt.
 get_primarygroup() {
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard"
-  read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
+  while true; do
+    read -rp "Enter primary group ID to add and press [Enter]: " primarygroup
+    if [[ "$primarygroup" =~ ^(20|80)$ ]]; then
+      break
+    else
+      log "ERROR: Invalid group ID. Try again."
+    fi
+  done
 }
 
 # Password hint prompt.
