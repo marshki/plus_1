@@ -6,41 +6,41 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Bash script to create local user account(s) in: 
+Bash script to create local user account(s) in:
 
 * GNU/Linux (via *useradd*)
 * macOS (via *dscl* or *sysadminctl*)
 
-## Notes 
+## Notes
 
-This tool was developed for sysadmins managing user acounts on servers 
+This tool was developed for sysadmins managing user acounts on servers
 **not** tied to a network identity manager,
 but will work just as well in desktop environments.
-Also, there are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/master/functions/GNU_Linux/linux_add.sh) 
-and [macOS](https://github.com/marshki/plus_1/blob/master/functions/macOS/macOS_add.sh) add user scripts in this repo, 
-should that strike your fancy. 
+Also, there are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/master/functions/GNU_Linux/linux_add.sh)
+and [macOS](https://github.com/marshki/plus_1/blob/master/functions/macOS/macOS_add.sh) add user scripts in this repo,
+should that strike your fancy.
 
-![Animated SVG](https://rawcdn.githack.com/marshki/plus_1/93bbb5f675e0f45d7ff0cbc35165795a0ed6c389/docs/svg_plus_1.svg)
+![Animated SVG](https://rawcdn.githack.com/marshki/plus_1/ff78ecf29c570dd9e8e65c828491b68914d681fe/docs/svg_plus_1.svg)
 
 ## Getting Started
 
-Place the script in: `/usr/local/bin` (or create it, if it does not exist). 
+Place the script in: `/usr/local/bin` (or create it, if it does not exist).
 
 set the executable bit on the file:
 
-`chmod +x /plus_1.sh`   
+`chmod +x /plus_1.sh`
 
 then call it:
 
-`sudo bash plus_1.sh` 
+`sudo bash plus_1.sh`
 
-and follow the on-screen prompts. 
+and follow the on-screen prompts.
 
 Log file is writtern to the location the script is called from. This is user modifiable.
  
 ## History
 
-|Version  |Release Date  |  
+|Version  |Release Date  |
 |---      |---           |
 | 0.6     | 30-OCT-2024  |
 | 0.5     | 17-JUL-2024  |
@@ -50,7 +50,7 @@ Log file is writtern to the location the script is called from. This is user mod
 | 0.1     | 07-NOV-2019  |
 | 0.0     | 01-JUN-2019  |
 
-## License 
+## License
 [LICENSE](https://github.com/marshki/plus_1/blob/master/LICENSE).
 
 ## TODO
