@@ -98,16 +98,22 @@ set_password_linux() {
   fi
 }
 
-# Create desktop directory structure (user option).
+# Create default directories if xdg-user-dirs-update is available.
 create_default_dirs() {
-  read -r -p "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
-  if [[ "$prompt" = "yes" ]] && [[ -n $(command -v xdg-user-dirs-update) ]]; then
-    printf "%s\n" "Creating default directories..."
-    if su "${username}" -c xdg-user-dirs-update; then
-      log "Default directory structure created for $username"
-    else
-      log "ERROR: Failed to create default directory structure for $username"
+  if command -v xdg-user-dirs-update >/dev/null; then
+    read -r -p \
+      "Add default directory structure (desktop users generally want this) [yes/no]? " prompt
+    if [[ "$prompt" = "yes" ]]; then
+      printf "%s\n" "Creating default directories..."
+      if su "${username}" -c xdg-user-dirs-update; then
+        log "Default directory structure created for $username."
+      else
+        log "ERROR: Failed to create default directory structure for $username."
+        exit 1
+      fi
     fi
+  else
+    log "xdg-user-dirs-update command not available. Skipping default directory creation."
   fi
 }
 
