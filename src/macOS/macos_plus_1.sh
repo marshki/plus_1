@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# macOS_add_too
+# macOS_plus_1
 #
 # Create local user account(s) in macOS w/directory in /Users
 # via sysadminctl utility.
@@ -9,7 +9,7 @@
 # Date: 2024.07.09
 # License: MIT
 
-LOG_FILE="macOS_add_too.log"
+LOG_FILE="macOS_plus_1.log"
 
 # LOG
 # Write changes w/ timestamp to LOG_FILE for tracking.
