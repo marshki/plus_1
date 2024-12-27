@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# plus_1
+# linux_plus_1
 #
 # TUI-based user account creation via `useradd` utility (GNU/Linux).
 #
@@ -8,8 +8,8 @@
 # Date: 2024.09.25
 # License: MIT
 #
-program="plus_1"
-log_file="plus_1.log"
+program="linux_plus_1_tui"
+log_file="linux_plus_1_tui.log"
 
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
