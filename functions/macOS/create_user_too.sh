@@ -19,7 +19,7 @@ create_user() {
               -password "$pass2" \
               -home /Users/"$username" \
               -passwordHint "$passhint" \
-              -primaryGroupID "$primarygroup"
+              -GID "$primarygroup"
 }
 
 create_user
