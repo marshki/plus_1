@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# plus_1
+# linux_plus_1
 #
 # User account creation via `useradd` utility (GNU/Linux).
 #
@@ -9,7 +9,7 @@
 # License: MIT
 #
 #
-LOG_FILE="plus_1.log"
+LOG_FILE="linux_plus_1.log"
 
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
