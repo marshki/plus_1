@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # sysadminctl implementation of create_user.sh located in this directory.
-# Add user WITH creating a /Users directory.
+# Add user WITH a /Users directory.
 
 username='sjobs'
 realname='Steve Jobs'
@@ -17,7 +17,6 @@ create_user() {
               -UID "$increment_uid" \
               -shell /bin/bash \
               -password "$pass2" \
-              -home /Users/"$username" \
               -passwordHint "$passhint" \
               -GID "$primarygroup"
 }
