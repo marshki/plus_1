@@ -8,7 +8,6 @@ increment_uid='502'
 pass2='1morething'
 passhint='1...'
 primarygroup='20'
--passwordHint
 
 create_user() {
   printf "%s\n" "Adding user..."

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Delete user account in macOS.
+# Use sysadminctl utility.
 
 username='sjobs'
 
