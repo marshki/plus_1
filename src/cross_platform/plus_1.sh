@@ -72,7 +72,7 @@ user_info() {
 }
 
 #####################
-# GNU/Linux Functions 
+# GNU/Linux functions 
 #####################
 
 # Create account in GNU/Linux via useradd using input from user_info.
@@ -144,7 +144,6 @@ add_admin_user() {
 }
 
 # GNU/Linux wrapper.
-
 add_linux() {
   create_user_linux
   set_password_linux
@@ -153,7 +152,7 @@ add_linux() {
 }
 
 #################
-# macOS Functions
+# macOS functions
 #################
 
 # Get highest current UID and increment +1.
