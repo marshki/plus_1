@@ -4,23 +4,25 @@
 #
 # Create local user account(s) in:
 # GNU/Linux (via useradd) or macOS (via dscl).
-# 
+#
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
 # Date: 2024.07.15
 # License: MIT
 
 LOG_FILE="plus_1.log"
 
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+
 #####################
 # Functions in common 
 #####################
 
-# Write changes/errors w/timestamp to LOG_FILE for tracking
+# Write changes/errors w/timestamp to LOG_FILE for tracking.
 log() {
   printf "%s\n" "$(date +"%b %d %X") $*" |tee -a "$LOG_FILE"
 }
 
-# Is current UID 0? If not, exit.
+# Check if the script is run with root privileges. If not, exit.
 root_check() {
   if [ "$EUID" -ne "0" ]; then
     log "ERROR: Root privileges required to continue. Exiting." >&2
@@ -28,10 +30,10 @@ root_check() {
 fi
 }
 
-# Username prompt.
+# Prompt for the username and ensure it does not exist.
 get_username() {
   while true; do
-  read -r -p "Enter username to add and press [Enter]: " username
+    read -r -p "Enter username to add and press [Enter]: " username
     if id "$username" >/dev/null 2>&1; then
       log "ERROR: $username already exists. Try again."
     else
@@ -41,12 +43,12 @@ get_username() {
   done
 }
 
-# 'Real' name prompt.
+# Prompt fot the 'Real' username.
 get_realname() {
   read -r -p "Enter 'real' name to add and press [Enter]: " realname
 }
 
-# Password prompt.
+# Prompt for the password and confirm it.
 get_password() {
   while true; do
     read -r -s -p "Enter password to add and press [Enter]: " pass1
@@ -62,7 +64,7 @@ get_password() {
   done
 }
 
-# User info wrapper.
+# Wrapper function to gather user information.
 user_info() {
   get_username
   get_realname
@@ -76,15 +78,16 @@ user_info() {
 # Create account in GNU/Linux via useradd using input from user_info.
 create_user_linux() {
   printf "%s\n" "Adding user..."
-  if useradd --create-home --user-group --home /home/"$username" --comment "$realname" --shell /bin/bash "$username"; then
-    log "new user: name=$username, home=/home/$username, shell=/bin/bash"
+  if useradd --create-home --user-group --home /home/"$username" \
+    --comment "$realname" --shell /bin/bash "$username"; then
+    log "New user created: name='$username', home=/home/'$username', shell=/bin/bash."
   else
     log "Error: Failed to create user $username"
     exit 1
   fi
 }
 
-# Set password.
+# Set password for new user.
 set_password_linux() {
   printf "%s\n" "Setting password..."
   if printf "%s" "$username:$pass2" | chpasswd; then
