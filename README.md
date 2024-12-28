@@ -9,16 +9,16 @@
 Bash script to create local user account(s) in:
 
 * GNU/Linux (via *useradd*)
-* macOS (via *dscl* or *sysadminctl*)
+* macOS (via *sysadminctl*)
 
 ## Notes
 
-This tool was developed for sysadmins managing user acounts on servers
-**not** tied to a network identity manager,
+This tool was originally developed for sysadmins managing user acounts
+on servers **not** tied to a network identity manager,
 but will work just as well in desktop environments.
 Also, there are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/master/src/GNU_Linux/linux_plus_1.sh)
-and [macOS](https://github.com/marshki/plus_1/blob/master/src/macOS/macOS_plus_1.sh) add user scripts in this repo,
-should that strike your fancy.
+and [macOS](https://github.com/marshki/plus_1/blob/master/src/macOS/macOS_plus_1.sh)
+scripts in this repo, should that strike your fancy.
 
 ![Animated SVG](https://rawcdn.githack.com/marshki/plus_1/ff78ecf29c570dd9e8e65c828491b68914d681fe/docs/svg_plus_1.svg)
 
@@ -26,23 +26,20 @@ should that strike your fancy.
 
 Place the script in: `/usr/local/bin` (or create it, if it does not exist).
 
-set the executable bit on the file:
-
+Set the executable bit on the file:
 `chmod +x /plus_1.sh`
 
 then call it:
-
 `sudo bash plus_1.sh`
 
 and follow the on-screen prompts.
-
-Log file is writtern to the location the script is called from. This is user modifiable.
+Log file is writtern to the location the script is called from (user modifiable).
  
 ## History
 
 |Version  |Release Date  |
 |---      |---           |
-| 0.6     | 30-OCT-2024  |
+| 0.6     | 28-DEC-2024  |
 | 0.5     | 17-JUL-2024  |
 | 0.4     | 26-SEP-2023  |
 | 0.3     | 26-FEB-2022  |
