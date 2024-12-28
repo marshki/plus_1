@@ -3,18 +3,17 @@
 # plus_1
 #
 # Create local user account(s) in:
-# GNU/Linux (via useradd) or macOS (via dscl).
+# GNU/Linux (via useradd) or macOS (via sysadminctl).
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
-# Date: 2024.07.15
+# Date: 2024.12.28
 # License: MIT
 
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 LOG_FILE="plus_1.log"
 
-export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
-
 #####################
-# Functions in common 
+# Functions in common
 #####################
 
 # Write changes/errors w/timestamp to LOG_FILE for tracking.
