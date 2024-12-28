@@ -16,8 +16,8 @@ Bash script to create local user account(s) in:
 This tool was developed for sysadmins managing user acounts on servers
 **not** tied to a network identity manager,
 but will work just as well in desktop environments.
-Also, there are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/master/functions/GNU_Linux/linux_add.sh)
-and [macOS](https://github.com/marshki/plus_1/blob/master/functions/macOS/macOS_add.sh) add user scripts in this repo,
+Also, there are standalone [GNU/Linux](https://github.com/marshki/plus_1/blob/master/src/GNU_Linux/linux_plus_1.sh)
+and [macOS](https://github.com/marshki/plus_1/blob/master/src/macOS/macOS_plus_1.sh) add user scripts in this repo,
 should that strike your fancy.
 
 ![Animated SVG](https://rawcdn.githack.com/marshki/plus_1/ff78ecf29c570dd9e8e65c828491b68914d681fe/docs/svg_plus_1.svg)
