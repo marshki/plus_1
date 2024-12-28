@@ -157,8 +157,9 @@ add_linux() {
 
 # Get highest current UID and increment +1.
 get_uid() {
-  uid=$(dscl . -list /Users UniqueID |sort --numeric-sort --key=2 |awk 'END{print $2}')
-  increment_uid=$((uid +1))
+  uid=$(dscl . -list /Users UniqueID | sort --numeric-sort --key=2 | \
+    awk 'END{print $2}')
+  increment_uid=$((uid + 1))
 }
 
 get_primarygroup() {
@@ -172,11 +173,6 @@ get_primarygroup() {
     fi
   done
 }
-
-
-
-
-
 
 # Create account in macOS via dscl using input from user_info.
 create_user_macOS() {
