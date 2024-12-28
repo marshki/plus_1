@@ -208,10 +208,11 @@ add_macOS() {
 # Exit status check.
 exit_status() {
   if [[ $1 -ne 0 ]]; then
-    log "Something went wrong, homie..."
-
+    log "ERROR: Something went wrong, homie..."
+    printf "%s\n" "Error: User account creation failed."
   else
-    log "%s\n" "Done."
+    log "Done."
+    printf "%s\n" "User account created successfully."
   fi
 }
 
