@@ -189,7 +189,7 @@ create_user_macOS() {
               -password "$pass2" \
               -passwordHint "$passhint" \
               -shell /bin/bash \
-	      -group "$primarygroup"
+	      -GID "$primarygroup"
   log "New user created: name='$username', home=/Users/'$username', shell=/bin/bash"
 }
 
