@@ -204,8 +204,8 @@ create_homedir() {
 add_macOS() {
   get_uid
   get_primarygroup
+  get_hint
   create_user_macOS
-  create_homedir
 }
 
 ######
