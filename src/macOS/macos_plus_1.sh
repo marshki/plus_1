@@ -102,7 +102,6 @@ create_user() {
 	      -fullName "$realname" \
               -password "$pass2" \
               -passwordHint "$passhint" \
-	      -home /Users/"$username" \
               -shell /bin/bash \
 	      -group "$primarygroup"
   log "New user created: name='$username', home=/Users/'$username', shell=/bin/bash"
