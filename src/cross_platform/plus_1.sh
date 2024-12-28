@@ -233,8 +233,7 @@ plus_1() {
 
 main() {
   root_check
-  printf "%s\n" "plus_1: A Bash script to create local user accounts in: \
-    GNU/Linux & macOS."
+  printf "%s\n" "plus_1: A Bash script to create local user accounts in GNU/Linux & macOS."
   while true; do
     read -r -p "Create user account? (yes/no): " answer
     if [ "$answer" = yes ]; then
