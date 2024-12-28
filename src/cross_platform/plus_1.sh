@@ -180,24 +180,17 @@ get_hint() {
   read -rp "Enter password hint to add and press [Enter]: " passhint
 }
 
-# Create account in macOS via dscl using input from user_info.
+# Create account via sysadminctl using input from user_info.
 create_user_macOS() {
   printf "%s\n" "Adding user..."
-  dscl . -create /Users/"$username"
-  dscl . -create /Users/"$username" UniqueID "$increment_uid"
-  dscl . -create /Users/"$username" UserShell /bin/bash
-  dscl . -create /Users/"$username" RealName "$realname"
-  dscl . -create /Users/"$username" PrimaryGroupID "$primarygroup"
-  dscl . -create /Users/"$username" NFSHomeDirectory /Users/"$username"
-  dscl . -passwd /Users/"$username" "$pass2"
-
-  log "new user: name='$username', home=/Users/'$username', shell=/bin/bash"
-}
-
-# Create home directory in macOS.
-create_homedir() {
-  printf "%s\n" "Creating home directory..."
-  createhomedir -u "$username" -c
+  sysadminctl -addUser "$username" \
+              -UID "$increment_uid" \
+	      -fullName "$realname" \
+              -password "$pass2" \
+              -passwordHint "$passhint" \
+              -shell /bin/bash \
+	      -group "$primarygroup"
+  log "New user created: name='$username', home=/Users/'$username', shell=/bin/bash"
 }
 
 # macOS wrapper.
