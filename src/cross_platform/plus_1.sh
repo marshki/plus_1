@@ -196,8 +196,8 @@ create_user_macOS() {
 # macOS wrapper.
 add_macOS() {
   get_uid
-  get_primarygroup
   get_hint
+  get_primarygroup
   create_user_macOS
 }
 
