@@ -10,6 +10,7 @@
 # License: MIT
 
 export PATH="/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+
 LOG_FILE="plus_1.log"
 
 #####################
