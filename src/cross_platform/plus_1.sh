@@ -162,6 +162,7 @@ get_uid() {
   increment_uid=$((uid + 1))
 }
 
+# Primary group ID prompt.
 get_primarygroup() {
   printf "%s\n" "Primary Group ID: 80=admin, 20=standard"
   while true; do
@@ -172,6 +173,11 @@ get_primarygroup() {
       log "ERROR: Invalid group ID. Try again."
     fi
   done
+}
+
+# Password hint prompt.
+get_hint() {
+  read -rp "Enter password hint to add and press [Enter]: " passhint
 }
 
 # Create account in macOS via dscl using input from user_info.
