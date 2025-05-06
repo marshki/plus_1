@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#
 # Prompt user for input (twice) until both inputs match.
 
 # read -r (esc. key binding), -s silently, & -p present prompt
